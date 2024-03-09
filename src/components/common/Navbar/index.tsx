@@ -4,7 +4,7 @@ import { ModeToggle } from '../ModeToggle';
 
 const Navbar: FC = () => {
   return (
-    <header className="h-24 flex items-center">
+    <header className="h-24 flex items-center sticky top-0">
       <div className="container flex items-center justify-between">
         <div className="flex items-end">
           <p className="font-extrabold text-3xl text-blue-400">Web</p>
