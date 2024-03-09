@@ -3,7 +3,6 @@ import './globals.css';
 import { Inter as FontSans } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
-import Navbar from '@/components/common/Navbar';
 import { ThemeProvider } from '@/components/common/Theme';
 
 const fontSans = FontSans({
@@ -25,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          'min-h-screen bg-my-image-light dark:bg-my-image-dark bg-no-repeat bg-cover w-full font-sans',
+          'min-h-screen bg-my-image-light dark:bg-my-image-dark bg-no-repeat bg-fixed bg-center bg-cover w-full font-sans',
           fontSans.variable
         )}
       >
@@ -35,7 +34,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
           {children}
         </ThemeProvider>
       </body>
