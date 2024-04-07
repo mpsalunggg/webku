@@ -3,7 +3,7 @@ import { MenuType } from '@/types/menu';
 export const Menu: MenuType[] = [
   {
     id: 1,
-    name: 'About',
+    name: 'Home',
     path: '/'
   },
   {

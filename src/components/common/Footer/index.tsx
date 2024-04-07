@@ -5,18 +5,18 @@ const Footer: FC = () => {
   return (
     <footer className="w-full h-16 border-blue-400">
       <div className="container flex justify-between">
-        <div>
+        <div className="flex gap-4">
+          <Linkedin />
+          <Instagram />
+          <Github />
+        </div>
+        <div className="md:text-md text-sm">
           <p className="italic">
             Built by {''}
             <span className="font-semibold border-b border-blue-400">
               &copy; Putra Satria
             </span>
           </p>
-        </div>
-        <div className="flex gap-4">
-          <Linkedin />
-          <Instagram />
-          <Github />
         </div>
       </div>
     </footer>

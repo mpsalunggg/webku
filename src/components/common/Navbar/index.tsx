@@ -1,15 +1,23 @@
 'use client';
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { SquareMenu } from 'lucide-react';
 
 import { Menu } from '@/constants/menu';
 import { cn } from '@/lib/utils';
 import { ModeToggle } from '../ModeToggle';
-import Link from 'next/link';
-import { SquareMenu } from 'lucide-react';
 
 const Navbar: FC = () => {
+  const path = usePathname();
   return (
+    // <motion.div
+    //   initial={{ y: -20, opacity: 0 }}
+    //   animate={{ y: 0, opacity: 1 }}
+    //   exit={{ y: -20, opacity: 0 }}
+    //   transition={{ ease: 'easeInOut', duration: 1 }}
+    // >
     <header className="h-24 flex items-center sticky top-0">
       <div className="container flex items-center justify-between">
         <div>
@@ -27,7 +35,10 @@ const Navbar: FC = () => {
               key={item.id}
               href={item.path}
               className={cn(
-                'hover:text-blue-400 cursor-pointer hover:border-b hover:border-blue-400 duration-100'
+                'hover:text-blue-400 cursor-pointer hover:border-b hover:border-blue-400 duration-100',
+                item.path === path
+                  ? 'border-b border-blue-400 text-blue-400'
+                  : ''
               )}
             >
               {item.name}
@@ -37,6 +48,7 @@ const Navbar: FC = () => {
         </div>
       </div>
     </header>
+    // </motion.div>
   );
 };
 export default Navbar;
