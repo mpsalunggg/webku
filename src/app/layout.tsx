@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          'min-h-screen bg-my-image-light dark:bg-my-image-dark bg-no-repeat bg-fixed bg-center bg-cover w-full font-sans',
+          'min-h-screen bg-primary-foreground bg-no-repeat bg-fixed bg-center bg-cover w-full font-sans',
           fontSans.variable
         )}
       >

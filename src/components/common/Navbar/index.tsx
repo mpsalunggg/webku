@@ -12,17 +12,11 @@ import { ModeToggle } from '../ModeToggle';
 const Navbar: FC = () => {
   const path = usePathname();
   return (
-    // <motion.div
-    //   initial={{ y: -20, opacity: 0 }}
-    //   animate={{ y: 0, opacity: 1 }}
-    //   exit={{ y: -20, opacity: 0 }}
-    //   transition={{ ease: 'easeInOut', duration: 1 }}
-    // >
-    <header className="h-24 flex items-center sticky top-0">
+    <header className="h-20 flex items-center sticky top-0 border-b-2">
       <div className="container flex items-center justify-between">
         <div>
           <div className="flex items-end">
-            <p className="font-extrabold md:text-4xl text-3xl text-blue-400">
+            <p className="font-extrabold md:text-3xl text-2xl text-blue-400">
               Web
             </p>
             <p className="font-semibold text-md italic">Ku</p>
@@ -48,7 +42,6 @@ const Navbar: FC = () => {
         </div>
       </div>
     </header>
-    // </motion.div>
   );
 };
 export default Navbar;

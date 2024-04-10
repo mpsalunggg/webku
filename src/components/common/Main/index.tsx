@@ -10,7 +10,7 @@ const Main = ({
   className?: string;
 }) => {
   return (
-    <div className={cn('min-h-screen flex flex-col', className)}>
+    <div className={cn('min-h-screen flex flex-col md:mx-96', className)}>
       <Navbar />
       {children}
       <Footer />

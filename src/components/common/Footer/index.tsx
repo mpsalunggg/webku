@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 const Footer: FC = () => {
   return (
-    <footer className="w-full h-16 border-blue-400">
+    <footer className="w-full h-12 border-blue-400">
       <div className="container flex justify-between">
         <div className="flex gap-4">
           <Linkedin />
