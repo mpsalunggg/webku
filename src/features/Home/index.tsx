@@ -11,7 +11,7 @@ const HomePage = () => {
           <span>👨‍🎓 I&apos;m a fresh graduate | </span>
           <span className="italic font-semibold">
             <Typewriter
-              words={['Frontend Dev', 'Software Engineer', 'Basketball Player']}
+              words={['Frontend Dev', 'Software Engineer']}
               loop={0}
               cursor
               cursorStyle="|"

@@ -3,7 +3,7 @@ import { FC } from 'react';
 import ProjectPage from '@/features/Project';
 import Main from '@/components/common/Main';
 
-const Project: FC<NextPage> = () => {
+const Project: NextPage = () => {
   return (
     <Main>
       <ProjectPage />
