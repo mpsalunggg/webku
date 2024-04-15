@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Typewriter } from 'nextjs-simple-typewriter';
 
 const HomePage = () => {
@@ -24,9 +25,13 @@ const HomePage = () => {
         <p className="md:text-lg text-md font-light">
           Interested in learning new technologies and a dedicated basketball
           fan. Take a peek at my{' '}
-          <span className="italic font-semibold text-blue-400 underline cursor-pointer">
+          <Link
+            href="https://docs.google.com/document/d/1i2fMFkOsJ73j9fKfmkRWj0npFdLgD0wQobqZR9iL7Gg/edit"
+            className="italic font-semibold text-blue-400 underline cursor-pointer"
+            target="_blank"
+          >
             resume!
-          </span>
+          </Link>
         </p>
       </div>
     </main>
