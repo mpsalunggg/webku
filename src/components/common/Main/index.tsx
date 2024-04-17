@@ -10,7 +10,12 @@ const Main = ({
   className?: string;
 }) => {
   return (
-    <div className={cn('min-h-screen flex flex-col md:mx-96', className)}>
+    <div
+      className={cn(
+        'transition-all min-h-screen flex flex-col lg:mx-96 md:mx-40 sm:mx-24 ',
+        className
+      )}
+    >
       <Navbar />
       {children}
       <Footer />

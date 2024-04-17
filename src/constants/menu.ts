@@ -15,12 +15,5 @@ export const Menu: MenuType[] = [
     id: 3,
     name: 'Experience',
     path: '/experience'
-  },
-  {
-    id: 4,
-    name: 'Skill',
-    path: '/skill'
   }
 ];
-
-export const PathMenu = Menu.map(item => item.path);
