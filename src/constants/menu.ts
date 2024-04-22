@@ -15,5 +15,10 @@ export const Menu: MenuType[] = [
     id: 3,
     name: 'Experience',
     path: '/experience'
+  },
+  {
+    id: 4,
+    name: 'Stack',
+    path: '/stack'
   }
 ];
