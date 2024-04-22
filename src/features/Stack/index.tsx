@@ -4,7 +4,7 @@ import { InterestIcon, StackIcon, UIIcon } from '@/constants/stack';
 
 const StackPage = () => {
   return (
-    <section className="container flex flex-col gap-8">
+    <section className="container flex flex-col md:gap-8">
       <div className="my-8 text-center space-y-4">
         <h1 className="text-3xl font-semibold italic">Favorite Stack</h1>
         <div className="flex gap-2 justify-center">
