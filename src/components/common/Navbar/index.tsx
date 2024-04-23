@@ -13,7 +13,7 @@ import { Separator } from '@/components/ui/separator';
 const Navbar: FC = () => {
   const path = usePathname();
   return (
-    <header className="h-20 flex items-center sticky top-0">
+    <header className="h-20 flex items-center sticky">
       <div className="container flex flex-col">
         <div className="flex items-center justify-between my-4">
           <div>
