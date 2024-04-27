@@ -1,0 +1,23 @@
+export const OurProjects = [
+  {
+    id: 1,
+    title: 'Edu Quiz',
+    description:
+      'Edu Quiz is an online learning platform specifically designed to assist students and teachers in preparing and taking quizzes online. This project was created as part of a final project, which included the development of a frontend for the user interface and a backend for data management and application functionality.',
+    image: '/project/project1.png'
+  },
+  {
+    id: 2,
+    title: 'Hmc Learn',
+    description:
+      'HMC Learn is a community project that is being built to help young people in the learning process. Co-created by community team members, the platform uses popular technologies to provide an easy and fun learning experience. Currently, the project is still under construction.',
+    image: '/project/project2.png'
+  },
+  {
+    id: 3,
+    title: 'Tokopedia Clone',
+    description:
+      'Tokopedia Play Clone is a creative outcome of the Generasi Gigih 3.0 Program Final Project that combines innovative concepts with advanced technology. This project not only explores the use of the MERN stack that has been taught, but also presents an interesting replica of the Tokopedia Play platform.',
+    image: '/project/project3.png'
+  }
+];

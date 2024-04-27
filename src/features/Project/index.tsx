@@ -1,4 +1,5 @@
 import { Card } from '@/components/ui/card';
+import { OurProjects } from '@/constants/project';
 
 const ProjectPage = () => {
   return (
@@ -10,32 +11,24 @@ const ProjectPage = () => {
           hopefully it can inspire others. You can check my <span>github</span>
         </p>
       </div>
-      <div></div>
-      <div className="flex justify-center flex-col gap-6">
-        <Card className="relative w-full p-1 min-h-92 rounded-xl">
-          <div
-            className="rounded-t-lg w-96 bg-white bg-cover bg-center shadow-lg h-52"
-            style={{
-              backgroundImage: `url('${'https://upload.wikimedia.org/wikipedia/id/thumb/2/2d/Situs_Web.PNG/640px-Situs_Web.PNG'}')`
-            }}
-          />
-        </Card>
-        <Card className="relative w-full p-1 min-h-92 rounded-xl">
-          <div
-            className="rounded-t-lg w-96 bg-white bg-cover bg-center shadow-lg h-52"
-            style={{
-              backgroundImage: `url('${'https://upload.wikimedia.org/wikipedia/id/thumb/2/2d/Situs_Web.PNG/640px-Situs_Web.PNG'}')`
-            }}
-          />
-        </Card>
-        <Card className="relative w-full p-1 min-h-92 rounded-xl">
-          <div
-            className="rounded-t-lg w-96 bg-white bg-cover bg-center shadow-lg h-52"
-            style={{
-              backgroundImage: `url('${'https://upload.wikimedia.org/wikipedia/id/thumb/2/2d/Situs_Web.PNG/640px-Situs_Web.PNG'}')`
-            }}
-          />
-        </Card>
+      <div className="flex justify-center flex-col gap-6 mb-8">
+        {OurProjects.map(item => (
+          <Card
+            key={item.id}
+            className="relative w-full flex min-h-92 rounded-xl transition-all hover:shadow-lg"
+          >
+            <div
+              className="rounded-t-lg min-w-96 bg-white bg-cover bg-center shadow-lg h-52"
+              style={{
+                backgroundImage: `url('${item.image}')`
+              }}
+            />
+            <div className="p-4 max-w-full space-y-2">
+              <h1 className="text-xl font-semibold italic">{item.title}</h1>
+              <p className="line-clamp-4">{item.description}</p>
+            </div>
+          </Card>
+        ))}
       </div>
     </section>
   );
