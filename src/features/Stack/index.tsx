@@ -1,6 +1,12 @@
 'use client';
 import { Icon } from '@iconify/react';
 import { InterestIcon, StackIcon, UIIcon } from '@/constants/stack';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger
+} from '@/components/ui/tooltip';
 
 const StackPage = () => {
   return (
@@ -9,7 +15,14 @@ const StackPage = () => {
         <h1 className="text-3xl font-semibold italic">Favorite Stack</h1>
         <div className="flex gap-2 justify-center">
           {StackIcon.map(item => (
-            <Icon key={item.id} icon={item.icon} fontSize={'30'} />
+            <TooltipProvider key={item.id}>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Icon key={item.id} icon={item.icon} fontSize={'30'} />
+                </TooltipTrigger>
+                <TooltipContent>{item.title}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           ))}
         </div>
       </div>
@@ -17,7 +30,14 @@ const StackPage = () => {
         <h1 className="text-3xl font-semibold italic">UI Stack</h1>
         <div className="flex gap-2 justify-center">
           {UIIcon.map(item => (
-            <Icon key={item.id} icon={item.icon} fontSize={'30'} />
+            <TooltipProvider key={item.id}>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Icon key={item.id} icon={item.icon} fontSize={'30'} />
+                </TooltipTrigger>
+                <TooltipContent>{item.title}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           ))}
         </div>
       </div>
@@ -27,7 +47,14 @@ const StackPage = () => {
         </h1>
         <div className="flex gap-2 justify-center">
           {InterestIcon.map(item => (
-            <Icon key={item.id} icon={item.icon} fontSize={'30'} />
+            <TooltipProvider key={item.id}>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Icon key={item.id} icon={item.icon} fontSize={'30'} />
+                </TooltipTrigger>
+                <TooltipContent>{item.title}</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           ))}
         </div>
       </div>
