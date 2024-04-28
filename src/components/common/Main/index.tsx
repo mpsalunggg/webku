@@ -12,7 +12,7 @@ const Main = ({
   return (
     <div
       className={cn(
-        'transition-all min-h-screen flex flex-col lg:mx-96 md:mx-40 sm:mx-24 ',
+        'transition-all min-h-screen flex flex-col lg:mx-80 md:mx-40 sm:mx-24 ',
         className
       )}
     >

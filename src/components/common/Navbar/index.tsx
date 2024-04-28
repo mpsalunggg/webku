@@ -24,8 +24,8 @@ const Navbar: FC = () => {
               <p className="font-semibold text-md italic">Ku</p>
             </div>
           </div>
-          <SquareMenu className="md:hidden" />
-          <div className="md:flex items-center gap-8 italic hidden">
+          <SquareMenu className="xl:hidden" />
+          <div className="xl:flex items-center lg:gap-8 gap-2 italic hidden">
             {Menu.map(item => (
               <Link
                 key={item.id}
