@@ -15,17 +15,19 @@ const ProjectPage = () => {
         {OurProjects.map(item => (
           <Card
             key={item.id}
-            className="relative w-full flex min-h-92 rounded-xl transition-all hover:shadow-lg"
+            className="relative w-full lg:flex lg:min-h-92 rounded-xl transition-all hover:shadow-lg cursor-pointer"
           >
             <div
-              className="rounded-t-lg min-w-96 bg-white bg-cover bg-center shadow-lg h-52"
+              className="rounded-t-lg lg:min-w-96 w-full bg-white bg-cover bg-top shadow-lg h-48 rounded-lg"
               style={{
                 backgroundImage: `url('${item.image}')`
               }}
             />
-            <div className="p-4 max-w-full space-y-2">
-              <h1 className="text-xl font-semibold italic">{item.title}</h1>
-              <p className="line-clamp-4">{item.description}</p>
+            <div className="p-5 max-w-full space-y-2">
+              <h1 className="text-xl font-semibold italic cursor-pointer">
+                {item.title}
+              </h1>
+              <p className="line-clamp-3 cursor-pointer">{item.description}</p>
             </div>
           </Card>
         ))}
