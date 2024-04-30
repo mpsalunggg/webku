@@ -126,3 +126,9 @@ export const InterestIcon = [
     title: 'Golang'
   }
 ];
+
+export const ListIcon = {
+  StackIcon,
+  UIIcon,
+  InterestIcon
+};

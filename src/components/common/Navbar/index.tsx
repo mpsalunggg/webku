@@ -6,7 +6,7 @@ import { SquareMenu } from 'lucide-react';
 
 import { Menu } from '@/constants/menu';
 import { cn } from '@/lib/utils';
-import { ModeToggle } from '../ModeToggle';
+import { ModeToggle } from '../../display/ModeToggle';
 import { Separator } from '@/components/ui/separator';
 
 const Navbar: FC = () => {
