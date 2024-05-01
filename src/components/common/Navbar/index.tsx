@@ -8,9 +8,12 @@ import { Menu } from '@/constants/menu';
 import { cn } from '@/lib/utils';
 import { ModeToggle } from '../../display/ModeToggle';
 import { Separator } from '@/components/ui/separator';
+import { useSidebar } from '@/context/sidebarContext';
 
 const Navbar: FC = () => {
   const path = usePathname();
+  const { toggleSidebar } = useSidebar();
+
   return (
     <header className="h-20 flex items-center sticky">
       <div className="container flex flex-col">
@@ -23,7 +26,7 @@ const Navbar: FC = () => {
               <p className="font-semibold text-md italic">Ku</p>
             </div>
           </div>
-          <SquareMenu className="xl:hidden" />
+          <SquareMenu className="xl:hidden" onClick={toggleSidebar} />
           <div className="xl:flex items-center lg:gap-8 gap-2 italic hidden">
             {Menu.map(item => (
               <Link
