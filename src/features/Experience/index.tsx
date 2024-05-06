@@ -10,6 +10,27 @@ const ExperiencePage = () => {
           have participated in
         </p>
       </div>
+      <div className="w-full flex justify-center flex-col gap-6 mb-8">
+        <div>
+          <div>
+            <div className="flex justify-between items-center">
+              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+                Frontend Engineer
+              </h4>
+              <p className="font-semibold tracking-tight">2020 - 2024</p>
+            </div>
+            <div className="flex justify-between items-center">
+              <p className="italic">Educourse.id</p>
+              <p className="italic">Internship</p>
+            </div>
+          </div>
+          <ul className="mb-6 ml-6 list-disc [&>li]:mt-2">
+            <li>1st level of puns: 5 gold coins</li>
+            <li>2nd level of jokes: 10 gold coins</li>
+            <li>3rd level of one-liners : 20 gold coins</li>
+          </ul>
+        </div>
+      </div>
     </section>
   );
 };

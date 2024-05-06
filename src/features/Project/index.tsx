@@ -21,7 +21,7 @@ const ProjectPage = () => {
             className="w-full flex xl:flex-row flex-col lg:min-h-92 rounded-xl transition-all hover:shadow-lg cursor-pointer"
           >
             <div
-              className="rounded-t-lg lg:min-w-80  min-w-full bg-white bg-cover bg-top shadow-lg lg:h-48 h-40 rounded-lg"
+              className="rounded-t-lg lg:min-w-96  min-w-full bg-white bg-cover bg-top shadow-lg lg:h-48 h-40 rounded-lg"
               style={{
                 backgroundImage: `url('${item.image}')`
               }}
