@@ -9,7 +9,7 @@ const HomePage = () => {
           Hello i&apos;m Putra👋
         </h1>
         <div className="md:text-lg text-md font-light">
-          <span>👨‍🎓 I&apos;m a fresh graduate | </span>
+          <span>👨‍🎓 Fresh graduate | </span>
           <span className="italic font-semibold">
             <Typewriter
               words={['Frontend Dev', 'Software Engineer']}
