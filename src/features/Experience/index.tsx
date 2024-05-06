@@ -14,14 +14,16 @@ const ExperiencePage = () => {
         <div>
           <div>
             <div className="flex justify-between items-center">
-              <h4 className="scroll-m-20 text-xl font-semibold tracking-tight">
+              <h4 className="scroll-m-20 lg:text-xl text-md font-semibold tracking-tight text-blue-400">
                 Frontend Engineer
               </h4>
-              <p className="font-semibold tracking-tight">2020 - 2024</p>
+              <p className="font-semibold tracking-tight text-blue-400">
+                2020 - 2024
+              </p>
             </div>
             <div className="flex justify-between items-center">
-              <p className="italic">Educourse.id</p>
-              <p className="italic">Internship</p>
+              <p className="italic font-semibold">Educourse.id</p>
+              <p className="italic font-semibold">Internship</p>
             </div>
           </div>
           <ul className="mb-6 ml-6 list-disc [&>li]:mt-2">

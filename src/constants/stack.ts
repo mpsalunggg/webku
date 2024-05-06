@@ -26,128 +26,128 @@ export const IcShadcnUI = 'simple-icons:shadcnui';
 export const StackIcon = [
   {
     id: 1,
-    icon: 'devicon:html5',
-    title: IcHTML
+    icon: IcHTML,
+    title: 'HTML'
   },
   {
     id: 2,
-    icon: 'devicon:css3',
-    title: IcCSS
+    icon: IcCSS,
+    title: 'CSS'
   },
   {
     id: 3,
-    icon: 'devicon:javascript',
-    title: IcJavaScript
+    icon: IcJavaScript,
+    title: 'JavaScript'
   },
   {
     id: 4,
-    icon: 'devicon:typescript',
-    title: IcTypeScript
+    icon: IcTypeScript,
+    title: 'TypeScript'
   },
   {
     id: 5,
-    icon: 'devicon:git',
-    title: IcGIT
+    icon: IcGIT,
+    title: 'GIT'
   },
   {
     id: 6,
-    icon: 'devicon:react',
-    title: IcReact
+    icon: IcReact,
+    title: 'ReactJS'
   },
   {
     id: 7,
-    icon: 'skill-icons:nextjs-light',
-    title: IcNext
+    icon: IcNext,
+    title: 'NextJS'
   },
   {
     id: 8,
-    icon: 'devicon:vitejs',
-    title: IcVite
+    icon: IcVite,
+    title: 'ViteJS'
   },
   {
     id: 9,
-    icon: 'skill-icons:vercel-light',
-    title: IcVercel
+    icon: IcVercel,
+    title: 'Vercel'
   },
   {
     id: 10,
-    icon: 'logos:graphql',
-    title: IcGraphQL
+    icon: IcGraphQL,
+    title: 'GraphQL'
   }
 ];
 
 export const UIIcon = [
   {
     id: 1,
-    icon: 'devicon:figma',
-    title: IcFigma
+    icon: IcFigma,
+    title: 'Figma'
   },
   {
     id: 2,
-    icon: 'devicon:tailwindcss',
-    title: IcTailwind
+    icon: IcTailwind,
+    title: 'Tailwind CSS'
   },
   {
     id: 3,
-    icon: 'devicon:bootstrap',
-    title: IcBootstrap
+    icon: IcBootstrap,
+    title: 'Bootstrap'
   },
   {
     id: 4,
-    icon: 'devicon:chakraui',
-    title: IcChakraUI
+    icon: IcChakraUI,
+    title: 'Chakra UI'
   },
   {
     id: 5,
-    icon: 'devicon:materialui',
-    title: IcMaterialUI
+    icon: IcMaterialUI,
+    title: 'Material UI'
   },
   {
     id: 6,
-    icon: 'devicon:antdesign',
-    title: IcAntd
+    icon: IcAntd,
+    title: 'Ant Design'
   },
   {
     id: 7,
-    icon: 'tabler:brand-radix-ui',
-    title: IcRadixUI
+    icon: IcRadixUI,
+    title: 'Radix UI'
   },
   {
     id: 8,
-    icon: 'simple-icons:shadcnui',
-    title: IcShadcnUI
+    icon: IcShadcnUI,
+    title: 'Shadcn UI'
   }
 ];
 
 export const InterestIcon = [
   {
     id: 1,
-    icon: 'skill-icons:expressjs-light',
-    title: IcExpress
+    icon: IcExpress,
+    title: 'Express JS'
   },
   {
     id: 2,
-    icon: 'devicon:postgresql',
-    title: IcPostgres
+    icon: IcPostgres,
+    title: 'Postgre SQL'
   },
   {
     id: 3,
-    icon: 'devicon:mongodb',
-    title: IcMongo
+    icon: IcMongo,
+    title: 'MongoDB'
   },
   {
     id: 4,
-    icon: 'logos:socket-io',
-    title: IcMongo
+    icon: IcSocketIO,
+    title: 'Socket IO'
   },
   {
     id: 5,
-    icon: 'skill-icons:docker',
-    title: IcDocker
+    icon: IcDocker,
+    title: 'Docker'
   },
   {
     id: 6,
-    icon: 'skill-icons:golang',
-    title: IcGolang
+    icon: IcGolang,
+    title: 'Golang'
   }
 ];
