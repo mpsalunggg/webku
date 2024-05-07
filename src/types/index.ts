@@ -1,3 +1,9 @@
+export interface MenuType {
+  id: number;
+  name?: string;
+  path: string;
+}
+
 export interface CardStackType {
   id: number;
   icon: string;

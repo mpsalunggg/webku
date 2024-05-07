@@ -1,4 +1,4 @@
-import { CardStackType } from '@/types/stack';
+import { CardStackType } from '@/types';
 
 export const IcHTML = 'devicon:html5';
 export const IcCSS = 'devicon:css3';
