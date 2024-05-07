@@ -1,3 +1,5 @@
+import { CardStackType } from '@/types/stack';
+
 export const IcHTML = 'devicon:html5';
 export const IcCSS = 'devicon:css3';
 export const IcJavaScript = 'devicon:javascript';
@@ -23,7 +25,7 @@ export const IcAntd = 'devicon:antdesign';
 export const IcRadixUI = 'tabler:brand-radix-ui';
 export const IcShadcnUI = 'simple-icons:shadcnui';
 
-export const StackIcon = [
+export const StackIcon: CardStackType[] = [
   {
     id: 1,
     icon: IcHTML,
@@ -76,7 +78,7 @@ export const StackIcon = [
   }
 ];
 
-export const UIIcon = [
+export const UIIcon: CardStackType[] = [
   {
     id: 1,
     icon: IcFigma,
@@ -119,7 +121,7 @@ export const UIIcon = [
   }
 ];
 
-export const InterestIcon = [
+export const InterestIcon: CardStackType[] = [
   {
     id: 1,
     icon: IcExpress,

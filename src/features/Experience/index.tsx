@@ -1,3 +1,5 @@
+import { Experiences } from '@/constants/experience';
+
 const ExperiencePage = () => {
   return (
     <section className="container flex flex-col items-center w-full">
@@ -11,27 +13,32 @@ const ExperiencePage = () => {
         </p>
       </div>
       <div className="w-full flex justify-center flex-col gap-6 mb-8">
-        <div>
-          <div>
-            <div className="flex justify-between items-center">
-              <h4 className="scroll-m-20 lg:text-xl text-md font-semibold tracking-tight text-blue-400">
-                Frontend Engineer
-              </h4>
-              <p className="font-semibold tracking-tight text-blue-400">
-                2020 - 2024
-              </p>
+        {Experiences.reverse().map(item => {
+          const { id, role, place, duration, description, company } = item;
+          return (
+            <div key={id}>
+              <div>
+                <div className="flex justify-between items-center">
+                  <h4 className="scroll-m-20 lg:text-xl text-md font-semibold tracking-tight text-blue-400">
+                    {role}
+                  </h4>
+                  <p className="font-semibold tracking-tight text-blue-400">
+                    {duration}
+                  </p>
+                </div>
+                <div className="flex justify-between items-center">
+                  <p className="italic font-semibold">{company}</p>
+                  <p className="italic font-semibold">{place}</p>
+                </div>
+              </div>
+              <ul className="mb-6 ml-6 list-disc [&>li]:mt-2">
+                {description.map(item => (
+                  <li key={item.id}>{item.text}</li>
+                ))}
+              </ul>
             </div>
-            <div className="flex justify-between items-center">
-              <p className="italic font-semibold">Educourse.id</p>
-              <p className="italic font-semibold">Internship</p>
-            </div>
-          </div>
-          <ul className="mb-6 ml-6 list-disc [&>li]:mt-2">
-            <li>1st level of puns: 5 gold coins</li>
-            <li>2nd level of jokes: 10 gold coins</li>
-            <li>3rd level of one-liners : 20 gold coins</li>
-          </ul>
-        </div>
+          );
+        })}
       </div>
     </section>
   );
