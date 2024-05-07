@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { CardStackProps } from '@/types/stack';
+import { CardStackProps } from '@/types';
 import { Icon } from '@iconify/react';
 import {
   Tooltip,
