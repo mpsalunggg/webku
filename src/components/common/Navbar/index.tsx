@@ -9,10 +9,11 @@ import { cn } from '@/lib/utils';
 import { ModeToggle } from '../../display/ModeToggle';
 import { Separator } from '@/components/ui/separator';
 import { useSidebar } from '@/context/sidebarContext';
+import MenuSide from '../MenuSide';
 
 const Navbar: FC = () => {
   const path = usePathname();
-  const { toggleSidebar } = useSidebar();
+  const { toggleOpen } = useSidebar();
 
   return (
     <header className="h-20 flex items-center sticky">
@@ -26,7 +27,7 @@ const Navbar: FC = () => {
               <p className="font-semibold text-md italic">Ku</p>
             </div>
           </div>
-          <SquareMenu className="xl:hidden" onClick={toggleSidebar} />
+          <SquareMenu className="xl:hidden" onClick={toggleOpen} />
           <div className="xl:flex items-center lg:gap-8 gap-2 italic hidden">
             {Menu.map(item => (
               <Link
@@ -47,6 +48,7 @@ const Navbar: FC = () => {
         </div>
         <Separator orientation="horizontal" />
       </div>
+      <MenuSide />
     </header>
   );
 };
