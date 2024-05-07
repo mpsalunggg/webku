@@ -1,7 +1,7 @@
 export const Experiences = [
   {
     id: 1,
-    role: 'Lead & Mentor Web Development',
+    role: 'Lead, Mentor Web Development',
     company: 'Hammercode',
     place: 'Palu',
     duration: '09/2022 - Now',
