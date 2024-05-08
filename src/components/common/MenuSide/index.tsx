@@ -3,13 +3,16 @@ import { ModeToggle } from '@/components/display/ModeToggle';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu } from '@/constants/menu';
 import { useSidebar } from '@/context/sidebarContext';
+import { SquareMenu } from 'lucide-react';
 import Link from 'next/link';
 
 const MenuSide = () => {
-  const { toggleClose, isOpen } = useSidebar();
+  const { toggleClose, isOpen, toggleSide } = useSidebar();
   return (
-    <Sheet open={isOpen} onOpenChange={toggleClose} modal={true}>
-      <SheetTrigger asChild></SheetTrigger>
+    <Sheet open={isOpen} onOpenChange={toggleSide} modal={true}>
+      <SheetTrigger asChild>
+        <SquareMenu className="xl:hidden" />
+      </SheetTrigger>
       <SheetContent side="top" className="w-full">
         <div className="flex flex-col items-center lg:gap-8 gap-2 italic">
           {Menu.map(item => (

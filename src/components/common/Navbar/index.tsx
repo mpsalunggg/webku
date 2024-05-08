@@ -2,18 +2,15 @@
 import { usePathname } from 'next/navigation';
 import { FC } from 'react';
 import Link from 'next/link';
-import { SquareMenu } from 'lucide-react';
 
 import { Menu } from '@/constants/menu';
 import { cn } from '@/lib/utils';
 import { ModeToggle } from '../../display/ModeToggle';
 import { Separator } from '@/components/ui/separator';
-import { useSidebar } from '@/context/sidebarContext';
 import MenuSide from '../MenuSide';
 
 const Navbar: FC = () => {
   const path = usePathname();
-  const { toggleOpen } = useSidebar();
 
   return (
     <header className="h-20 flex items-center sticky">
@@ -27,7 +24,9 @@ const Navbar: FC = () => {
               <p className="font-semibold text-md italic">Ku</p>
             </div>
           </div>
-          <SquareMenu className="xl:hidden" onClick={toggleOpen} />
+          <div className="xl:hidden">
+            <MenuSide />
+          </div>
           <div className="xl:flex items-center lg:gap-8 gap-2 italic hidden">
             {Menu.map(item => (
               <Link
@@ -48,7 +47,6 @@ const Navbar: FC = () => {
         </div>
         <Separator orientation="horizontal" />
       </div>
-      <MenuSide />
     </header>
   );
 };
