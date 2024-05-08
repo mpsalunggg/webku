@@ -68,7 +68,7 @@ export const Experiences = [
   },
   {
     id: 4,
-    role: 'Fullstack Developer',
+    role: 'Frontend Engineer',
     company: 'Educourse.id - Internship',
     place: 'Tangerang Selatan',
     duration: '02/2023 - 06/2023',
@@ -89,7 +89,7 @@ export const Experiences = [
   },
   {
     id: 5,
-    role: 'Fullstack Engineer',
+    role: 'Frontend Developer',
     company: 'Rey.id - Internship',
     place: 'Palu',
     duration: '09/2023 - 03/2024',
