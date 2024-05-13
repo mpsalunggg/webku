@@ -12,6 +12,7 @@ export const IcVercel = 'skill-icons:vercel-light';
 export const IcGraphQL = 'logos:graphql';
 export const IcExpress = 'skill-icons:expressjs-light';
 export const IcPostgres = 'devicon:postgresql';
+export const IcNode = 'vscode-icons:file-type-node';
 export const IcMongo = 'devicon:mongodb';
 export const IcSocketIO = 'logos:socket-io';
 export const IcDocker = 'skill-icons:docker';
