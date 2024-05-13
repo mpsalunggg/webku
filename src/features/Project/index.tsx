@@ -2,6 +2,7 @@
 import { motion } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { OurProjects } from '@/constants/project';
+import Link from 'next/link';
 
 const ProjectPage = () => {
   return (
@@ -11,9 +12,13 @@ const ProjectPage = () => {
         <p className="">
           Here are some of the results of my learning about programming,
           hopefully it can inspire others. You can check my{' '}
-          <span className="underline italic text-blue-400 cursor-pointer">
+          <Link
+            href="https://github.com/mpsalunggg"
+            className="underline italic text-blue-400 cursor-pointer"
+            target="_blank"
+          >
             github
-          </span>
+          </Link>
         </p>
       </div>
       <div className="w-full flex justify-center flex-col gap-6 mb-8">
