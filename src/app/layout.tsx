@@ -5,10 +5,7 @@ import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@/lib/utils';
 import { ThemeProvider } from '@/components/common/Theme';
 
-const fontSans = FontSans({
-  subsets: ['latin'],
-  variable: '--font-sans'
-});
+const fontSans = FontSans({ subsets: ['latin'], variable: '--font-sans' });
 
 export const metadata: Metadata = {
   title: 'Webku',
@@ -17,15 +14,13 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          'min-h-screen bg-primary-foreground bg-no-repeat bg-fixed bg-center bg-cover w-full font-sans',
-          fontSans.variable
+          fontSans.variable,
+          'min-h-screen bg-primary-foreground bg-no-repeat bg-fixed bg-center bg-cover w-full font-sans'
         )}
       >
         <ThemeProvider
