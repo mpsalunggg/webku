@@ -18,9 +18,7 @@ const Navbar: FC = () => {
         <div className="flex items-center justify-between my-4">
           <div>
             <div className="flex items-end">
-              <p className="font-extrabold md:text-3xl text-2xl text-blue-400">
-                Web
-              </p>
+              <p className="font-extrabold md:text-3xl text-2xl">Web</p>
               <p className="font-semibold text-md italic">Ku</p>
             </div>
           </div>
@@ -33,10 +31,8 @@ const Navbar: FC = () => {
                 key={item.id}
                 href={item.path}
                 className={cn(
-                  'hover:text-blue-400 cursor-pointer hover:border-b hover:border-blue-400 duration-100',
-                  item.path === path
-                    ? 'border-b border-blue-400 text-blue-400'
-                    : ''
+                  'cursor-pointer hover:border-b duration-100',
+                  item.path === path ? 'border-b' : ''
                 )}
               >
                 {item.name}

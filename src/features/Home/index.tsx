@@ -5,7 +5,7 @@ const HomePage = () => {
   return (
     <main className="container h-full flex md:flex-row flex-col-reverse md:items-center md:gap-0 gap-8">
       <div className="flex flex-col gap-3">
-        <h1 className="font-bold md:text-5xl text-4xl text-blue-400 drop-shadow-lg">
+        <h1 className="font-bold md:text-5xl text-4xl drop-shadow-lg">
           Hello i&apos;m Putra👋
         </h1>
         <div className="md:text-lg text-md font-light">
@@ -27,7 +27,7 @@ const HomePage = () => {
           at my{' '}
           <Link
             href="https://docs.google.com/document/d/1i2fMFkOsJ73j9fKfmkRWj0npFdLgD0wQobqZR9iL7Gg/edit"
-            className="italic font-semibold text-blue-400 underline cursor-pointer"
+            className="italic font-semibold underline cursor-pointer"
             target="_blank"
           >
             resume!
