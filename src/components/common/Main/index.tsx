@@ -19,9 +19,7 @@ const Main = ({
           className
         )}
       >
-        <Navbar />
         {children}
-        <Footer />
       </div>
     </SidebarProvider>
   );
