@@ -1,5 +1,5 @@
 'use client';
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 import { Experiences } from '@/constants/experience';
 
 const ExperiencePage = () => {
@@ -18,16 +18,7 @@ const ExperiencePage = () => {
         {Experiences.reverse().map((item, index) => {
           const { id, role, place, duration, description, company } = item;
           return (
-            <motion.div
-              key={id}
-              initial={{ opacity: 0, scale: 0.3 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.4,
-                delay: (index + 1) * 0.3,
-                ease: [0, 0.71, 0.6, 1.01]
-              }}
-            >
+            <div key={id}>
               <div className="flex justify-between items-center">
                 <span className="scroll-m-20 lg:text-xl text-sm font-semibold tracking-tight text-blue-400">
                   {role}
@@ -45,7 +36,7 @@ const ExperiencePage = () => {
                   <li key={item.id}>{item.text}</li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           );
         })}
       </div>

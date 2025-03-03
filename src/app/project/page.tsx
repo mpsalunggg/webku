@@ -6,9 +6,7 @@ import Template from '@/components/common/Template';
 const Project: NextPage = () => {
   return (
     <Main>
-      <Template key="project">
-        <ProjectPage />
-      </Template>
+      <ProjectPage />
     </Main>
   );
 };

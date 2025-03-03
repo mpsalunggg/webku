@@ -5,10 +5,8 @@ import Template from '../components/common/Template';
 
 const Home: NextPage = () => {
   return (
-    <Main className="justify-between">
-      <Template key="home">
-        <HomePage />
-      </Template>
+    <Main>
+      <HomePage />
     </Main>
   );
 };

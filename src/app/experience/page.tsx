@@ -6,9 +6,7 @@ import { NextPage } from 'next';
 const Experience: NextPage = () => {
   return (
     <Main>
-      <Template key="experience">
-        <ExperiencePage />
-      </Template>
+      <ExperiencePage />
     </Main>
   );
 };

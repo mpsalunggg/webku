@@ -1,6 +1,6 @@
 'use client';
 import { usePathname } from 'next/navigation';
-import { FC } from 'react';
+import { FC, useMemo } from 'react';
 import Link from 'next/link';
 
 import { Menu } from '@/constants/menu';
@@ -12,32 +12,35 @@ import MenuSide from '../MenuSide';
 const Navbar: FC = () => {
   const path = usePathname();
 
+  const renderedMenuItems = useMemo(() => {
+    return Menu.map(item => (
+      <Link
+        key={item.id}
+        href={item.path}
+        prefetch={false}
+        className={cn(
+          'cursor-pointer hover:border-b duration-100',
+          item.path === path ? 'border-b' : ''
+        )}
+      >
+        {item.name}
+      </Link>
+    ));
+  }, []);
+
   return (
-    <header className="h-20 flex items-center sticky">
+    <header className="h-20 flex items-center sticky top-0 bg-background z-50">
       <div className="container flex flex-col">
         <div className="flex items-center justify-between my-4">
-          <div>
-            <div className="flex items-end">
-              <p className="font-extrabold md:text-3xl text-2xl">Web</p>
-              <p className="font-semibold text-md italic">Ku</p>
-            </div>
+          <div className="flex items-end">
+            <p className="font-extrabold md:text-3xl text-2xl">Web</p>
+            <p className="font-semibold text-md italic">Ku</p>
           </div>
           <div className="xl:hidden">
             <MenuSide />
           </div>
           <div className="xl:flex items-center lg:gap-8 gap-2 italic hidden">
-            {Menu.map(item => (
-              <Link
-                key={item.id}
-                href={item.path}
-                className={cn(
-                  'cursor-pointer hover:border-b duration-100',
-                  item.path === path ? 'border-b' : ''
-                )}
-              >
-                {item.name}
-              </Link>
-            ))}
+            {renderedMenuItems}
             <ModeToggle />
           </div>
         </div>
@@ -46,4 +49,5 @@ const Navbar: FC = () => {
     </header>
   );
 };
+
 export default Navbar;

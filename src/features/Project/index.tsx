@@ -23,34 +23,21 @@ const ProjectPage = () => {
       </div>
       <div className="w-full flex justify-center flex-col gap-6 mb-8">
         {OurProjects.map(item => (
-          <motion.div
+          <Card
             key={item.id}
-            className="box"
-            initial={{ opacity: 0, scale: 0.3 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: 0.4,
-              delay: item.id * 0.3,
-              ease: [0, 0.71, 0.6, 1.01]
-            }}
+            className="w-full flex xl:flex-row flex-col lg:min-h-92 rounded-xl transition-all hover:shadow-lg cursor-pointer"
           >
-            <Card className="w-full flex xl:flex-row flex-col lg:min-h-92 rounded-xl transition-all hover:shadow-lg cursor-pointer">
-              <div
-                className="rounded-t-lg lg:min-w-96  min-w-full bg-white bg-cover bg-top shadow-lg lg:h-48 h-40 rounded-lg"
-                style={{
-                  backgroundImage: `url('${item.image}')`
-                }}
-              />
-              <div className="p-5 max-w-full space-y-2">
-                <h1 className="text-xl font-semibold italic cursor-pointer">
-                  {item.title}
-                </h1>
-                <p className="line-clamp-3 cursor-pointer">
-                  {item.description}
-                </p>
-              </div>
-            </Card>
-          </motion.div>
+            <div
+              className="rounded-t-lg lg:min-w-96  min-w-full bg-white bg-cover bg-top shadow-lg lg:h-48 h-40 rounded-lg"
+              style={{ backgroundImage: `url('${item.image}')` }}
+            />
+            <div className="p-5 max-w-full space-y-2">
+              <h1 className="text-xl font-semibold italic cursor-pointer">
+                {item.title}
+              </h1>
+              <p className="line-clamp-3 cursor-pointer">{item.description}</p>
+            </div>
+          </Card>
         ))}
       </div>
     </section>

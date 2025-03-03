@@ -6,9 +6,7 @@ import Template from '@/components/common/Template';
 const Stack: NextPage = () => {
   return (
     <Main className="justify-between">
-      <Template key="stack">
-        <StackPage />
-      </Template>
+      <StackPage />
     </Main>
   );
 };
