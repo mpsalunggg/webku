@@ -11,10 +11,10 @@ const HomePage = () => {
           Hello i&apos;m Putra👋
         </h1>
         <div className="md:text-lg text-md font-light">
-          <span>👨‍🎓 Fresh graduate | </span>
+          <span>👨‍💻 Software Engineer | </span>
           <span className="italic font-semibold">
             <Typewriter
-              words={['Frontend Dev', 'Software Engineer']}
+              words={['Frontend Engineer']}
               loop={0}
               cursor
               cursorStyle="|"
@@ -28,7 +28,7 @@ const HomePage = () => {
           Interested in learning new technologies and love teaching. Take a peek
           at my{' '}
           <Link
-            href="https://docs.google.com/document/d/1i2fMFkOsJ73j9fKfmkRWj0npFdLgD0wQobqZR9iL7Gg/edit"
+            href="https://docs.google.com/document/d/15emkkk3uECevTU2SMT8q4aD8fpdu9tF-E33ha0YTrgA/edit?tab=t.0"
             className="italic font-semibold underline cursor-pointer"
             target="_blank"
           >
