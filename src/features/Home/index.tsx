@@ -1,4 +1,5 @@
 import { ModeToggle } from '@/components/display/ModeToggle';
+import Sosmed from '@/components/display/Sosmed';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { Typewriter } from 'nextjs-simple-typewriter';
@@ -43,6 +44,7 @@ const HomePage = () => {
             Explore
           </Button>
           <ModeToggle />
+          <Sosmed />
         </div>
       </div>
     </main>
