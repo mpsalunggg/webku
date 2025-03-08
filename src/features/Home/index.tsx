@@ -6,7 +6,7 @@ import { Typewriter } from 'nextjs-simple-typewriter';
 
 const HomePage = () => {
   return (
-    <main className="container h-screen flex md:flex-row flex-col-reverse md:items-center md:gap-0 gap-8">
+    <main className="container h-screen flex items-center md:gap-0 gap-8 p-4">
       <div className="flex flex-col gap-3">
         <h1 className="font-bold md:text-5xl text-4xl drop-shadow-lg">
           Hello i&apos;m Putra👋
