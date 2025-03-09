@@ -9,7 +9,7 @@ import { Typewriter } from 'nextjs-simple-typewriter';
 const HomePage = () => {
   const router = useRouter();
   return (
-    <main className="h-screen flex items-center md:gap-0 gap-8 p-4">
+    <main className="h-screen flex items-center md:gap-0 gap-8 py-8">
       <div className="flex flex-col gap-3">
         <h1 className="font-bold md:text-5xl text-4xl drop-shadow-lg">
           Hello i&apos;m Putra👋
