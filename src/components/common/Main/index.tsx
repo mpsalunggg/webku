@@ -1,8 +1,6 @@
 'use client';
 import { SidebarProvider } from '@/context/sidebarContext';
 import { cn } from '@/lib/utils';
-import Footer from '../Footer';
-import Navbar from '../Navbar';
 
 const Main = ({
   children,
@@ -15,7 +13,7 @@ const Main = ({
     <SidebarProvider>
       <div
         className={cn(
-          'transition-all min-h-screen flex flex-col lg:mx-80 md:mx-40 sm:mx-24 ',
+          'transition-all min-h-screen flex flex-col lg:mx-96 md:mx-40 sm:mx-24 ',
           className
         )}
       >

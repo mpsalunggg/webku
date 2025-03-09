@@ -1,17 +1,20 @@
+'use client';
 import { ModeToggle } from '@/components/display/ModeToggle';
 import Sosmed from '@/components/display/Sosmed';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { Typewriter } from 'nextjs-simple-typewriter';
 
 const HomePage = () => {
+  const router = useRouter();
   return (
-    <main className="container h-screen flex items-center md:gap-0 gap-8 p-4">
+    <main className="h-screen flex items-center md:gap-0 gap-8 p-4">
       <div className="flex flex-col gap-3">
         <h1 className="font-bold md:text-5xl text-4xl drop-shadow-lg">
           Hello i&apos;m Putra👋
         </h1>
-        <div className="md:text-lg text-md font-light">
+        <div className="md:text-md text-sm font-light">
           <span>👨‍💻 Software Engineer | </span>
           <span className="italic font-semibold">
             <Typewriter
@@ -25,7 +28,7 @@ const HomePage = () => {
             />
           </span>
         </div>
-        <p className="md:text-lg text-md font-light">
+        <p className="md:text-md text-sm font-light">
           Interested in learning new technologies and love teaching. Take a peek
           at my{' '}
           <Link
@@ -40,6 +43,7 @@ const HomePage = () => {
           <Button
             variant="default"
             className="w-24 rounded-full cursor-pointer"
+            onClick={() => router.push('/stack')}
           >
             Explore
           </Button>
