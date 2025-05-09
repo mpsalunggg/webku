@@ -1,5 +1,6 @@
 import Sosmed from '@/components/common/Sosmed'
 import { Button } from '@/components/ui/button'
+import { Link } from '@tanstack/react-router'
 import { Typewriter } from 'react-simple-typewriter'
 
 const Home = () => {
@@ -39,7 +40,11 @@ const Home = () => {
             variant="default"
             className="w-24 rounded-full cursor-pointer"
           >
+            <Link
+              to="/me"
+            >
             Explore
+            </Link>
           </Button>
           {/* <ModeToggle /> */}
           <Sosmed />
