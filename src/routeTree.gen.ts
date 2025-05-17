@@ -11,7 +11,7 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as MeImport } from '././routes/me'
+import { Route as MeImport } from './routes/me'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes

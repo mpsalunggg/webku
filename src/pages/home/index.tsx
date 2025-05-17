@@ -1,4 +1,5 @@
 import Sosmed from '@/components/common/Sosmed'
+import { ThemeToggle } from '@/components/common/ThemeToggle'
 import { Button } from '@/components/ui/button'
 import { Link } from '@tanstack/react-router'
 import { Typewriter } from 'react-simple-typewriter'
@@ -8,7 +9,7 @@ const Home = () => {
     <main className="h-screen flex justify-center items-center md:gap-0 gap-8 py-8">
       <div className="flex flex-col gap-3 items-center">
         <h1 className="font-bold md:text-5xl text-4xl drop-shadow-lg">
-          Hello i&apos;m Putra👋
+          Hello i&apos;m <span className='text-yellow-500'>Putra</span>👋
         </h1>
         <div className="md:text-md text-sm font-light">
           <span>👨‍💻 Software Engineer | </span>
@@ -40,13 +41,9 @@ const Home = () => {
             variant="default"
             className="w-24 rounded-full cursor-pointer"
           >
-            <Link
-              to="/me"
-            >
-            Explore
-            </Link>
+            <Link to="/me">Explore</Link>
           </Button>
-          {/* <ModeToggle /> */}
+          <ThemeToggle />
           <Sosmed />
         </div>
       </div>
