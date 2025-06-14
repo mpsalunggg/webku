@@ -1,4 +1,4 @@
 const Me = () => {
-  return <div>Me</div>
+  return <section>Me</section>
 }
 export default Me
