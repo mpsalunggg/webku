@@ -3,6 +3,9 @@ import { Typewriter } from 'react-simple-typewriter'
 import Sosmed from '@/components/common/Sosmed'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
 import { Button } from '@/components/ui/button'
+import Profile from '@/assets/image/profile.png'
+import Menu from './components/Menu'
+import { ArrowDown } from 'lucide-react'
 
 const Home = () => {
   const me = useRef<HTMLDivElement | null>(null)
@@ -48,15 +51,20 @@ const Home = () => {
                 })
               }}
             >
-              Explore
+              Explore <ArrowDown />
             </Button>
             <ThemeToggle />
             <Sosmed />
           </div>
         </div>
       </section>
-      <section ref={me} className="h-screen">
-
+      <section
+        ref={me}
+        className="w-full h-screen flex items-center justify-center flex-col gap-4"
+      >
+        <img src={Profile} alt="profile" className="w-40 rounded-full" />
+        <p className="font-bold text-2xl">Muhamad Putra Satria</p>
+        <Menu />
       </section>
     </main>
   )
