@@ -14,7 +14,7 @@ const Home = () => {
     variables: { username: 'mpsalunggg' },
   })
   const me = useRef<HTMLDivElement | null>(null)
-  console.log('dataaaaa', data)
+
   return (
     <main>
       <section className="h-screen flex justify-center items-center md:gap-0 gap-8 py-8">
@@ -69,7 +69,19 @@ const Home = () => {
         className="w-full h-screen flex items-center justify-center flex-col gap-4"
       >
         <img src={Profile} alt="profile" className="w-40 rounded-full" />
-        <p className="font-bold text-2xl">Muhamad Putra Satria</p>
+        <p className="font-bold text-2xl">{data?.user?.name}</p>
+        <p className="text-gray-500 w-2/3 text-center">
+          With over{' '}
+          <span className="font-bold text-primary">
+            {data?.user?.totalCommit?.totalCommitContributions}
+          </span>{' '}
+          commits across{' '}
+          <span className="font-bold text-primary">
+            {data?.user?.totalRepositories?.totalCount}
+          </span>{' '}
+          repositories, I actively contribute to both personal and open-source
+          projects to sharpen my skills and support the developer community.
+        </p>
         <Menu />
       </section>
     </main>
