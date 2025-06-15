@@ -10,7 +10,7 @@ const Home = () => {
     <main>
       <section className="h-screen flex justify-center items-center md:gap-0 gap-8 py-8">
         <div className="flex flex-col gap-3 items-center">
-          <h1 className="font-bold md:text-5xl text-4xl drop-shadow-lg">
+          <h1 className="font-extrabold lg:text-5xl text-4xl drop-shadow-lg">
             Hello i&apos;m <span className="text-yellow-500">Putra</span>👋
           </h1>
           <div className="md:text-md text-sm font-light">
@@ -27,7 +27,7 @@ const Home = () => {
               />
             </span>
           </div>
-          <p className="md:text-md text-sm font-light">
+          <p className="md:text-md text-sm font-light text-center">
             Interested in learning new technologies and love teaching. Take a
             peek at my{' '}
             <a

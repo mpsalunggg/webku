@@ -12,7 +12,7 @@ const MainLayout = ({
   return (
     <div
       className={cn(
-        'relative transition-all min-h-screen px-4 flex flex-col lg:mx-96 md:mx-40 sm:mx-24 ',
+        'relative font-dm-sans transition-all min-h-screen px-4 flex flex-col lg:mx-82 md:mx-40 sm:mx-24 ',
         className
       )}
     >
