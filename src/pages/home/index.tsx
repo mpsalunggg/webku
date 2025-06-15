@@ -6,9 +6,15 @@ import { Button } from '@/components/ui/button'
 import Profile from '@/assets/image/profile.png'
 import Menu from './components/Menu'
 import { ArrowDown } from 'lucide-react'
+import { useQuery } from '@apollo/client'
+import { GET_USER_STATS } from '@/constants/query'
 
 const Home = () => {
+  const { data } = useQuery(GET_USER_STATS, {
+    variables: { username: 'mpsalunggg' },
+  })
   const me = useRef<HTMLDivElement | null>(null)
+  console.log('dataaaaa', data)
   return (
     <main>
       <section className="h-screen flex justify-center items-center md:gap-0 gap-8 py-8">
