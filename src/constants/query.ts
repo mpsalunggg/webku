@@ -4,6 +4,7 @@ export const GET_USER_STATS = gql`
   query GetUserStats($username: String!) {
     user(login: $username) {
       name
+      avatarUrl
       totalRepositories: repositories(ownerAffiliations: OWNER) {
         totalCount
       }
