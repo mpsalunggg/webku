@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { Fragment, useRef } from 'react'
 import { Typewriter } from 'react-simple-typewriter'
 import Sosmed from '@/components/common/Sosmed'
 import { ThemeToggle } from '@/components/common/ThemeToggle'
@@ -16,7 +16,7 @@ const Home = () => {
   const me = useRef<HTMLDivElement | null>(null)
 
   return (
-    <main>
+    <Fragment>
       <section className="h-screen flex justify-center items-center md:gap-0 gap-8 py-8">
         <div className="flex flex-col gap-3 items-center">
           <h1 className="font-extrabold lg:text-5xl text-4xl drop-shadow-lg">
@@ -95,7 +95,7 @@ const Home = () => {
         </p>
         <Menu />
       </section>
-    </main>
+    </Fragment>
   )
 }
 export default Home
