@@ -57,7 +57,7 @@ const Home = () => {
                 })
               }}
             >
-              Explore <ArrowDown />
+              Explore <ArrowDown className='animate-bounce mt-1'/>
             </Button>
             <ThemeToggle />
             <Sosmed />
