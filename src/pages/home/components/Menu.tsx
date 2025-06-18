@@ -1,20 +1,26 @@
 import { Button } from '@/components/ui/button'
-import { Notebook, SquareChartGantt, User } from 'lucide-react'
+import { MENU } from '@/constants/menu'
+import { useNavigate } from '@tanstack/react-router'
+
 const Menu = () => {
+  const navigate = useNavigate()
   return (
     <div className="flex gap-2 max-w-full">
-      <Button variant="outline" className="w-auto lg:w-28 shadow-md">
-        <User />
-        About
-      </Button>
-      <Button variant="outline" className="w-auto lg:w-28 shadow-md">
-        <SquareChartGantt />
-        Project
-      </Button>
-      <Button variant="outline" className="w-auto lg:w-28 shadow-md">
-        <Notebook />
-        Blog
-      </Button>
+      {MENU.map((menu) => (
+        <Button
+          key={menu.id}
+          variant="outline"
+          className="w-auto lg:w-28 shadow-md"
+          onClick={() =>
+            navigate({
+              to: menu.path,
+            })
+          }
+        >
+          <menu.icon className="w-5 h-5" />
+          {menu.title}
+        </Button>
+      ))}
     </div>
   )
 }

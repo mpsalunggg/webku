@@ -1,10 +1,10 @@
-import Me from '@/pages/me'
+import About from '@/pages/about'
 import { createFileRoute } from '@tanstack/react-router'
 
-export const Route = createFileRoute('/me')({
+export const Route = createFileRoute('/about')({
   component: RouteComponent,
 })
 
 function RouteComponent() {
-  return <Me />
+  return <About />
 }

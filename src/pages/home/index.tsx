@@ -36,7 +36,7 @@ const Home = () => {
               />
             </span>
           </div>
-          <p className="md:text-md text-sm font-light text-center">
+          <p className="md:text-md text-sm font-light text-center text-gray-500">
             Interested in learning new technologies and love teaching. Take a
             peek at my{' '}
             <a
@@ -57,7 +57,7 @@ const Home = () => {
                 })
               }}
             >
-              Explore <ArrowDown className='animate-bounce mt-1'/>
+              Explore <ArrowDown className="animate-bounce mt-1" />
             </Button>
             <ThemeToggle />
             <Sosmed />
@@ -81,16 +81,16 @@ const Home = () => {
           />
         </div>
         <p className="font-bold text-2xl">{data?.user?.name}</p>
-        <p className="text-gray-500 w-2/3 text-center">
+        <p className="text-gray-500 w-2/3 text-center ">
           With over{' '}
-          <span className="font-bold text-primary">
+          <span className="font-bold text-yellow-500">
             {data?.user?.totalCommit?.totalCommitContributions}
           </span>{' '}
           commits across{' '}
-          <span className="font-bold text-primary">
+          <span className="font-bold text-yellow-500">
             {data?.user?.totalRepositories?.totalCount}
           </span>{' '}
-          repositories, I actively contribute to both personal and open-source
+          repositories, I actively contribute to both personal and open-so urce
           projects to sharpen my skills and support the developer community.
         </p>
         <Menu />
