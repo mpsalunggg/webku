@@ -13,11 +13,11 @@ const MainLayout = ({
     <div
       className={cn(
         'relative font-dm-sans transition-all min-h-screen px-4 flex flex-col overflow-hidden',
-        'lg:px-82 md:px-40 sm:px-24',
+        'lg:px-96 md:px-40 sm:px-24',
         className
       )}
     >
-      <Background />
+      {/* <Background /> */}
       {children}
     </div>
   )

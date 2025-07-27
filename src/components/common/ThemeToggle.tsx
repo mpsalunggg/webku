@@ -1,7 +1,8 @@
 import { Moon, Sun } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useTheme } from '../layout/ThemeProvider'
-export const ThemeToggle = () => {
+import { cn } from '@/lib/utils'
+export const ThemeToggle = ({ className }: { className?: string }) => {
   const { theme, setTheme } = useTheme()
 
   const changeThemes = () => {
@@ -12,7 +13,7 @@ export const ThemeToggle = () => {
     <Button
       variant="default"
       size="icon"
-      className="rounded-full cursor-pointer"
+      className={cn('rounded-full cursor-pointer', className)}
       onClick={() => changeThemes()}
     >
       <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />

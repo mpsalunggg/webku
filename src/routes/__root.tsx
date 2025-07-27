@@ -1,4 +1,3 @@
-import MainLayout from '@/components/layout/MainLayout'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import { createRootRoute, Outlet } from '@tanstack/react-router'
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools'
@@ -8,9 +7,7 @@ export const Route = createRootRoute({
   component: () => (
     <Fragment>
       <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-        <MainLayout>
-          <Outlet />
-        </MainLayout>
+        <Outlet />
         <TanStackRouterDevtools />
       </ThemeProvider>
     </Fragment>

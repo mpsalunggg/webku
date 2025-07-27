@@ -10,7 +10,7 @@ const Menu = () => {
         <Button
           key={menu.id}
           variant="outline"
-          className="w-auto lg:w-28 shadow-md"
+          className="w-auto xl:w-28 shadow-md"
           onClick={() =>
             navigate({
               to: menu.path,

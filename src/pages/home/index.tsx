@@ -80,8 +80,8 @@ const Home = () => {
             alt="hover"
           />
         </div>
-        <p className="font-bold text-2xl">{data?.user?.name}</p>
-        <p className="text-gray-500 w-2/3 text-center ">
+        <p className="font-bold text-2xl text-center">{data?.user?.name}</p>
+        <p className="text-gray-500 text-center max-w-2/4">
           With over{' '}
           <span className="font-bold text-yellow-500">
             {data?.user?.totalCommit?.totalCommitContributions}
@@ -93,7 +93,7 @@ const Home = () => {
           repositories, I actively contribute to both personal and open-so urce
           projects to sharpen my skills and support the developer community.
         </p>
-        <Menu />
+        {/* <Menu /> */}
       </section>
     </Fragment>
   )
