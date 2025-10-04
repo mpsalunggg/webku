@@ -116,7 +116,7 @@ const ContactBento = ({
         rel="noopener noreferrer"
         className="bg-card border border-border rounded-2xl p-6"
       >
-        <Linkedin className="w-6 h-6 mb-3 text-muted-foreground group-hover:text-foreground transition-colors" />
+        <Linkedin className="w-6 h-6 mb-3" />
         <h3 className="text-sm font-medium mb-1">LinkedIn</h3>
         <p className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
           Connect
