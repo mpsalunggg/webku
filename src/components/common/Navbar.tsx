@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Link, useLocation } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-  const location = useLocation()
-  const pathname = location.pathname
+  // const location = useLocation()
+  // const pathname = location.pathname
 
   useEffect(() => {
     const handleScroll = () => {
