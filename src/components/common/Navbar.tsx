@@ -32,7 +32,7 @@ const Navbar = () => {
             Mps
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          {/* <div className="hidden md:flex items-center gap-8">
             <Link
               to="/about"
               className={`text-sm transition-colors ${
@@ -43,7 +43,7 @@ const Navbar = () => {
             >
               About
             </Link>
-          </div>
+          </div> */}
 
           <div className="flex items-center gap-3">
             <Button variant="outline" size="sm" asChild className="text-xs">
