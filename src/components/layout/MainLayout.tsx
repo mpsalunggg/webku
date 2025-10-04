@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils'
 import React from 'react'
+import Navbar from '../common/Navbar'
 // import Background from './Background'
 
 const MainLayout = ({
@@ -12,11 +13,12 @@ const MainLayout = ({
   return (
     <div
       className={cn(
-        'relative font-dm-sans transition-all min-h-screen px-4 flex flex-col overflow-hidden',
-        'lg:px-96 md:px-40 sm:px-24',
+        'relative font-dm-sans transition-all min-h-screen flex flex-col overflow-hidden',
+        'max-w-6xl mx-auto',
         className
       )}
     >
+      <Navbar />
       {/* <Background /> */}
       {children}
     </div>
