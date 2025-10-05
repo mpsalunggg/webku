@@ -32,7 +32,7 @@ const Home = () => {
                 delaySpeed={1500}
               />
               <br />
-              <span className="italic font-normal">aspiring</span> fullstack developer
+              {/* <span className="italic font-normal">aspiring</span> fullstack developer */}
             </h1>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Passionate about exploring new technologies and sharing knowledge.
