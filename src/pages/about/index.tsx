@@ -46,7 +46,7 @@ const AboutPage = () => {
                       ></div>
                     </div>
                     <img
-                      src="/public/profile.webp"
+                      src="/profile.webp"
                       alt="Muhamad Putra Satria - Portfolio"
                       className="w-full h-full object-cover relative z-10"
                     />
