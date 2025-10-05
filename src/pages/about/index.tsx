@@ -5,6 +5,16 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { Badge } from '@/components/ui/badge'
+import {
+  Timeline,
+  TimelineContent,
+  TimelineDate,
+  TimelineHeader,
+  TimelineIndicator,
+  TimelineItem,
+  TimelineSeparator,
+  TimelineTitle,
+} from '@/components/ui/timeline'
 import { iconMap, skills, achievements } from '@/constants/about'
 
 const AboutPage = () => {
@@ -42,13 +52,11 @@ const AboutPage = () => {
                     />
                   </div>
 
-                  <div className="text-center lg:text-left">
-                    <h2 className="text-2xl font-light mb-2">
+                  <div className="text-center lg:text-left space-y-2">
+                    <h2 className="text-2xl font-light">
                       Muhamad Putra Satria
                     </h2>
-                    <p className="text-muted-foreground mb-4">
-                      Frontend Engineer
-                    </p>
+                    <p className="text-muted-foreground">Frontend Engineer</p>
                     <p className="text-sm text-muted-foreground">
                       Palu, Indonesia
                     </p>
@@ -89,25 +97,24 @@ const AboutPage = () => {
                   <h3 className="text-sm font-mono text-muted-foreground mb-6 uppercase tracking-wider">
                     Recognition
                   </h3>
-                  <div className="space-y-4">
-                    {achievements.map((achievement) => (
-                      <div
-                        key={achievement.title}
-                        className="flex items-start gap-4 p-4 rounded-lg bg-muted/30 group relative"
-                      >
-                        <span className="text-sm font-mono text-muted-foreground min-w-[3rem]">
-                          {achievement.year}
-                        </span>
-                        <div className="flex-1">
-                          <h4 className="font-medium">
+                  <Timeline defaultValue={achievements.length}>
+                    {achievements.map((achievement, index) => (
+                      <TimelineItem key={achievement.title} step={index + 1}>
+                        <TimelineHeader>
+                          <TimelineDate className="text-sm font-mono">
+                            {achievement.year}
+                          </TimelineDate>
+                          <TimelineTitle className="font-medium text-base">
                             {achievement.tooltip ? (
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <span>{achievement.title}</span>
+                                  <span>
+                                    {achievement.title}
+                                  </span>
                                 </TooltipTrigger>
                                 <TooltipContent
                                   side="top"
-                                  className="max-w-[300px] px-0 text-center"
+                                  className="max-w-[300px]"
                                 >
                                   <p>{achievement.tooltip}</p>
                                 </TooltipContent>
@@ -115,14 +122,16 @@ const AboutPage = () => {
                             ) : (
                               achievement.title
                             )}
-                          </h4>
-                          <p className="text-sm text-muted-foreground">
-                            {achievement.organization}
-                          </p>
-                        </div>
-                      </div>
+                          </TimelineTitle>
+                        </TimelineHeader>
+                        <TimelineContent className="text-sm">
+                          {achievement.organization}
+                        </TimelineContent>
+                        <TimelineIndicator className='border-1 !border-gray-400' />
+                        <TimelineSeparator className='border-1'/>
+                      </TimelineItem>
                     ))}
-                  </div>
+                  </Timeline>
                 </div>
 
                 <div className="relative">
