@@ -9,7 +9,7 @@ import {
   TimelineTitle,
 } from '@/components/ui/timeline'
 import { Badge } from '@/components/ui/badge'
-import { workExperiences } from '@/constants/about'
+import { workExperiences } from '@/constants/work'
 
 export const WorkExperience = () => {
   const activeIndex = workExperiences.findIndex((exp) =>
