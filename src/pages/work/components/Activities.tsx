@@ -8,7 +8,7 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from '@/components/ui/timeline'
-import { activities } from '@/constants/about'
+import { activities } from '@/constants/work'
 
 export const Activities = () => {
   return (
@@ -22,7 +22,10 @@ export const Activities = () => {
       </h3>
       <Timeline defaultValue={activities.length}>
         {activities.map((activity, index) => (
-          <TimelineItem key={`${activity.organization}-${index}`} step={index + 1}>
+          <TimelineItem
+            key={`${activity.organization}-${index}`}
+            step={index + 1}
+          >
             <TimelineHeader>
               <TimelineDate className="text-sm font-mono">
                 {activity.period}
@@ -33,9 +36,13 @@ export const Activities = () => {
             </TimelineHeader>
             <TimelineContent className="space-y-2">
               <div className="flex items-center gap-2 flex-wrap">
-                <span className="text-foreground font-medium">
+                <a
+                  href={activity.link_company}
+                  target="_blank"
+                  className="text-foreground hover:text-blue-600 underline font-medium"
+                >
                   {activity.organization}
-                </span>
+                </a>
                 <span className="text-muted-foreground">•</span>
                 <span className="text-muted-foreground text-sm">
                   {activity.location}

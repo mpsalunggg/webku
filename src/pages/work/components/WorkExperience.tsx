@@ -15,7 +15,8 @@ export const WorkExperience = () => {
   const activeIndex = workExperiences.findIndex((exp) =>
     exp.period.toLowerCase().includes('present')
   )
-  const defaultValue = activeIndex !== -1 ? activeIndex + 1 : workExperiences.length
+  const defaultValue =
+    activeIndex !== -1 ? activeIndex + 1 : workExperiences.length
 
   return (
     <div className="relative">
@@ -30,7 +31,10 @@ export const WorkExperience = () => {
         {workExperiences.map((experience, index) => {
           const isPresent = experience.period.toLowerCase().includes('present')
           return (
-            <TimelineItem key={`${experience.company}-${index}`} step={index + 1}>
+            <TimelineItem
+              key={`${experience.company}-${index}`}
+              step={index + 1}
+            >
               <TimelineHeader>
                 <TimelineDate className="text-sm font-mono">
                   {experience.period}
@@ -41,9 +45,13 @@ export const WorkExperience = () => {
               </TimelineHeader>
               <TimelineContent className="space-y-2">
                 <div className="flex items-center gap-2 flex-wrap">
-                  <span className="text-foreground font-medium">
+                  <a
+                    href={experience.link_company}
+                    target="_blank"
+                    className="text-foreground hover:text-blue-600 underline font-medium"
+                  >
                     {experience.company}
-                  </span>
+                  </a>
                   <span className="text-muted-foreground">•</span>
                   <span className="text-muted-foreground text-sm">
                     {experience.location}

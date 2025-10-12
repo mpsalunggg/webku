@@ -2,6 +2,7 @@ export const workExperiences = [
   {
     period: '10/2024 - Present',
     company: 'Tan Digital',
+    link_company: 'https://tandigital.id/',
     position: 'Frontend Engineer',
     location: 'South Tangerang, Indonesia',
     type: 'Contract',
@@ -15,6 +16,7 @@ export const workExperiences = [
   {
     period: '10/2024 - 02/2025',
     company: 'Amerta Digital Wijaya',
+    link_company: 'https://www.linkedin.com/company/amertadw/',
     position: 'Frontend Engineer',
     location: 'Jakarta, Indonesia',
     type: 'Freelance',
@@ -28,6 +30,7 @@ export const workExperiences = [
   {
     period: '06/2024 - 09/2024',
     company: 'Educourse.id',
+    link_company: 'https://educourse.id/',
     position: 'Software Engineer',
     location: 'South Tangerang, Indonesia',
     type: 'Contract',
@@ -40,6 +43,7 @@ export const workExperiences = [
   {
     period: '09/2023 - 03/2024',
     company: 'Rey.id',
+    link_company: 'https://rey.id/id/',
     position: 'Frontend Engineer',
     location: 'Jakarta, Indonesia',
     type: 'Contract',
@@ -52,6 +56,7 @@ export const workExperiences = [
   {
     period: '02/2023 - 06/2023',
     company: 'Educourse.id',
+    link_company: 'https://educourse.id/',
     position: 'Frontend Engineer',
     location: 'South Tangerang, Indonesia',
     type: 'Internship',
@@ -67,6 +72,7 @@ export const activities = [
   {
     period: '07/2023 - 12/2023',
     organization: 'GoTo Impact Foundation - Generasi Gigih 3.0',
+    link_company: 'https://goto-impact.org/generasi-gigih',
     role: 'Fullstack Engineer Learning Path',
     location: 'Jakarta, Indonesia',
     responsibilities: [
@@ -78,6 +84,7 @@ export const activities = [
   {
     period: '08/2022 - 12/2022',
     organization: 'RuangGuru',
+    link_company: 'https://www.ruangguru.com/program/kampus-merdeka',
     role: 'Frontend Engineering Learning Path',
     location: 'Jakarta, Indonesia',
     responsibilities: [
@@ -88,6 +95,7 @@ export const activities = [
   {
     period: '09/2022 - 06/2024',
     organization: 'Hammercode Community',
+    link_company: 'https://www.hammercode.org/',
     role: 'Frontend Engineer Mentor & Lead Community',
     location: 'Palu, Indonesia',
     responsibilities: [
