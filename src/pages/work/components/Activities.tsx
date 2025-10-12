@@ -8,6 +8,7 @@ import {
   TimelineSeparator,
   TimelineTitle,
 } from '@/components/ui/timeline'
+import { Badge } from '@/components/ui/badge'
 import { activities } from '@/constants/work'
 
 export const Activities = () => {
@@ -55,6 +56,19 @@ export const Activities = () => {
                   </li>
                 ))}
               </ul>
+              {activity.stack && activity.stack.length > 0 && (
+                <div className="flex flex-wrap gap-1.5 mt-3">
+                  {activity.stack.map((tech) => (
+                    <Badge
+                      key={tech}
+                      variant="secondary"
+                      className="text-xs font-normal"
+                    >
+                      {tech}
+                    </Badge>
+                  ))}
+                </div>
+              )}
             </TimelineContent>
             <TimelineIndicator className="border-1 !border-gray-400" />
             <TimelineSeparator className="border-1" />

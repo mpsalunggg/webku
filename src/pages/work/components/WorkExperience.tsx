@@ -67,6 +67,19 @@ export const WorkExperience = () => {
                     </li>
                   ))}
                 </ul>
+                {experience.stack && experience.stack.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-3">
+                    {experience.stack.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="text-xs font-normal"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
               </TimelineContent>
               <TimelineIndicator
                 className={

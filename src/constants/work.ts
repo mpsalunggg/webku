@@ -12,6 +12,14 @@ export const workExperiences = [
       'Develop a B2B dashboard with Midtrans integration to simplify and secure client payment workflows.',
       'Provide technical guidance and monitor the frontend team to ensure code quality, consistency, and project goal.',
     ],
+    stack: [
+      'TypeScript',
+      'Nuxt.js',
+      'Next.js',
+      'Google Maps API',
+      'Tailwind CSS',
+      'Shadcn/ui',
+    ],
   },
   {
     period: '10/2024 - 02/2025',
@@ -26,6 +34,7 @@ export const workExperiences = [
       'Developed logistics tracking to support booth-to-booth item quantity checks, and efficient stock management.',
       'Created a clean folder structure and maintainable code to improve scalability and team collaboration.',
     ],
+    stack: ['React', 'TypeScript', 'Tailwind CSS', 'Shadcn/ui'],
   },
   {
     period: '06/2024 - 09/2024',
@@ -39,6 +48,7 @@ export const workExperiences = [
       'Built a language switcher (English/Indonesian) to help students access the platform in their preferred language.',
       'Developed a secure and scalable authentication system using NextAuth for session management.',
     ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Material UI', 'Xendit'],
   },
   {
     period: '09/2023 - 03/2024',
@@ -52,6 +62,7 @@ export const workExperiences = [
       'Applied clean code principles to enhance code readability, maintainability, and ease of future development.',
       'Developed unit tests in Jest with mocked API calls to verify the reliability and consistency of UI components.',
     ],
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Jest', 'Web Socket'],
   },
   {
     period: '02/2023 - 06/2023',
@@ -65,6 +76,7 @@ export const workExperiences = [
       'Built a React.js-based quiz platform with Redux Toolkit, used by schools to facilitate student assessments.',
       'Designed a mobile-optimized UI using Tailwind CSS and the Ant Design UI library to ensure consistent layout.',
     ],
+    stack: ['React', 'JavaScript', 'Tailwind CSS'],
   },
 ]
 
@@ -80,6 +92,7 @@ export const activities = [
       'Built complex applications, including a Spotify clone and Tokopedia Play clone with user authentication.',
       'Studied Docker for image creation and container management.',
     ],
+    stack: ['MongoDB', 'Express', 'React', 'Node.js', 'Docker'],
   },
   {
     period: '08/2022 - 12/2022',
@@ -91,6 +104,7 @@ export const activities = [
       'Learned the fundamentals of Tailwind CSS, JavaScript, Git, ReactJS, and Chakra UI.',
       'Gained experience in integrating Web APIs and consuming RESTful APIs.',
     ],
+    stack: ['React', 'JavaScript', 'Tailwind CSS', 'Chakra UI'],
   },
   {
     period: '09/2022 - 06/2024',
@@ -103,5 +117,6 @@ export const activities = [
       'Taught frontend development fundamentals using ReactJS and REST API integration.',
       'Built a web-based Hammercode Web to support the community.',
     ],
+    stack: ['Next.js', 'JavaScript', 'Tailwind CSS'],
   },
 ]
