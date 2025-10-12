@@ -43,6 +43,16 @@ const Navbar = () => {
             >
               About
             </Link>
+            <Link
+              to="/work"
+              className={`text-sm transition-colors ${
+                pathname === '/about'
+                  ? 'text-foreground'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Work
+            </Link>
           </div>
 
           <div className="flex items-center gap-3">
