@@ -1,4 +1,6 @@
 import { AnimatedLines } from '@/components/common/Background'
+import { WorkExperience } from './components/WorkExperience'
+import { Activities } from './components/Activities'
 
 const WorkPage = () => {
   return (
@@ -11,12 +13,15 @@ const WorkPage = () => {
 
           <div className="max-w-6xl mx-auto">
             <div className="mb-16">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">
-                Working Experience
-              </h1>
+              <h1 className="text-4xl md:text-5xl font-light mb-6">Work & Activity</h1>
               <p className="text-lg text-muted-foreground">
-                Understanding the person behind the work
+                Professional journey and contributions
               </p>
+            </div>
+
+            <div className="space-y-16">
+              <WorkExperience />
+              <Activities />
             </div>
           </div>
         </section>
