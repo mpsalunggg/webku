@@ -37,18 +37,11 @@ const AboutPage = () => {
             <div className="grid lg:grid-cols-3 gap-16 mb-24">
               <div className="lg:col-span-1">
                 <div className="sticky top-32">
-                  <div className="w-full max-w-sm mx-auto lg:mx-0 aspect-square rounded-3xl overflow-hidden bg-muted mb-8 relative">
-                    <div className="absolute inset-0 rounded-3xl">
-                      <div className="absolute top-0 left-0 w-full h-px gradient-line"></div>
-                      <div
-                        className="absolute bottom-0 right-0 w-full h-px gradient-line"
-                        style={{ animationDelay: '1s' }}
-                      ></div>
-                    </div>
+                  <div className="w-full max-w-sm mx-auto lg:mx-0 mb-8 group">
                     <img
                       src="/profile.webp"
                       alt="Muhamad Putra Satria - Portfolio"
-                      className="w-full h-full object-cover relative z-10"
+                      className="w-full aspect-square shadow-md rounded-3xl object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
                     />
                   </div>
 
@@ -108,9 +101,7 @@ const AboutPage = () => {
                             {achievement.tooltip ? (
                               <Tooltip>
                                 <TooltipTrigger asChild>
-                                  <span>
-                                    {achievement.title}
-                                  </span>
+                                  <span>{achievement.title}</span>
                                 </TooltipTrigger>
                                 <TooltipContent
                                   side="top"
@@ -127,8 +118,8 @@ const AboutPage = () => {
                         <TimelineContent className="text-sm">
                           {achievement.organization}
                         </TimelineContent>
-                        <TimelineIndicator className='border-1 !border-gray-400' />
-                        <TimelineSeparator className='border-1'/>
+                        <TimelineIndicator className="border-1 !border-gray-400" />
+                        <TimelineSeparator className="border-1" />
                       </TimelineItem>
                     ))}
                   </Timeline>
