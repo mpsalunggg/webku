@@ -43,15 +43,14 @@ const Navbar = () => {
             Mps
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
-            {navItems.map((item) => (
-              <NavLink key={item.to} to={item.to}>
-                {item.label}
-              </NavLink>
-            ))}
-          </div>
-
           <div className="flex items-center gap-3">
+            <div className="mr-4 hidden items-center gap-8 md:flex">
+              {navItems.map((item) => (
+                <NavLink key={item.to} to={item.to}>
+                  {item.label}
+                </NavLink>
+              ))}
+            </div>
             <Button variant="outline" size="sm" asChild className="text-xs">
               <a
                 href="https://docs.google.com/document/d/15emkkk3uECevTU2SMT8q4aD8fpdu9tF-E33ha0YTrgA/edit?tab=t.0"
@@ -61,7 +60,6 @@ const Navbar = () => {
                 👉 Reach out
               </a>
             </Button>
-
             {/* Mobile Menu */}
             <Popover open={isOpen} onOpenChange={setIsOpen}>
               <PopoverTrigger asChild>
