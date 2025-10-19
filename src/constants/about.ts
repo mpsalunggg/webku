@@ -123,5 +123,3 @@ export const achievements = [
     organization: 'Generasi Gigih 3.0 - GoTo Impact Foundation',
   },
 ]
-
-

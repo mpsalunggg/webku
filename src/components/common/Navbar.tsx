@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Link, useLocation } from '@tanstack/react-router'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
+import { Menu } from 'lucide-react'
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
   const pathname = location.pathname
 
@@ -17,22 +24,22 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 right-0 left-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/80 backdrop-blur-md border-b border-border'
+          ? 'bg-background/80 border-border border-b backdrop-blur-md'
           : 'bg-transparent'
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 py-4">
+      <div className="mx-auto max-w-6xl px-6 py-4">
         <nav className="flex items-center justify-between">
           <Link
             to="/"
-            className="font-mono text-sm font-medium hover:text-muted-foreground transition-colors"
+            className="hover:text-muted-foreground font-mono text-sm font-medium transition-colors"
           >
             Mps
           </Link>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden items-center gap-8 md:flex">
             <Link
               to="/about"
               className={`text-sm transition-colors ${
@@ -46,7 +53,7 @@ const Navbar = () => {
             <Link
               to="/work"
               className={`text-sm transition-colors ${
-                pathname === '/about'
+                pathname === '/work'
                   ? 'text-foreground'
                   : 'text-muted-foreground hover:text-foreground'
               }`}
@@ -62,9 +69,49 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                My CV
+                👉 Reach out
               </a>
             </Button>
+
+            {/* Mobile Menu */}
+            <Popover open={isOpen} onOpenChange={setIsOpen}>
+              <PopoverTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="md:hidden"
+                  aria-label="Toggle menu"
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent align="end" className="w-48">
+                <nav className="flex flex-col gap-4">
+                  <Link
+                    to="/about"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-sm transition-colors ${
+                      pathname === '/about'
+                        ? 'text-foreground font-medium'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    About
+                  </Link>
+                  <Link
+                    to="/work"
+                    onClick={() => setIsOpen(false)}
+                    className={`text-sm transition-colors ${
+                      pathname === '/work'
+                        ? 'text-foreground font-medium'
+                        : 'text-muted-foreground hover:text-foreground'
+                    }`}
+                  >
+                    Work
+                  </Link>
+                </nav>
+              </PopoverContent>
+            </Popover>
           </div>
         </nav>
       </div>

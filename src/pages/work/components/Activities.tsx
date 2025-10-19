@@ -15,10 +15,10 @@ export const Activities = () => {
   return (
     <div className="relative">
       <div
-        className="absolute -top-6 left-0 w-24 h-px gradient-line"
+        className="gradient-line absolute -top-6 left-0 h-px w-24"
         style={{ animationDelay: '0.75s' }}
       ></div>
-      <h3 className="text-sm font-mono text-muted-foreground mb-6 uppercase tracking-wider">
+      <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
         Activities
       </h3>
       <Timeline defaultValue={activities.length}>
@@ -28,19 +28,19 @@ export const Activities = () => {
             step={index + 1}
           >
             <TimelineHeader>
-              <TimelineDate className="text-sm font-mono">
+              <TimelineDate className="font-mono text-sm">
                 {activity.period}
               </TimelineDate>
-              <TimelineTitle className="font-medium text-base">
+              <TimelineTitle className="text-base font-medium">
                 {activity.role}
               </TimelineTitle>
             </TimelineHeader>
             <TimelineContent className="space-y-2">
-              <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex flex-wrap items-center gap-2">
                 <a
                   href={activity.link_company}
                   target="_blank"
-                  className="text-foreground hover:text-blue-600 underline font-medium"
+                  className="text-foreground font-medium underline hover:text-blue-600"
                 >
                   {activity.organization}
                 </a>
@@ -49,15 +49,15 @@ export const Activities = () => {
                   {activity.location}
                 </span>
               </div>
-              <ul className="space-y-1.5 mt-3">
+              <ul className="mt-3 space-y-1.5">
                 {activity.responsibilities.map((responsibility, idx) => (
-                  <li key={idx} className="text-sm text-muted-foreground">
+                  <li key={idx} className="text-muted-foreground text-sm">
                     • {responsibility}
                   </li>
                 ))}
               </ul>
               {activity.stack && activity.stack.length > 0 && (
-                <div className="flex flex-wrap gap-1.5 mt-3">
+                <div className="mt-3 flex flex-wrap gap-1.5">
                   {activity.stack.map((tech) => (
                     <Badge
                       key={tech}

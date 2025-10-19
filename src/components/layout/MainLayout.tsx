@@ -12,8 +12,8 @@ const MainLayout = ({
   return (
     <div
       className={cn(
-        'relative font-dm-sans transition-all min-h-screen flex flex-col',
-        'max-w-6xl mx-auto',
+        'font-dm-sans relative flex min-h-screen flex-col transition-all',
+        'mx-auto max-w-6xl',
         className
       )}
     >

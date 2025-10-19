@@ -27,36 +27,36 @@ const ContactBento = ({
   username = 'mpsalunggg',
 }: ContactBentoProps) => {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
+    <div className="mx-auto grid max-w-6xl grid-cols-1 gap-4 md:grid-cols-4">
       <a
         href={`https://github.com/${username}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="md:col-span-2 md:row-span-2 bg-card border border-border rounded-2xl p-8"
+        className="bg-card border-border rounded-2xl border p-8 md:col-span-2 md:row-span-2"
       >
-        <div className="flex items-center gap-4 mb-6">
+        <div className="mb-6 flex items-center gap-4">
           {githubStats?.avatarUrl && (
             <img
               src={githubStats.avatarUrl}
               alt={githubStats.name}
-              className="w-16 h-16 rounded-full border-2 border-border"
+              className="border-border h-16 w-16 rounded-full border-2"
             />
           )}
           <div>
-            <Github className="w-8 h-8 mb-2 text-primary" />
+            <Github className="text-primary mb-2 h-8 w-8" />
             <h3 className="text-xl font-semibold">
               {githubStats?.name || 'GitHub'}
             </h3>
-            <p className="text-sm text-muted-foreground group-hover:text-primary transition-colors">
+            <p className="text-muted-foreground group-hover:text-primary text-sm transition-colors">
               @{username}
             </p>
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4 mt-6">
+        <div className="mt-6 grid grid-cols-2 gap-4">
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <GitCommit className="w-4 h-4" />
+            <div className="text-muted-foreground flex items-center gap-2">
+              <GitCommit className="h-4 w-4" />
               <span className="text-xs">Commits</span>
             </div>
             <p className="text-2xl font-semibold">
@@ -66,8 +66,8 @@ const ContactBento = ({
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <GitPullRequest className="w-4 h-4" />
+            <div className="text-muted-foreground flex items-center gap-2">
+              <GitPullRequest className="h-4 w-4" />
               <span className="text-xs">Pull Requests</span>
             </div>
             <p className="text-2xl font-semibold">
@@ -77,8 +77,8 @@ const ContactBento = ({
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Github className="w-2 h-2" />
+            <div className="text-muted-foreground flex items-center gap-2">
+              <Github className="h-2 w-2" />
               <span className="text-xs">Repositories</span>
             </div>
             <p className="text-2xl font-semibold">
@@ -88,8 +88,8 @@ const ContactBento = ({
           </div>
 
           <div className="space-y-1">
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <Users className="w-4 h-4" />
+            <div className="text-muted-foreground flex items-center gap-2">
+              <Users className="h-4 w-4" />
               <span className="text-xs">Followers</span>
             </div>
             <p className="text-2xl font-semibold">
@@ -99,9 +99,9 @@ const ContactBento = ({
         </div>
       </a>
 
-      <div className="md:col-span-2 bg-card border border-border rounded-2xl p-6">
-        <Mail className="w-6 h-6 mb-3 text-primary" />
-        <h3 className="text-lg font-semibold mb-1">Email</h3>
+      <div className="bg-card border-border rounded-2xl border p-6 md:col-span-2">
+        <Mail className="text-primary mb-3 h-6 w-6" />
+        <h3 className="mb-1 text-lg font-semibold">Email</h3>
         <a
           href="mailto:putrasatria893@gmail.com"
           className="text-muted-foreground group-hover:text-foreground transition-colors"
@@ -114,19 +114,19 @@ const ContactBento = ({
         href="https://www.linkedin.com/in/mputrasatria"
         target="_blank"
         rel="noopener noreferrer"
-        className="bg-card border border-border rounded-2xl p-6"
+        className="bg-card border-border rounded-2xl border p-6"
       >
-        <Linkedin className="w-6 h-6 mb-3" />
-        <h3 className="text-sm font-medium mb-1">LinkedIn</h3>
-        <p className="text-xs text-muted-foreground group-hover:text-primary transition-colors">
+        <Linkedin className="mb-3 h-6 w-6" />
+        <h3 className="mb-1 text-sm font-medium">LinkedIn</h3>
+        <p className="text-muted-foreground group-hover:text-primary text-xs transition-colors">
           Connect
         </p>
       </a>
 
-      <div className="bg-card border border-border rounded-2xl p-6">
-        <MapPin className="w-6 h-6 mb-3 text-primary" />
-        <h3 className="text-sm font-medium mb-1">Location</h3>
-        <p className="text-xs text-muted-foreground">Jakarta, Indonesia</p>
+      <div className="bg-card border-border rounded-2xl border p-6">
+        <MapPin className="text-primary mb-3 h-6 w-6" />
+        <h3 className="mb-1 text-sm font-medium">Location</h3>
+        <p className="text-muted-foreground text-xs">Jakarta, Indonesia</p>
       </div>
     </div>
   )

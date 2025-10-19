@@ -21,10 +21,10 @@ export const WorkExperience = () => {
   return (
     <div className="relative">
       <div
-        className="absolute -top-6 left-0 w-24 h-px gradient-line"
+        className="gradient-line absolute -top-6 left-0 h-px w-24"
         style={{ animationDelay: '0.5s' }}
       ></div>
-      <h3 className="text-sm font-mono text-muted-foreground mb-6 uppercase tracking-wider">
+      <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
         Work Experience
       </h3>
       <Timeline defaultValue={defaultValue}>
@@ -36,19 +36,19 @@ export const WorkExperience = () => {
               step={index + 1}
             >
               <TimelineHeader>
-                <TimelineDate className="text-sm font-mono">
+                <TimelineDate className="font-mono text-sm">
                   {experience.period}
                 </TimelineDate>
-                <TimelineTitle className="font-medium text-base">
+                <TimelineTitle className="text-base font-medium">
                   {experience.position}
                 </TimelineTitle>
               </TimelineHeader>
               <TimelineContent className="space-y-2">
-                <div className="flex items-center gap-2 flex-wrap">
+                <div className="flex flex-wrap items-center gap-2">
                   <a
                     href={experience.link_company}
                     target="_blank"
-                    className="text-foreground hover:text-blue-600 underline font-medium"
+                    className="text-foreground font-medium underline hover:text-blue-600"
                   >
                     {experience.company}
                   </a>
@@ -60,15 +60,15 @@ export const WorkExperience = () => {
                     {experience.type}
                   </Badge>
                 </div>
-                <ul className="space-y-1.5 mt-3">
+                <ul className="mt-3 space-y-1.5">
                   {experience.responsibilities.map((responsibility, idx) => (
-                    <li key={idx} className="text-sm text-muted-foreground">
+                    <li key={idx} className="text-muted-foreground text-sm">
                       • {responsibility}
                     </li>
                   ))}
                 </ul>
                 {experience.stack && experience.stack.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mt-3">
+                  <div className="mt-3 flex flex-wrap gap-1.5">
                     {experience.stack.map((tech) => (
                       <Badge
                         key={tech}
@@ -84,7 +84,7 @@ export const WorkExperience = () => {
               <TimelineIndicator
                 className={
                   isPresent
-                    ? 'border-2 !border-primary bg-primary'
+                    ? '!border-primary bg-primary border-2'
                     : 'border-1 !border-gray-400'
                 }
               />

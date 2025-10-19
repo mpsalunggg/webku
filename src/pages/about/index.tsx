@@ -19,51 +19,51 @@ import { iconMap, skills, achievements } from '@/constants/about'
 
 const AboutPage = () => {
   return (
-    <main className="min-h-screen bg-background">
+    <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <section className="py-24 px-6 relative">
-          <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-full max-w-4xl">
+        <section className="relative px-6 py-24">
+          <div className="absolute top-0 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
             <AnimatedLines className="opacity-30" />
           </div>
 
-          <div className="max-w-6xl mx-auto">
+          <div className="mx-auto max-w-6xl">
             <div className="mb-16">
-              <h1 className="text-4xl md:text-5xl font-light mb-6">About</h1>
-              <p className="text-lg text-muted-foreground">
+              <h1 className="mb-6 text-4xl font-light md:text-5xl">About</h1>
+              <p className="text-muted-foreground text-lg">
                 Understanding the person behind the work
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-16 mb-24">
+            <div className="mb-24 grid gap-16 lg:grid-cols-3">
               <div className="lg:col-span-1">
                 <div className="sticky top-32">
-                  <div className="w-full max-w-sm mx-auto lg:mx-0 mb-8 group">
+                  <div className="group mx-auto mb-8 w-full max-w-sm lg:mx-0">
                     <img
                       src="/profile.webp"
                       alt="Muhamad Putra Satria - Portfolio"
-                      className="w-full aspect-square shadow-md rounded-3xl object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
+                      className="aspect-square w-full rounded-3xl object-cover shadow-md grayscale transition-all duration-500 group-hover:grayscale-0"
                     />
                   </div>
 
-                  <div className="text-center lg:text-left space-y-2">
+                  <div className="space-y-2 text-center lg:text-left">
                     <h2 className="text-2xl font-light">
                       Muhamad Putra Satria
                     </h2>
                     <p className="text-muted-foreground">Frontend Engineer</p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       Palu, Indonesia
                     </p>
                   </div>
                 </div>
               </div>
 
-              <div className="lg:col-span-2 space-y-12">
+              <div className="space-y-12 lg:col-span-2">
                 <div className="relative">
-                  <div className="absolute -top-6 left-0 w-24 h-px gradient-line"></div>
-                  <h3 className="text-sm font-mono text-muted-foreground mb-6 uppercase tracking-wider">
+                  <div className="gradient-line absolute -top-6 left-0 h-px w-24"></div>
+                  <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
                     Summary
                   </h3>
-                  <div className="space-y-6 text-foreground leading-relaxed text-lg">
+                  <div className="text-foreground space-y-6 text-lg leading-relaxed">
                     <p>
                       <strong>Frontend Engineer</strong> with <em>2+ years</em>{' '}
                       of specialized experience in building{' '}
@@ -84,20 +84,20 @@ const AboutPage = () => {
 
                 <div className="relative">
                   <div
-                    className="absolute -top-6 left-0 w-24 h-px gradient-line"
+                    className="gradient-line absolute -top-6 left-0 h-px w-24"
                     style={{ animationDelay: '0.5s' }}
                   ></div>
-                  <h3 className="text-sm font-mono text-muted-foreground mb-6 uppercase tracking-wider">
+                  <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
                     Recognition
                   </h3>
                   <Timeline defaultValue={achievements.length}>
                     {achievements.map((achievement, index) => (
                       <TimelineItem key={achievement.title} step={index + 1}>
                         <TimelineHeader>
-                          <TimelineDate className="text-sm font-mono">
+                          <TimelineDate className="font-mono text-sm">
                             {achievement.year}
                           </TimelineDate>
-                          <TimelineTitle className="font-medium text-base">
+                          <TimelineTitle className="text-base font-medium">
                             {achievement.tooltip ? (
                               <Tooltip>
                                 <TooltipTrigger asChild>
@@ -126,17 +126,17 @@ const AboutPage = () => {
                 </div>
 
                 <div className="relative">
-                  <h3 className="text-sm font-mono text-muted-foreground mb-6 uppercase tracking-wider">
+                  <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
                     Education
                   </h3>
-                  <div className="p-6 rounded-lg bg-muted/30">
-                    <h4 className="font-medium mb-2">
+                  <div className="bg-muted/30 rounded-lg p-6">
+                    <h4 className="mb-2 font-medium">
                       Bachelor's Degree in Computer Science
                     </h4>
                     <p className="text-muted-foreground mb-1">
                       Tadulako University
                     </p>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-muted-foreground text-sm">
                       08/2020 - 03/2024 • Cumlaude • GPA: 3.95/4.00
                     </p>
                   </div>
@@ -144,16 +144,16 @@ const AboutPage = () => {
               </div>
             </div>
 
-            <div className="border-t border-border pt-12 relative">
-              <h3 className="text-sm font-mono text-muted-foreground mb-12 uppercase text-center">
+            <div className="border-border relative border-t pt-12">
+              <h3 className="text-muted-foreground mb-12 text-center font-mono text-sm uppercase">
                 Skills & Expertise
               </h3>
 
-              <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
                 {skills.map((skillGroup) => (
                   <div key={skillGroup.category}>
-                    <div className="flex items-center gap-2 mb-6">
-                      <h4 className="font-medium text-lg">
+                    <div className="mb-6 flex items-center gap-2">
+                      <h4 className="text-lg font-medium">
                         {skillGroup.category}
                       </h4>
                       {skillGroup.isLearning && (
@@ -168,13 +168,13 @@ const AboutPage = () => {
                         return (
                           <li
                             key={skill.name}
-                            className="flex items-center gap-3 text-sm text-muted-foreground hover:text-foreground transition-colors group"
+                            className="text-muted-foreground hover:text-foreground group flex items-center gap-3 text-sm transition-colors"
                           >
                             {icon && (
                               <svg
                                 role="img"
                                 viewBox="0 0 24 24"
-                                className="w-5 h-5 flex-shrink-0 group-hover:scale-110 transition-transform"
+                                className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110"
                                 fill="currentColor"
                                 dangerouslySetInnerHTML={{ __html: icon.svg }}
                               />

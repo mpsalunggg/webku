@@ -5,7 +5,7 @@ const Sosmed = () => {
   return (
     <div className="flex items-center gap-2">
       <Button
-        className="rounded-full text-white bg-purple-600 hover:bg-purple-500 cursor-pointer"
+        className="cursor-pointer rounded-full bg-purple-600 text-white hover:bg-purple-500"
         size="icon"
       >
         <a href="https://github.com/mpsalunggg">
@@ -13,7 +13,7 @@ const Sosmed = () => {
         </a>
       </Button>
       <Button
-        className="rounded-full text-white bg-blue-500 hover:bg-blue-400 cursor-pointer"
+        className="cursor-pointer rounded-full bg-blue-500 text-white hover:bg-blue-400"
         size="icon"
       >
         <a href="https://www.linkedin.com/in/muhamadputrasatria/">

@@ -35,7 +35,7 @@ export function AnimatedLines({
     return (
       <svg
         ref={svgRef}
-        className={`absolute inset-0 w-full h-full ${className}`}
+        className={`absolute inset-0 h-full w-full ${className}`}
         viewBox="0 0 800 600"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -69,7 +69,7 @@ export function AnimatedLines({
     return (
       <svg
         ref={svgRef}
-        className={`absolute top-0 right-0 w-64 h-64 ${className}`}
+        className={`absolute top-0 right-0 h-64 w-64 ${className}`}
         viewBox="0 0 200 200"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export function AnimatedLines({
   return (
     <svg
       ref={svgRef}
-      className={`w-full h-24 ${className}`}
+      className={`h-24 w-full ${className}`}
       viewBox="0 0 400 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
@@ -120,9 +120,9 @@ export function AnimatedLines({
 
 export function MorphingPath() {
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <svg
-        className="absolute top-1/4 left-1/4 w-96 h-96 opacity-30"
+        className="absolute top-1/4 left-1/4 h-96 w-96 opacity-30"
         viewBox="0 0 300 300"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
