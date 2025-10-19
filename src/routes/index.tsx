@@ -7,7 +7,7 @@ export const Route = createFileRoute('/')({
 
 function Index() {
   return (
-    <html>
+    <>
       <head>
         <title>Muhamad Putra Satria - Software Engineer</title>
         <meta
@@ -37,9 +37,7 @@ function Index() {
           content="Software Engineer specializing in React, TypeScript, and modern web technologies. Building innovative web applications and user experiences."
         />
       </head>
-      <body>
-        <Home />
-      </body>
-    </html>
+      <Home />
+    </>
   )
 }

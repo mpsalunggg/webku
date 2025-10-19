@@ -7,7 +7,7 @@ export const Route = createFileRoute('/work')({
 
 function RouteComponent() {
   return (
-    <html>
+    <>
       <head>
         <title>Work & Activities</title>
         <meta
@@ -37,9 +37,7 @@ function RouteComponent() {
           content="Explore the portfolio of Muhamad Putra Satria. View professional projects, work experience, and contributions in web development."
         />
       </head>
-      <body>
-        <WorkPage />
-      </body>
-    </html>
+      <WorkPage />
+    </>
   )
 }

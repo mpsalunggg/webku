@@ -7,7 +7,7 @@ export const Route = createFileRoute('/about')({
 
 function About() {
   return (
-    <html>
+    <>
       <head>
         <title>About</title>
         <meta
@@ -31,9 +31,7 @@ function About() {
           content="Learn more about Muhamad Putra Satria, a passionate Full Stack Developer with expertise in React, TypeScript, and modern web development."
         />
       </head>
-      <body>
-        <AboutPage />
-      </body>
-    </html>
+      <AboutPage />
+    </>
   )
 }
