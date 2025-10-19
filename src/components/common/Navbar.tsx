@@ -1,18 +1,22 @@
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { Link, useLocation } from '@tanstack/react-router'
+import { Link } from '@tanstack/react-router'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
 import { Menu } from 'lucide-react'
+import { NavLink } from './NavLink'
+
+const navItems = [
+  { to: '/about', label: 'About' },
+  { to: '/work', label: 'Work' },
+]
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation()
-  const pathname = location.pathname
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,26 +44,11 @@ const Navbar = () => {
           </Link>
 
           <div className="hidden items-center gap-8 md:flex">
-            <Link
-              to="/about"
-              className={`text-sm transition-colors ${
-                pathname === '/about'
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              About
-            </Link>
-            <Link
-              to="/work"
-              className={`text-sm transition-colors ${
-                pathname === '/work'
-                  ? 'text-foreground'
-                  : 'text-muted-foreground hover:text-foreground'
-              }`}
-            >
-              Work
-            </Link>
+            {navItems.map((item) => (
+              <NavLink key={item.to} to={item.to}>
+                {item.label}
+              </NavLink>
+            ))}
           </div>
 
           <div className="flex items-center gap-3">
@@ -87,28 +76,15 @@ const Navbar = () => {
               </PopoverTrigger>
               <PopoverContent align="end" className="w-48">
                 <nav className="flex flex-col gap-4">
-                  <Link
-                    to="/about"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-sm transition-colors ${
-                      pathname === '/about'
-                        ? 'text-foreground font-medium'
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    About
-                  </Link>
-                  <Link
-                    to="/work"
-                    onClick={() => setIsOpen(false)}
-                    className={`text-sm transition-colors ${
-                      pathname === '/work'
-                        ? 'text-foreground font-medium'
-                        : 'text-muted-foreground hover:text-foreground'
-                    }`}
-                  >
-                    Work
-                  </Link>
+                  {navItems.map((item) => (
+                    <NavLink
+                      key={item.to}
+                      to={item.to}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  ))}
                 </nav>
               </PopoverContent>
             </Popover>
