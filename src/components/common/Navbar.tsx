@@ -8,6 +8,7 @@ import {
 } from '@/components/ui/popover'
 import { Menu } from 'lucide-react'
 import { NavLink } from './NavLink'
+import { ModeToggle } from './ModeToggle'
 
 const navItems = [
   { to: '/about', label: 'About' },
@@ -60,6 +61,7 @@ const Navbar = () => {
                 👉 Reach out
               </a>
             </Button>
+            <ModeToggle />
             {/* Mobile Menu */}
             <Popover open={isOpen} onOpenChange={setIsOpen}>
               <PopoverTrigger asChild>
