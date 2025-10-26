@@ -21,8 +21,8 @@ const AboutPage = () => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <section className="relative px-6 py-24">
-          <div className="absolute top-0 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
+        <section className="relative px-6 py-12">
+          <div className="absolute -top-12 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
             <AnimatedLines className="opacity-30" />
           </div>
 
