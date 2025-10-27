@@ -1,10 +1,12 @@
 import { AnimatedLines } from '@/components/common/Background'
 import FilterProject from './components/FilterProject'
 import CardProject from './components/CardProject'
-import { useProjectsContext } from './projectsContext'
+import { useProjectsContext } from './context/ProjectFilterContext'
 
 const ProjectsPage = () => {
   const { filteredProjects } = useProjectsContext()
+
+  // Todo: create detail page project with mdx file
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">

@@ -1,5 +1,5 @@
 import { Search, X } from 'lucide-react'
-import { useProjectsContext } from '../projectsContext'
+import { useProjectsContext } from '../context/ProjectFilterContext'
 
 const FilterProject = () => {
   const {

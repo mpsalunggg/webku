@@ -1,6 +1,8 @@
 import { Badge } from '@/components/ui/badge'
 import { Project } from '@/constants/projects'
-import { ExternalLink, Github } from 'lucide-react'
+import { useProjectViewsContext } from '@/pages/projects/context/ProjectViewsContext'
+import { createSlug } from '@/lib/utils'
+import { ExternalLink, Github, Eye } from 'lucide-react'
 
 interface CardProjectProps {
   project: Project
@@ -8,6 +10,10 @@ interface CardProjectProps {
 }
 
 const CardProject = ({ project, isEven }: CardProjectProps) => {
+  const slug = createSlug(project.title)
+  const { viewsMap, isLoading } = useProjectViewsContext()
+  const views = viewsMap[slug] ?? 0
+
   return (
     <div
       key={project.title}
@@ -40,29 +46,38 @@ const CardProject = ({ project, isEven }: CardProjectProps) => {
           ))}
         </div>
 
-        <div className="mt-auto flex gap-2">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:bg-muted hover:text-foreground border-border text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg border transition-colors"
-              aria-label="View code"
-            >
-              <Github className="h-4 w-4" />
-            </a>
-          )}
-          {project.demo && (
-            <a
-              href={project.demo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:bg-primary/20 hover:text-foreground border-primary/50 bg-primary/10 text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg border transition-colors"
-              aria-label="View demo"
-            >
-              <ExternalLink className="h-4 w-4" />
-            </a>
-          )}
+        <div className="mt-auto flex items-center justify-between">
+          <div className="flex gap-2">
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:bg-muted hover:text-foreground border-border text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg border transition-colors"
+                aria-label="View code"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+            )}
+            {project.demo && (
+              <a
+                href={project.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:bg-primary/20 hover:text-foreground border-primary/50 bg-primary/10 text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg border transition-colors"
+                aria-label="View demo"
+              >
+                <ExternalLink className="h-4 w-4" />
+              </a>
+            )}
+          </div>
+
+          <div className="flex items-center gap-2">
+            <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
+              <Eye className="h-4 w-4" />
+              <span>{isLoading ? '...' : views.toLocaleString()}</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
