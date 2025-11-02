@@ -1,6 +1,6 @@
 import AboutPage from '@/pages/about'
 import { createFileRoute } from '@tanstack/react-router'
-import { seo } from '@/utils/seo'
+import { seo } from '@/lib/seo'
 
 export const Route = createFileRoute('/about')({
     head: () => ({

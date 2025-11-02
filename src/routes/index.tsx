@@ -1,6 +1,6 @@
 import Home from '@/pages/home'
 import { createFileRoute } from '@tanstack/react-router'
-import { seo } from '@/utils/seo'
+import { seo } from '@/lib/seo'
 
 export const Route = createFileRoute('/')({
   head: () => ({

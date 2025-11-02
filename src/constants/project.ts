@@ -7,11 +7,14 @@ export interface Project {
     demo?: string
     featured?: boolean
     category: string
+    slug: string
+    views?: number
 }
 
 export const projects: Project[] = [
     {
         title: 'Hammercode Web',
+        slug: 'hammercode-web',
         description:
             'A community-driven platform in development to help youth manage and enjoy their learning through features like events, educational blogs, and upcoming course sales.',
         tech: ['React', 'TypeScript', 'Tailwind CSS', 'Tanstack Query', 'React Hook Form', 'Zod'],
@@ -22,6 +25,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Edu Quiz',
+        slug: 'edu-quiz',
         description:
             'A dynamic quiz app using the Fisher–Yates Shuffle algorithm and Redux for efficient state management. Supports student and teacher roles with distinct permissions and features.',
         tech: ['React', 'Redux', 'TypeScript', 'Tailwind CSS'],
@@ -32,6 +36,7 @@ export const projects: Project[] = [
     },
     {
         title: 'IQOS RFID Web',
+        slug: 'iqos-rfid-web',
         description:
             'A web-based RFID system that enhances user experience and operations through secure authentication, reward management, and real-time logistics tracking.',
         tech: ['React', 'TypeScript', 'Tailwind CSS', 'RFID Integration'],
@@ -40,6 +45,7 @@ export const projects: Project[] = [
     },
     {
         title: 'IQOS RFID Dashboard',
+        slug: 'iqos-rfid-dashboard',
         description:
             'An administrative dashboard providing visibility and control over all RFID-based operations, including user monitoring, sales validation, and inventory tracking.',
         tech: ['React', 'TypeScript', 'Tailwind CSS'],
@@ -49,7 +55,7 @@ export const projects: Project[] = [
     // {
     //   title: 'Peduli Ilmu',
     //   description:
-    //     'A foundation committed to developing quality Islamic education in Central Sulawesi, aiming to produce intellectually and morally strong generations through education and da’wah programs.',
+    //     'A foundation committed to developing quality Islamic education in Central Sulawesi, aiming to produce intellectually and morally strong generations through education and da'wah programs.',
     //   tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
     //   image: project2,
     //   demo: 'https://www.peduliilmu.org/en',
@@ -57,6 +63,7 @@ export const projects: Project[] = [
     // },
     {
         title: 'Wellnest Event',
+        slug: 'wellnest-event',
         description:
             'A corporate wellness event booking system with HR and vendor dashboards, built using React, Node.js, and MongoDB, featuring role-based access and event verification workflows.',
         tech: ['React', 'Node.js', 'MongoDB', 'Express', 'Tailwind CSS'],
@@ -66,6 +73,7 @@ export const projects: Project[] = [
     },
     {
         title: 'Kopi Garuda',
+        slug: 'kopi-garuda',
         description:
             'A freelance project developing a clean landing page for a local Makassar coffee brand, with plans to expand into an e-commerce coffee ordering platform.',
         tech: ['Next.js', 'TypeScript', 'Tailwind CSS'],
@@ -75,8 +83,9 @@ export const projects: Project[] = [
     },
     {
         title: 'Netflix Clone',
+        slug: 'netflix-clone',
         description:
-            'A streaming UI app integrated with the TMDB API, designed to mimic Netflix’s interface and demonstrate skills in UI development and API data handling.',
+            'A streaming UI app integrated with the TMDB API, designed to mimic Netflix interface and demonstrate skills in UI development and API data handling.',
         tech: ['React', 'TMDB API', 'Firebase'],
         image: "/projects/project_3.webp",
         demo: 'https://netflix-clone-c74e3.web.app/',

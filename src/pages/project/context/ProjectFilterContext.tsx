@@ -21,15 +21,21 @@ const ProjectsContext = createContext<ProjectsContextType | undefined>(
     undefined
 )
 
-export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
+export const ProjectsProvider = ({
+    children,
+    initialProjects = projects
+}: {
+    children: ReactNode
+    initialProjects?: Project[]
+}) => {
     const [state, setState] = useState({
         searchQuery: '',
         selectedCategory: 'All Projects',
-        filteredProjects: projects,
+        filteredProjects: initialProjects,
     })
 
     useEffect(() => {
-        let filtered = projects
+        let filtered = initialProjects
 
         if (state.searchQuery) {
             filtered = filtered.filter(
@@ -50,7 +56,7 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
         }
 
         setState((prev) => ({ ...prev, filteredProjects: filtered }))
-    }, [state.searchQuery, state.selectedCategory])
+    }, [state.searchQuery, state.selectedCategory, initialProjects])
 
     const handleSearch = (query: string) => {
         setState((prev) => ({ ...prev, searchQuery: query }))
@@ -64,7 +70,7 @@ export const ProjectsProvider = ({ children }: { children: ReactNode }) => {
         setState({
             searchQuery: '',
             selectedCategory: 'All Projects',
-            filteredProjects: projects,
+            filteredProjects: initialProjects,
         })
     }
 

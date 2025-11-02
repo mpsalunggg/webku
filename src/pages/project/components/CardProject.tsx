@@ -1,8 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { Project } from '@/constants/project'
-// import { useProjectViewsContext } from '@/pages/projects/context/ProjectViewsContext'
-// import { createSlug } from '@/lib/utils'
-import { ExternalLink, Github } from 'lucide-react'
+import { ExternalLink, Github, Eye } from 'lucide-react'
 
 interface CardProjectProps {
     project: Project
@@ -10,9 +8,7 @@ interface CardProjectProps {
 }
 
 const CardProject = ({ project, isEven }: CardProjectProps) => {
-    // const slug = createSlug(project.title)
-    // const { viewsMap, isLoading } = useProjectViewsContext()
-    // const views = viewsMap[slug] ?? 0
+    const views = project.views ?? 0
 
     return (
         <div
@@ -71,12 +67,12 @@ const CardProject = ({ project, isEven }: CardProjectProps) => {
                         )}
                     </div>
 
-                    {/* <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-2">
                         <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
                             <Eye className="h-4 w-4" />
-                            <span>{isLoading ? '...' : views.toLocaleString()}</span>
+                            <span>{views.toLocaleString()}</span>
                         </div>
-                    </div> */}
+                    </div>
                 </div>
             </div>
         </div>
