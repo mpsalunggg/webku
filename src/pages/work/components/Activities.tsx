@@ -1,80 +1,80 @@
 import {
-  Timeline,
-  TimelineContent,
-  TimelineDate,
-  TimelineHeader,
-  TimelineIndicator,
-  TimelineItem,
-  TimelineSeparator,
-  TimelineTitle,
+    Timeline,
+    TimelineContent,
+    TimelineDate,
+    TimelineHeader,
+    TimelineIndicator,
+    TimelineItem,
+    TimelineSeparator,
+    TimelineTitle,
 } from '@/components/ui/timeline'
 import { Badge } from '@/components/ui/badge'
 import { activities } from '@/constants/work'
 
 export const Activities = () => {
-  return (
-    <div className="relative">
-      <div
-        className="gradient-line absolute -top-6 left-0 h-px w-24"
-        style={{ animationDelay: '0.75s' }}
-      ></div>
-      <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
-        Activities
-      </h3>
-      <Timeline defaultValue={activities.length}>
-        {activities.map((activity, index) => (
-          <TimelineItem
-            key={`${activity.organization}-${index}`}
-            step={index + 1}
-          >
-            <TimelineHeader>
-              <TimelineDate className="font-mono text-sm">
-                {activity.period}
-              </TimelineDate>
-              <TimelineTitle className="text-base font-medium">
-                {activity.role}
-              </TimelineTitle>
-            </TimelineHeader>
-            <TimelineContent className="space-y-2">
-              <div className="flex flex-wrap items-center gap-2">
-                <a
-                  href={activity.link_company}
-                  target="_blank"
-                  className="text-foreground font-medium underline hover:text-blue-600"
-                >
-                  {activity.organization}
-                </a>
-                <span className="text-muted-foreground">•</span>
-                <span className="text-muted-foreground text-sm">
-                  {activity.location}
-                </span>
-              </div>
-              <ul className="mt-3 space-y-1.5">
-                {activity.responsibilities.map((responsibility, idx) => (
-                  <li key={idx} className="text-muted-foreground text-sm">
-                    • {responsibility}
-                  </li>
-                ))}
-              </ul>
-              {activity.stack && activity.stack.length > 0 && (
-                <div className="mt-3 flex flex-wrap gap-1.5">
-                  {activity.stack.map((tech) => (
-                    <Badge
-                      key={tech}
-                      variant="secondary"
-                      className="text-xs font-normal"
+    return (
+        <div className="relative">
+            <div
+                className="gradient-line absolute -top-6 left-0 h-px w-24"
+                style={{ animationDelay: '0.75s' }}
+            ></div>
+            <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
+                Activities
+            </h3>
+            <Timeline defaultValue={activities.length}>
+                {activities.map((activity, index) => (
+                    <TimelineItem
+                        key={`${activity.organization}-${index}`}
+                        step={index + 1}
                     >
-                      {tech}
-                    </Badge>
-                  ))}
-                </div>
-              )}
-            </TimelineContent>
-            <TimelineIndicator className="border-1 !border-gray-400" />
-            <TimelineSeparator className="border-1" />
-          </TimelineItem>
-        ))}
-      </Timeline>
-    </div>
-  )
+                        <TimelineHeader>
+                            <TimelineDate className="font-mono text-sm">
+                                {activity.period}
+                            </TimelineDate>
+                            <TimelineTitle className="text-base font-medium">
+                                {activity.role}
+                            </TimelineTitle>
+                        </TimelineHeader>
+                        <TimelineContent className="space-y-2">
+                            <div className="flex flex-wrap items-center gap-2">
+                                <a
+                                    href={activity.link_company}
+                                    target="_blank"
+                                    className="text-foreground font-medium underline hover:text-blue-600"
+                                >
+                                    {activity.organization}
+                                </a>
+                                <span className="text-muted-foreground">•</span>
+                                <span className="text-muted-foreground text-sm">
+                                    {activity.location}
+                                </span>
+                            </div>
+                            <ul className="mt-3 space-y-1.5">
+                                {activity.responsibilities.map((responsibility, idx) => (
+                                    <li key={idx} className="text-muted-foreground text-sm">
+                                        • {responsibility}
+                                    </li>
+                                ))}
+                            </ul>
+                            {activity.stack && activity.stack.length > 0 && (
+                                <div className="mt-3 flex flex-wrap gap-1.5">
+                                    {activity.stack.map((tech) => (
+                                        <Badge
+                                            key={tech}
+                                            variant="secondary"
+                                            className="text-xs font-normal"
+                                        >
+                                            {tech}
+                                        </Badge>
+                                    ))}
+                                </div>
+                            )}
+                        </TimelineContent>
+                        <TimelineIndicator className="border !dark:border-gray-200 !border-gray-200" />
+                        <TimelineSeparator className="border !dark:border-gray-200 !border-gray-200" />
+                    </TimelineItem>
+                ))}
+            </Timeline>
+        </div>
+    )
 }

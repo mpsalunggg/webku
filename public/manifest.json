@@ -1,0 +1,19 @@
+{
+  "short_name": "MPS Portfolio",
+  "name": "Muhamad Putra Satria - Software Engineer Portfolio",
+  "description": "Personal portfolio website showcasing projects, skills, and experience in web development",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64 32x32 24x24 16x16",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "theme_color": "#000000",
+  "background_color": "#ffffff",
+  "categories": ["portfolio", "developer", "technology"]
+}
