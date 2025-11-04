@@ -44,9 +44,7 @@ function NotFound() {
     <div className="flex min-h-screen items-center justify-center px-6">
       <div className="text-center">
         <h1 className="mb-4 text-6xl font-bold">404</h1>
-        <p className="text-muted-foreground mb-8 text-xl">
-          Page not found
-        </p>
+        <p className="text-muted-foreground mb-8 text-xl">Page not found</p>
         <a
           href="/"
           className="rounded-md bg-primary px-6 py-3 text-primary-foreground hover:bg-primary/90"

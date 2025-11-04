@@ -4,6 +4,9 @@ import viteReact from '@vitejs/plugin-react'
 import viteTsConfigPaths from 'vite-tsconfig-paths'
 import tailwindcss from '@tailwindcss/vite'
 import { nitroV2Plugin } from '@tanstack/nitro-v2-vite-plugin'
+import mdx from '@mdx-js/rollup'
+import remarkGfm from 'remark-gfm'
+import remarkFrontmatter from 'remark-frontmatter'
 
 const config = defineConfig({
   plugins: [
@@ -15,6 +18,10 @@ const config = defineConfig({
     tailwindcss(),
     tanstackStart(),
     viteReact(),
+    mdx({
+      remarkPlugins: [remarkGfm, remarkFrontmatter],
+      providerImportSource: '@mdx-js/react',
+    }),
   ],
 })
 

@@ -1,4 +1,4 @@
-import { Project, projects } from '@/constants/project'
+import { ProjectFrontmatter } from '@/lib/mdx'
 import {
     ReactNode,
     useContext,
@@ -10,7 +10,7 @@ import {
 type ProjectsContextType = {
     searchQuery: string
     selectedCategory: string
-    filteredProjects: Project[]
+    filteredProjects: ProjectFrontmatter[]
     handleSearch: (query: string) => void
     handleCategoryChange: (category: string) => void
     clearFilters: () => void
@@ -23,10 +23,10 @@ const ProjectsContext = createContext<ProjectsContextType | undefined>(
 
 export const ProjectsProvider = ({
     children,
-    initialProjects = projects
+    initialProjects
 }: {
     children: ReactNode
-    initialProjects?: Project[]
+    initialProjects: ProjectFrontmatter[]
 }) => {
     const [state, setState] = useState({
         searchQuery: '',
