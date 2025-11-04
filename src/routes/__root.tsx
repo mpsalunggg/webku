@@ -4,6 +4,7 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import appCss from '../styles.css?url'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import Navbar from '@/components/common/Navbar'
+import { PageLoader } from '@/components/common/PageLoader'
 import { ApolloProvider } from '@apollo/client/react'
 import { apolloClient } from '@/lib/apollo-client'
 
@@ -16,6 +17,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
       <body>
         <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           <ApolloProvider client={apolloClient}>
+            <PageLoader />
             <Navbar />
             {children}
             <TanStackDevtools
