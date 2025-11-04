@@ -12,7 +12,7 @@ const CardProject = ({ project, isEven }: CardProjectProps) => {
 
     return (
         <div
-            key={project.title}
+            key={project.slug}
             className={`group border-border flex flex-col gap-6 border-b pb-6 transition-all last:border-b-0 md:flex-row ${isEven ? '' : 'md:flex-row-reverse'
                 }`}
         >
@@ -34,8 +34,8 @@ const CardProject = ({ project, isEven }: CardProjectProps) => {
                 </p>
 
                 <div className="mb-4 flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="text-xs">
+                    {project.tech.map((tech, index) => (
+                        <Badge key={index} variant="secondary" className="text-xs">
                             {tech}
                         </Badge>
                     ))}

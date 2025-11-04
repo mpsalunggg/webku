@@ -1,6 +1,6 @@
 import ProjectsPage from '@/pages/project'
 import { ProjectsProvider } from '@/pages/project/context/ProjectFilterContext'
-import { loadProjectsWithViews } from '@/pages/project/service'
+import { loadProjectsWithViews } from '@/pages/project/server'
 import { createFileRoute } from '@tanstack/react-router'
 import { seo } from '@/lib/seo'
 
@@ -12,7 +12,7 @@ export const Route = createFileRoute('/projects')({
             keywords: 'Projects, Web Development, React Projects, TypeScript, Frontend Projects, Full Stack, Portfolio Projects, Open Source',
         }),
     }),
-    loader: loadProjectsWithViews,
+    loader: async () => await loadProjectsWithViews(),
     component: RouteComponent,
 })
 

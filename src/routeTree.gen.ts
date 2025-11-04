@@ -13,7 +13,6 @@ import { Route as WorkRouteImport } from './routes/work'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ApiViewsRouteImport } from './routes/api/views'
 import { Route as DemoStartServerFuncsRouteImport } from './routes/demo/start.server-funcs'
 import { Route as DemoStartApiRequestRouteImport } from './routes/demo/start.api-request'
 import { Route as DemoApiNamesRouteImport } from './routes/demo/api.names'
@@ -40,11 +39,6 @@ const AboutRoute = AboutRouteImport.update({
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ApiViewsRoute = ApiViewsRouteImport.update({
-  id: '/api/views',
-  path: '/api/views',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DemoStartServerFuncsRoute = DemoStartServerFuncsRouteImport.update({
@@ -88,7 +82,6 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/projects': typeof ProjectsRoute
   '/work': typeof WorkRoute
-  '/api/views': typeof ApiViewsRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -102,7 +95,6 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/projects': typeof ProjectsRoute
   '/work': typeof WorkRoute
-  '/api/views': typeof ApiViewsRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -117,7 +109,6 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/projects': typeof ProjectsRoute
   '/work': typeof WorkRoute
-  '/api/views': typeof ApiViewsRoute
   '/demo/api/names': typeof DemoApiNamesRoute
   '/demo/start/api-request': typeof DemoStartApiRequestRoute
   '/demo/start/server-funcs': typeof DemoStartServerFuncsRoute
@@ -133,7 +124,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/projects'
     | '/work'
-    | '/api/views'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -147,7 +137,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/projects'
     | '/work'
-    | '/api/views'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -161,7 +150,6 @@ export interface FileRouteTypes {
     | '/about'
     | '/projects'
     | '/work'
-    | '/api/views'
     | '/demo/api/names'
     | '/demo/start/api-request'
     | '/demo/start/server-funcs'
@@ -176,7 +164,6 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   ProjectsRoute: typeof ProjectsRoute
   WorkRoute: typeof WorkRoute
-  ApiViewsRoute: typeof ApiViewsRoute
   DemoApiNamesRoute: typeof DemoApiNamesRoute
   DemoStartApiRequestRoute: typeof DemoStartApiRequestRoute
   DemoStartServerFuncsRoute: typeof DemoStartServerFuncsRoute
@@ -214,13 +201,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/api/views': {
-      id: '/api/views'
-      path: '/api/views'
-      fullPath: '/api/views'
-      preLoaderRoute: typeof ApiViewsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/demo/start/server-funcs': {
@@ -280,7 +260,6 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   ProjectsRoute: ProjectsRoute,
   WorkRoute: WorkRoute,
-  ApiViewsRoute: ApiViewsRoute,
   DemoApiNamesRoute: DemoApiNamesRoute,
   DemoStartApiRequestRoute: DemoStartApiRequestRoute,
   DemoStartServerFuncsRoute: DemoStartServerFuncsRoute,

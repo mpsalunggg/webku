@@ -27,7 +27,7 @@ const ProjectsPage = () => {
                             <div className="flex-1 space-y-6">
                                 {filteredProjects.map((project, index) => {
                                     const isEven = index % 2 === 0
-                                    return <CardProject project={project} isEven={isEven} />
+                                    return <CardProject key={index} project={project} isEven={isEven} />
                                 })}
                             </div>
 
