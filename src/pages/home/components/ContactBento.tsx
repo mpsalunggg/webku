@@ -78,7 +78,7 @@ const ContactBento = ({
 
                     <div className="space-y-1">
                         <div className="text-muted-foreground flex items-center gap-2">
-                            <Github className="h-2 w-2" />
+                            <Github className="h-4 w-4" />
                             <span className="text-xs">Repositories</span>
                         </div>
                         <p className="text-2xl font-semibold">
