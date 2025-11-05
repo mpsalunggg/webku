@@ -24,16 +24,22 @@ const ProjectsPage = () => {
 
             <div className="flex flex-col gap-8 lg:flex-row">
               <div className="flex-1 space-y-6">
-                {filteredProjects.map((project, index) => {
-                  const isEven = index % 2 === 0
-                  return (
-                    <CardProject
-                      key={index}
-                      project={project}
-                      isEven={isEven}
-                    />
-                  )
-                })}
+                {filteredProjects.length ? (
+                  filteredProjects.map((project, index) => {
+                    const isEven = index % 2 === 0
+                    return (
+                      <CardProject
+                        key={index}
+                        project={project}
+                        isEven={isEven}
+                      />
+                    )
+                  })
+                ) : (
+                  <p className="text-muted-foreground">
+                    No projects found matching your criteria.
+                  </p>
+                )}
               </div>
 
               <FilterProject />
