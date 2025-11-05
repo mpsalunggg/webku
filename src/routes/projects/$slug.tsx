@@ -5,9 +5,11 @@ import { seo } from '@/lib/seo'
 
 export const Route = createFileRoute('/projects/$slug')({
   loader: async ({ params }) =>
-    getDetailProject({
+    await getDetailProject({
       data: { slug: params.slug },
     }),
+  staleTime: 0,
+  gcTime: 0,
   head: ({ loaderData }) => {
     if (!loaderData) return {}
 

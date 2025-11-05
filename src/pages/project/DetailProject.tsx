@@ -1,10 +1,11 @@
 import { lazy, Suspense } from 'react'
-import { Github, ExternalLink, Calendar } from 'lucide-react'
+import { Github, ExternalLink, Calendar, ArrowLeft, Eye } from 'lucide-react'
 import { MDXProvider } from '@mdx-js/react'
 import { Badge } from '@/components/ui/badge'
 import { mdxComponents } from '@/components/common/MDXComponents'
 import { ProjectFrontmatter } from '@/lib/mdx'
 import { AnimatedLines } from '@/components/common/Background'
+import { Link } from '@tanstack/react-router'
 
 interface DetailProjectProps {
   frontmatter: ProjectFrontmatter
@@ -17,11 +18,26 @@ const DetailProject = ({ frontmatter, slug }: DetailProjectProps) => {
       default: module.default,
     }))
   )
-
+  console.log('Rendering DetailProject for slug:', frontmatter)
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
         <article className="mx-auto max-w-4xl px-6 py-12">
+          <div className="flex justify-between items-center">
+            <Link
+              to="/projects"
+              className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+              Back to Projects
+            </Link>
+            <div>
+              <Eye className="inline-block h-4 w-4 mr-1" />
+              <span className="text-sm text-muted-foreground">
+                {frontmatter.views ?? 0} views
+              </span>
+            </div>
+          </div>
           <header className="mb-12">
             {frontmatter.image && (
               <img

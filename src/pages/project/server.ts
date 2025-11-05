@@ -19,7 +19,6 @@ export const getAllProjects = createServerFn({ method: 'GET' }).handler(
           views: viewsMap.get(project.slug) || 0,
         })
       )
-
       return { projects: projectsWithViews }
     } catch (error) {
       console.error('Error loading projects with views:', error)
@@ -39,5 +38,29 @@ export const getDetailProject = createServerFn({ method: 'GET' })
       throw notFound()
     }
 
-    return { slug: data.slug, frontmatter: { ...project } }
+    try {
+      const updatedView = await prisma.projectView.upsert({
+        where: { slug: data.slug },
+        update: {
+          views: {
+            increment: 1,
+          },
+        },
+        create: {
+          slug: data.slug,
+          views: 1,
+        },
+      })
+
+      return {
+        slug: data.slug,
+        frontmatter: {
+          ...project,
+          views: updatedView.views
+        }
+      }
+    } catch (error) {
+      console.error('Error incrementing project view:', error)
+      throw new Error('Failed to increment project view')
+    }
   })

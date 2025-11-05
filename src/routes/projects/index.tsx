@@ -15,6 +15,8 @@ export const Route = createFileRoute('/projects/')({
     }),
   }),
   loader: async () => await getAllProjects(),
+  staleTime: 0,
+  gcTime: 0,
   component: RouteComponent,
 })
 
