@@ -1,12 +1,11 @@
 import { HeadContent, Scripts, createRootRoute } from '@tanstack/react-router'
-import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
 import appCss from '../styles.css?url'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import Navbar from '@/components/common/Navbar'
 import { PageLoader } from '@/components/common/PageLoader'
 import { ApolloProvider } from '@apollo/client/react'
 import { apolloClient } from '@/lib/apollo-client'
+import { TanStackRouterDevtools } from 'node_modules/@tanstack/react-router-devtools/dist/esm/TanStackRouterDevtools'
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   return (
@@ -20,17 +19,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             <PageLoader />
             <Navbar />
             {children}
-            <TanStackDevtools
-              config={{
-                position: 'bottom-right',
-              }}
-              plugins={[
-                {
-                  name: 'Tanstack Router',
-                  render: <TanStackRouterDevtoolsPanel />,
-                },
-              ]}
-            />
+            {import.meta.env.DEV && <TanStackRouterDevtools />}
           </ApolloProvider>
         </ThemeProvider>
         <Scripts />
