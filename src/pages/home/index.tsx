@@ -1,81 +1,221 @@
-import { Fragment } from 'react'
+import { Fragment, useState } from 'react'
 import { Typewriter } from 'react-simple-typewriter'
-import ContactBento from './components/ContactBento'
 import { AnimatedLines } from '@/components/common/Background'
 import { GET_USER_STATS } from '@/constants/query'
 import { useQuery } from '@apollo/client/react'
+import { ArrowRight, Linkedin, LocateIcon, Mail } from 'lucide-react'
 
 interface GitHubStats {
-    user: {
-        name: string
-        avatarUrl: string
-        totalRepositories: { totalCount: number }
-        totalFollowers: { totalCount: number }
-        totalCommit: { totalCommitContributions: number }
-        totalPullRequest: { totalPullRequestContributions: number }
-    }
+  user: {
+    name: string
+    avatarUrl: string
+    totalRepositories: { totalCount: number }
+    totalFollowers: { totalCount: number }
+    totalCommit: { totalCommitContributions: number }
+    totalPullRequest: { totalPullRequestContributions: number }
+  }
 }
 
 const Home = () => {
-    const { data } = useQuery<GitHubStats>(GET_USER_STATS, {
-        variables: { username: 'mpsalunggg' },
-    })
+  const [copied, setCopied] = useState(false)
+  const { data } = useQuery<GitHubStats>(GET_USER_STATS, {
+    variables: { username: 'mpsalunggg' },
+  })
 
-    return (
-        <Fragment>
-            <section className="relative flex min-h-screen items-center justify-center overflow-hidden px-6">
-                <AnimatedLines variant="hero" className="opacity-60" />
+  function handleCopy() {
+    navigator.clipboard?.writeText('putrasatria893@gmail.com')
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
 
-                <div className="relative z-10 mx-auto max-w-4xl text-center">
-                    <div className="animate-fade-in-up">
-                        <p className="text-muted-foreground mb-6 font-mono text-sm">
-                            Hello i&apos;m Putra👋
-                        </p>
-                        <h1 className="mb-8 text-4xl leading-tight font-light text-balance md:text-6xl lg:text-7xl">
-                            I'm a{' '}
-                            <Typewriter
-                                words={['Frontend Developer', 'Basketball Player']}
-                                loop={0}
-                                cursor
-                                cursorStyle="|"
-                                typeSpeed={60}
-                                deleteSpeed={50}
-                                delaySpeed={1500}
-                            />
-                            <br />
-                            {/* <span className="italic font-normal">aspiring</span> fullstack developer */}
-                        </h1>
-                        <p className="text-muted-foreground mx-auto max-w-2xl text-lg leading-relaxed md:text-xl">
-                            Passionate about exploring new technologies and sharing knowledge.
-                        </p>
-                    </div>
-                </div>
+  return (
+    <Fragment>
+      <section className="relative flex min-h-screen items-center overflow-hidden px-6">
+        <AnimatedLines variant="hero" className="opacity-60" />
 
-                <AnimatedLines variant="floating" className="opacity-40" />
-            </section>
-            <section id="contact" className="flex flex-col justify-center px-6">
-                <div className="mx-auto w-full max-w-6xl">
-                    <div className="mb-16 text-center">
-                        <h2 className="mb-6 text-3xl font-light md:text-4xl">
-                            Let's create something <span className="italic">beautiful</span>{' '}
-                            together
-                        </h2>
-                        <p className="text-muted-foreground text-lg">
-                            I'm always interested in discussing new projects and
-                            opportunities.
-                        </p>
-                    </div>
+        <div className="relative z-10 w-full">
+          <div className="animate-fade-in-up mx-auto max-w-6xl">
+            <p className="text-muted-foreground mb-6 font-mono text-sm">
+              Hello i&apos;m Putra👋
+            </p>
+            <h1 className="mb-8 text-4xl leading-tight font-light text-balance md:text-6xl lg:text-7xl">
+              I'm a{' '}
+              <Typewriter
+                words={['Software Engineer', 'Basketball Player']}
+                loop={0}
+                cursor
+                cursorStyle="|"
+                typeSpeed={60}
+                deleteSpeed={50}
+                delaySpeed={1500}
+              />
+              <br />
+            </h1>
+            <p className="text-muted-foreground text-sm font-light leading-relaxed">
+              Passionate about exploring new technologies and sharing knowledge.
+            </p>
+          </div>
+        </div>
 
-                    <ContactBento githubStats={data?.user} username="mpsalunggg" />
+        <AnimatedLines variant="floating" className="opacity-40" />
+      </section>
+      <section
+        id="contact"
+        className="flex flex-col justify-center mx-auto max-w-6xl gap-3"
+      >
+        <div className="flex flex-col gap-4">
+          <p className="text-xs font-medium uppercase tracking-[0.18em] font-mono text-muted-foreground">
+            Get in touch
+          </p>
 
-                    <div className="border-border mt-16 border-t py-16">
-                        <div className="text-center">
-                            <p className="text-muted-foreground text-xs">© 2025 Mps</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-        </Fragment>
-    )
+          <h2 className="text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+            Let's <span className="italic font-light">Connect</span>
+          </h2>
+
+          <p className="max-w-sm text-sm font-light leading-relaxed text-muted-foreground">
+            Always open to discussing new projects, creative ideas, or
+            opportunities to be part of your vision.
+          </p>
+        </div>
+        <div className="rounded-2xl border border-border bg-card overflow-hidden hover:border-primary/40 hover:shadow-sm transition-colors">
+          <div className="flex items-center justify-between px-5 pt-5 pb-4">
+            <div className="flex items-center gap-3">
+              <img
+                src={data?.user.avatarUrl}
+                alt="Profile"
+                className="w-9 h-9 rounded-xl"
+              />
+              <div>
+                <p className="text-sm font-medium text-foreground">
+                  {data?.user.name}
+                </p>
+                <p className="text-xs text-muted-foreground">
+                  @mpsalunggg · GitHub
+                </p>
+              </div>
+            </div>
+            <a
+              href={`https://github.com/mpsalunggg`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
+            >
+              View profile →
+            </a>
+          </div>
+
+          <div className="grid grid-cols-4 border-t border-border">
+            {[
+              {
+                label: 'Repositories',
+                value: data?.user.totalRepositories.totalCount,
+              },
+              {
+                label: 'Followers',
+                value: data?.user.totalFollowers.totalCount,
+              },
+              {
+                label: 'Commits',
+                value: data?.user.totalCommit.totalCommitContributions,
+              },
+              {
+                label: 'Pull Requests',
+                value:
+                  data?.user.totalPullRequest.totalPullRequestContributions,
+              },
+            ].map((s, i) => (
+              <div
+                key={s.label}
+                className={[
+                  'px-4 py-4 text-center hover:bg-muted/50 transition-colors',
+                  i < 3 ? 'border-r border-border' : '',
+                ].join(' ')}
+              >
+                <p className="text-xl font-semibold text-foreground leading-none mb-1">
+                  {s.value}
+                </p>
+                <p className="text-[10px] uppercase tracking-wider text-muted-foreground leading-tight">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <button
+            onClick={handleCopy}
+            className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 text-left hover:border-primary/40 hover:shadow-sm hover:bg-accent/30 transition-colors cursor-pointer"
+          >
+            <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center text-muted-foreground shrink-0">
+              <Mail />
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+                Email
+              </p>
+              <p className="text-xs font-medium text-foreground break-all">
+                putrasatria893@gmail.com
+              </p>
+              <p
+                className={`text-[10px] mt-1.5 font-medium ${copied ? 'text-emerald-500' : 'text-muted-foreground/50'}`}
+              >
+                {copied ? '✓ Copied!' : 'Click to copy'}
+              </p>
+            </div>
+          </button>
+
+          <a
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 no-underline hover:border-primary/40 hover:shadow-sm hover:bg-accent/30 transition-colors"
+          >
+            <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center text-muted-foreground shrink-0">
+              <Linkedin />
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+                LinkedIn
+              </p>
+              <p className="text-xs font-medium text-foreground">
+                Connect with me
+              </p>
+              <div className="flex items-center gap-1 mt-1.5">
+                <p className="text-[10px] text-muted-foreground/50">
+                  View profile
+                </p>
+                <span className="text-muted-foreground/50">
+                  <ArrowRight />
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <div className="rounded-2xl border border-border bg-card p-5 flex flex-col gap-4 hover:border-primary/40 hover:shadow-sm hover:bg-accent/30 transition-colors">
+            <div className="w-9 h-9 rounded-xl bg-muted flex items-center justify-center text-muted-foreground shrink-0">
+              <LocateIcon />
+            </div>
+            <div>
+              <p className="text-[10px] uppercase tracking-widest text-muted-foreground mb-1">
+                Location
+              </p>
+              <p className="text-xs font-medium text-foreground">
+                South Tangerang, Indonesia
+              </p>
+              <p className="text-[10px] text-muted-foreground/50 mt-1.5">
+                GMT +7
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="border-border mt-16 border-t py-16">
+          <div className="text-center mx-auto max-w-6xl">
+            <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} Mps</p>
+          </div>
+        </div>
+      </section>
+    </Fragment>
+  )
 }
 export default Home
