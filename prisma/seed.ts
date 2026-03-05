@@ -16,25 +16,33 @@ const projectSlugs = [
     { title: 'Wellnest Event', views: 0 },
     { title: 'Kopi Garuda', views: 0 },
     { title: 'Netflix Clone', views: 0 },
+    { title: 'Ask Me', views: 0 },
 ]
 
 async function main() {
-    for (const project of projectSlugs) {
-        const slug = createSlug(project.title)
+  for (const project of projectSlugs) {
+    const slug = createSlug(project.title)
 
-        await prisma.projectView.upsert({
-            where: { slug },
-            update: {},
-            create: {
-                slug,
-                views: project.views,
-            },
-        })
+    const existing = await prisma.projectView.findUnique({
+      where: { slug },
+    })
 
-        console.log(`Created/Updated project view: ${slug} (${project.title})`)
+    if (existing) {
+      console.log(`Skipped (already exists): ${slug}`)
+      continue
     }
 
-    console.log('Seed completed!')
+    await prisma.projectView.create({
+      data: {
+        slug,
+        views: project.views,
+      },
+    })
+
+    console.log(`Created: ${slug} (${project.title})`)
+  }
+
+  console.log('Seed completed!')
 }
 
 main()
