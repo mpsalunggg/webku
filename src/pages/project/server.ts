@@ -9,14 +9,19 @@ export const getAllProjects = createServerFn({ method: 'GET' }).handler(
       const allProjects = await getAllProjectFrontmatter()
       const viewsData = await prisma.projectView.findMany({
         orderBy: { views: 'desc' },
+        select: { slug: true, views: true, createdAt: true },
       })
 
-      const viewsMap = new Map(viewsData.map((view) => [view.slug, view.views]))
 
+      const viewsMap = new Map(
+        viewsData.map((view) => [view.slug, { views: view.views, createdAt: view.createdAt }])
+      )
+      
       const projectsWithViews: ProjectFrontmatter[] = allProjects.map(
         (project) => ({
           ...project,
-          views: viewsMap.get(project.slug) || 0,
+          date: viewsMap.get(project.slug)?.createdAt?.toISOString() || '',
+          views: viewsMap.get(project.slug)?.views || 0,
         })
       )
       return { projects: projectsWithViews }
@@ -33,6 +38,11 @@ export const getDetailProject = createServerFn({ method: 'GET' })
     const project = await getAllProjectFrontmatter().then((projects) =>
       projects.find((p) => p.slug === data.slug)
     )
+
+    const createdAtDate = await prisma.projectView.findUnique({
+      where: { slug: data.slug },
+      select: { createdAt: true }
+    });
 
     if (!project) {
       throw notFound()
@@ -56,7 +66,8 @@ export const getDetailProject = createServerFn({ method: 'GET' })
         slug: data.slug,
         frontmatter: {
           ...project,
-          views: updatedView.views
+          views: updatedView.views,
+          date: createdAtDate?.createdAt?.toISOString() || '',
         }
       }
     } catch (error) {
