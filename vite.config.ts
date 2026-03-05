@@ -23,6 +23,9 @@ const config = defineConfig({
       providerImportSource: '@mdx-js/react',
     }),
   ],
+  optimizeDeps: {
+    exclude: ['@prisma/client', '.prisma/client'],
+  },
 })
 
 export default config

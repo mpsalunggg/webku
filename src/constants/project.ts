@@ -12,6 +12,17 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    // {
+    //     title: "Ask Me",
+    //     slug: 'ask-me',
+    //     description:
+    //         'A web-based platform that allows users to ask questions and get answers from a community of experts.',
+    //     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Shadcn'],
+    //     image: '/projects/project_1.webp',
+    //     github: 'https://github.com/mpsalunggg/ask-me',
+    //     demo: 'https://askme-neon.vercel.app/',
+    //     category: 'Frontend',
+    // },
     {
         title: 'Hammercode Web',
         slug: 'hammercode-web',
