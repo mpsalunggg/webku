@@ -1,22 +1,22 @@
-import { prisma } from "@/lib/prisma"
-
+import 'dotenv/config'
+import { prisma } from '../src/lib/prisma'
 
 function createSlug(title: string): string {
-    return title
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, '')
+  return title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
 }
 
 const projectSlugs = [
-    { title: 'Hammercode Web', views: 0 },
-    { title: 'Edu Quiz', views: 0 },
-    { title: 'IQOS RFID Web', views: 0 },
-    { title: 'IQOS RFID Dashboard', views: 0 },
-    { title: 'Wellnest Event', views: 0 },
-    { title: 'Kopi Garuda', views: 0 },
-    { title: 'Netflix Clone', views: 0 },
-    { title: 'Ask Me', views: 0 },
+  { title: 'Hammercode Web', views: 0 },
+  { title: 'Edu Quiz', views: 0 },
+  { title: 'IQOS RFID Web', views: 0 },
+  { title: 'IQOS RFID Dashboard', views: 0 },
+  { title: 'Wellnest Event', views: 0 },
+  { title: 'Kopi Garuda', views: 0 },
+  { title: 'Netflix Clone', views: 0 },
+  { title: 'Ask Me', views: 0 },
 ]
 
 async function main() {
@@ -46,9 +46,9 @@ async function main() {
 }
 
 main()
-    .catch(() => {
-        process.exit(1)
-    })
-    .finally(async () => {
-        await prisma.$disconnect()
-    })
+  .catch(() => {
+    process.exit(1)
+  })
+  .finally(async () => {
+    await prisma.$disconnect()
+  })

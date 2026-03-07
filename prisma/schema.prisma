@@ -1,13 +1,10 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client"
   output   = "../src/generated"
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
 }
 
 model ProjectView {
@@ -18,4 +15,14 @@ model ProjectView {
   updatedAt DateTime @updatedAt
 
   @@map("project_views")
+}
+
+model BlogView {
+  id        String   @id @default(cuid())
+  slug      String   @unique
+  views     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("blog_views")
 }

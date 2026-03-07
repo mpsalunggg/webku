@@ -48,7 +48,6 @@ const FilterProject = () => {
                     <div className="space-y-2">
                         {[
                             'All Projects',
-                            'Web Application',
                             'Mobile App',
                             'Full Stack',
                             'Frontend',
