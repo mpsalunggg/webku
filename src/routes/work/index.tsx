@@ -10,6 +10,7 @@ export const Route = createFileRoute('/work/')({
         'Explore my professional journey as a Software Engineer. Discover my work experience, activities, and contributions across various organizations and projects in web development.',
       keywords:
         'Work Experience, Activities, Career, Professional Experience, Software Engineer, Frontend Developer, Tech Career, Portfolio',
+      path: '/work',
     }),
   }),
   component: RouteComponent,

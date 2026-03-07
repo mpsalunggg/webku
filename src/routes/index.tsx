@@ -9,6 +9,7 @@ export const Route = createFileRoute('/')({
       description: 'Frontend Developer passionate about exploring new technologies and sharing knowledge. Explore my portfolio featuring web development projects, work experience, and technical expertise.',
       keywords: 'Muhamad Putra Satria, Software Engineer, Frontend Developer, React Developer, Web Development, Portfolio, JavaScript, TypeScript, React, TanStack',
       type: 'website',
+      path: '/',
     }),
   }),
   component: App

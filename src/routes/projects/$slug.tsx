@@ -10,7 +10,7 @@ export const Route = createFileRoute('/projects/$slug')({
     }),
   staleTime: 0,
   gcTime: 0,
-  head: ({ loaderData }) => {
+  head: ({ loaderData, params }) => {
     if (!loaderData) return {}
 
     return {
@@ -19,6 +19,8 @@ export const Route = createFileRoute('/projects/$slug')({
         description: loaderData.frontmatter.description,
         image: loaderData.frontmatter.image,
         keywords: loaderData.frontmatter.tech?.join(', '),
+        type: 'article',
+        path: `/projects/${params.slug}`,
       }),
     }
   },

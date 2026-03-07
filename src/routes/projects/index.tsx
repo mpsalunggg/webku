@@ -12,6 +12,7 @@ export const Route = createFileRoute('/projects/')({
         'Browse through my collection of web development projects. Featuring full-stack applications, frontend projects built with React, TypeScript, and modern web technologies.',
       keywords:
         'Projects, Web Development, React Projects, TypeScript, Frontend Projects, Full Stack, Portfolio Projects, Open Source',
+      path: '/projects',
     }),
   }),
   loader: async () => await getAllProjects(),

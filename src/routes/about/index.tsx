@@ -11,6 +11,7 @@ export const Route = createFileRoute('/about/')({
       keywords:
         'About, Software Engineer, Frontend Developer, React Developer, Web Developer, Biography, Skills, Experience, Muhamad Putra Satria',
       type: 'profile',
+      path: '/about',
     }),
   }),
   component: RouteComponent,

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://putrasatria.site/</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- About Page -->
+  <url>
+    <loc>https://putrasatria.site/about</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Work Page -->
+  <url>
+    <loc>https://putrasatria.site/work</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Projects Page -->
+  <url>
+    <loc>https://putrasatria.site/projects</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Individual Projects -->
+  <url>
+    <loc>https://putrasatria.site/projects/hammercode-web</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_1.webp</image:loc>
+      <image:title>Hammercode Web</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/edu-quiz</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_2.webp</image:loc>
+      <image:title>Edu Quiz</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/iqos-rfid-web</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_3.webp</image:loc>
+      <image:title>IQOS RFID Web</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/iqos-rfid-dashboard</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_4.webp</image:loc>
+      <image:title>IQOS RFID Dashboard</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/wellnest-event</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_5.webp</image:loc>
+      <image:title>Wellnest Event</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/kopi-garuda</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_6.webp</image:loc>
+      <image:title>Kopi Garuda</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/netflix-clone</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/project_7.webp</image:loc>
+      <image:title>Netflix Clone</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://putrasatria.site/projects/ask-me</loc>
+    <lastmod>2026-03-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <image:image>
+      <image:loc>https://putrasatria.site/projects/askme.webp</image:loc>
+      <image:title>Ask Me</image:title>
+    </image:image>
+  </url>
+
+</urlset>
