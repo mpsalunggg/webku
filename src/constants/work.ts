@@ -7,10 +7,8 @@ export const workExperiences = [
     location: 'South Tangerang, Indonesia',
     type: 'Contract',
     responsibilities: [
-      'Developed a dynamic GIS interface with Google Maps API, featuring layered views, polygon drawing, data filtering, and marker integration to enhance spatial analysis.',
-      'Migrate 90% of the GIS project from Frappe server-side scripts to a modern frontend with Nuxt and TypeScript.',
-      'Develop a B2B dashboard with Midtrans integration to simplify and secure client payment workflows.',
-      'Provide technical guidance and monitor the frontend team to ensure code quality, consistency, and project goal.',
+      'Designed and adjusted backend API responses to align with frontend requirements using Golang.',
+      'Built unit and end-to-end (E2E) tests for frontend applications to improve stability and user experience.'
     ],
     stack: [
       'TypeScript',
