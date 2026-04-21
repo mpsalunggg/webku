@@ -2,7 +2,8 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /_next/
+Disallow: /_build/
+Disallow: /.nitro/
 
 # Sitemap
 Sitemap: https://putrasatria.site/sitemap.xml

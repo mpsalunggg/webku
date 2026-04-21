@@ -108,11 +108,6 @@ export const Route = createRootRoute({
         name: 'theme-color',
         content: '#000000',
       },
-      // Uncomment and add your verification codes when ready
-      // {
-      //   name: 'google-site-verification',
-      //   content: 'YOUR_GOOGLE_VERIFICATION_CODE',
-      // },
     ],
     links: [
       {

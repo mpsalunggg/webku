@@ -13,16 +13,16 @@ export const Route = createFileRoute('/projects/$slug')({
   head: ({ loaderData, params }) => {
     if (!loaderData) return {}
 
-    return {
-      meta: seo({
-        title: `${loaderData.frontmatter.title} - Project`,
-        description: loaderData.frontmatter.description,
-        image: loaderData.frontmatter.image,
-        keywords: loaderData.frontmatter.tech?.join(', '),
-        type: 'article',
-        path: `/projects/${params.slug}`,
-      }),
-    }
+    const { meta, links } = seo({
+      title: `${loaderData.frontmatter.title} - Project`,
+      description: loaderData.frontmatter.description,
+      image: loaderData.frontmatter.image,
+      keywords: loaderData.frontmatter.tech?.join(', '),
+      type: 'article',
+      path: `/projects/${params.slug}`,
+    })
+
+    return { meta, links }
   },
   component: ProjectDetail,
 })
