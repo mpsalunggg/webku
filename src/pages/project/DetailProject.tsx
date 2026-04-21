@@ -18,7 +18,7 @@ const DetailProject = ({ frontmatter, slug }: DetailProjectProps) => {
       default: module.default,
     }))
   )
-  console.log('Rendering DetailProject for slug:', frontmatter)
+
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">

@@ -8,16 +8,9 @@ export const workExperiences = [
     type: 'Contract',
     responsibilities: [
       'Designed and adjusted backend API responses to align with frontend requirements using Golang.',
-      'Built unit and end-to-end (E2E) tests for frontend applications to improve stability and user experience.'
+      'Built unit and end-to-end (E2E) tests for frontend applications to improve stability and user experience.',
     ],
-    stack: [
-      'TypeScript',
-      'Nuxt.js',
-      'Next.js',
-      'Google Maps API',
-      'Tailwind CSS',
-      'Shadcn/ui',
-    ],
+    stack: ['TypeScript', 'Next.js', 'Golang', 'Docker'],
   },
   {
     period: '10/2024 - 12/2025',

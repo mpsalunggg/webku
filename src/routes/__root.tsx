@@ -9,29 +9,37 @@ import { TanStackRouterDevtools } from 'node_modules/@tanstack/react-router-devt
 
 function RootDocument({ children }: { children: React.ReactNode }) {
   const personStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Muhamad Putra Satria",
-    "jobTitle": "Software Engineer",
-    "description": "Frontend Developer passionate about exploring new technologies and sharing knowledge",
-    "url": "https://putrasatria.site",
-    "sameAs": [
-      "https://github.com/mpsalunggg",
-      "https://linkedin.com/in/muhamadputrasatria"
+    '@context': 'https://schema.org',
+    '@type': 'Person',
+    name: 'Muhamad Putra Satria',
+    jobTitle: 'Software Engineer',
+    description:
+      'Frontend Developer passionate about exploring new technologies and sharing knowledge',
+    url: 'https://putrasatria.site',
+    sameAs: [
+      'https://github.com/mpsalunggg',
+      'https://linkedin.com/in/muhamadputrasatria',
     ],
-    "knowsAbout": ["React", "TypeScript", "JavaScript", "Web Development", "Frontend Development"],
+    knowsAbout: [
+      'React',
+      'TypeScript',
+      'JavaScript',
+      'Web Development',
+      'Frontend Development',
+    ],
   }
 
   const websiteStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Muhamad Putra Satria Portfolio",
-    "url": "https://putrasatria.site",
-    "description": "Frontend Developer passionate about exploring new technologies",
-    "author": {
-      "@type": "Person",
-      "name": "Muhamad Putra Satria"
-    }
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Muhamad Putra Satria Portfolio',
+    url: 'https://putrasatria.site',
+    description:
+      'Frontend Developer passionate about exploring new technologies',
+    author: {
+      '@type': 'Person',
+      name: 'Muhamad Putra Satria',
+    },
   }
 
   return (
@@ -40,11 +48,15 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <HeadContent />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personStructuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(personStructuredData),
+          }}
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteStructuredData) }}
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteStructuredData),
+          }}
         />
       </head>
       <body>
