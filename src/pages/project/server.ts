@@ -12,62 +12,75 @@ export const getAllProjects = createServerFn({ method: 'GET' }).handler(
         select: { slug: true, views: true, createdAt: true },
       })
 
-
       const viewsMap = new Map(
-        viewsData.map((view) => [view.slug, { views: view.views, createdAt: view.createdAt }])
+        viewsData.map((view) => [
+          view.slug,
+          { views: view.views, createdAt: view.createdAt },
+        ]),
       )
-      
+
       const projectsWithViews: ProjectFrontmatter[] = allProjects.map(
         (project) => ({
           ...project,
           date: viewsMap.get(project.slug)?.createdAt?.toISOString() || '',
           views: viewsMap.get(project.slug)?.views || 0,
-        })
+        }),
       )
       return { projects: projectsWithViews }
     } catch (error) {
       console.error('Error loading projects with views:', error)
       return { projects: [] }
     }
-  }
+  },
 )
 
 export const getDetailProject = createServerFn({ method: 'GET' })
   .inputValidator((data: { slug: string }) => data)
   .handler(async ({ data }) => {
     const project = await getAllProjectFrontmatter().then((projects) =>
-      projects.find((p) => p.slug === data.slug)
+      projects.find((p) => p.slug === data.slug),
     )
 
     const createdAtDate = await prisma.projectView.findUnique({
       where: { slug: data.slug },
-      select: { createdAt: true }
-    });
+      select: { createdAt: true },
+    })
 
     if (!project) {
       throw notFound()
     }
 
     try {
-      const updatedView = await prisma.projectView.upsert({
-        where: { slug: data.slug },
-        update: {
-          views: {
-            increment: 1,
+      if (import.meta.env.VITE_UPDATE_VIEWS === 'true') {
+        const updatedView = await prisma.projectView.upsert({
+          where: { slug: data.slug },
+          update: {
+            views: {
+              increment: 1,
+            },
           },
-        },
-        create: {
-          slug: data.slug,
-          views: 1,
-        },
-      })
+          create: {
+            slug: data.slug,
+            views: 1,
+          },
+        })
 
-      return {
-        slug: data.slug,
-        frontmatter: {
-          ...project,
-          views: updatedView.views,
-          date: createdAtDate?.createdAt?.toISOString() || '',
+        return {
+          slug: data.slug,
+          frontmatter: {
+            ...project,
+            views: updatedView.views,
+            date: createdAtDate?.createdAt?.toISOString() || '',
+          },
+        }
+      } else {
+        return {
+          slug: data.slug,
+          frontmatter: {
+            ...project,
+            views: project.views || 0,
+            date: createdAtDate?.createdAt?.toISOString() || '',
+          },
         }
       }
     } catch (error) {

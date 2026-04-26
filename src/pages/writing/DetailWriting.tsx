@@ -5,7 +5,9 @@ import { Link } from '@tanstack/react-router'
 import { Badge } from '@/components/ui/badge'
 import { mdxComponents } from '@/components/common/MDXComponents'
 import { AnimatedLines } from '@/components/common/Background'
-import TableOfContents, { type Heading } from '@/components/common/TableOfContents'
+import TableOfContents, {
+  type Heading,
+} from '@/components/common/TableOfContents'
 import { WritingFrontmatter } from '@/lib/mdx'
 
 interface DetailWritingProps {
@@ -19,7 +21,7 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
   const MDXComponent = lazy(() =>
     import(`../../content/writings/${slug}.mdx`).then((module) => ({
       default: module.default,
-    }))
+    })),
   )
 
   useEffect(() => {

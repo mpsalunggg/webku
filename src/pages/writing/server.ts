@@ -16,7 +16,7 @@ export const getAllWritings = createServerFn({ method: 'GET' }).handler(
         viewsData.map((view) => [
           view.slug,
           { views: view.views, createdAt: view.createdAt },
-        ])
+        ]),
       )
 
       const writingsWithViews: WritingFrontmatter[] = allWritings.map(
@@ -26,7 +26,7 @@ export const getAllWritings = createServerFn({ method: 'GET' }).handler(
             viewsMap.get(writing.slug)?.createdAt?.toISOString() ||
             writing.date,
           views: viewsMap.get(writing.slug)?.views || 0,
-        })
+        }),
       )
 
       return { writings: writingsWithViews }
@@ -34,14 +34,14 @@ export const getAllWritings = createServerFn({ method: 'GET' }).handler(
       console.error('Error loading writings with views:', error)
       return { writings: [] }
     }
-  }
+  },
 )
 
 export const getDetailWriting = createServerFn({ method: 'GET' })
   .inputValidator((data: { slug: string }) => data)
   .handler(async ({ data }) => {
     const writing = await getAllWritingFrontmatter().then((writings) =>
-      writings.find((w) => w.slug === data.slug)
+      writings.find((w) => w.slug === data.slug),
     )
 
     if (!writing) {
@@ -54,26 +54,37 @@ export const getDetailWriting = createServerFn({ method: 'GET' })
     })
 
     try {
-      const updatedView = await prisma.writingView.upsert({
-        where: { slug: data.slug },
-        update: {
-          views: {
-            increment: 1,
+      if (import.meta.env.VITE_UPDATE_VIEWS === 'true') {
+        const updatedView = await prisma.writingView.upsert({
+          where: { slug: data.slug },
+          update: {
+            views: {
+              increment: 1,
+            },
           },
-        },
-        create: {
-          slug: data.slug,
-          views: 1,
-        },
-      })
+          create: {
+            slug: data.slug,
+            views: 1,
+          },
+        })
 
-      return {
-        slug: data.slug,
-        frontmatter: {
-          ...writing,
-          views: updatedView.views,
-          date: existingView?.createdAt?.toISOString() || writing.date,
-        },
+        return {
+          slug: data.slug,
+          frontmatter: {
+            ...writing,
+            views: updatedView.views,
+            date: existingView?.createdAt?.toISOString() || writing.date,
+          },
+        }
+      } else {
+        return {
+          slug: data.slug,
+          frontmatter: {
+            ...writing,
+            views: writing.views || 0,
+            date: existingView?.createdAt?.toISOString() || writing.date,
+          },
+        }
       }
     } catch (error) {
       console.error('Error incrementing writing view:', error)
