@@ -1,0 +1,174 @@
+export const frontmatter = {
+  slug: 'building-modern-web-apps',
+  title: 'Building Modern Web Applications with React and TypeScript',
+  description:
+    'A comprehensive guide to building scalable, maintainable, and performant web applications using React, TypeScript, and modern tooling.',
+  image: 'https://images.unsplash.com/photo-1593720213428-28a5b9e94613?w=1200&q=80',
+  date: '2026-04-20',
+  category: 'Web Development',
+  readingTime: '8 min read',
+}
+
+## Introduction
+
+Building modern web applications requires a solid understanding of the tools, patterns, and best practices that make development efficient and the resulting product performant. Over the past few years, **React** and **TypeScript** have emerged as the dominant combination for front-end development — and for good reason.
+
+In this article, we'll walk through the key pillars of building a modern web application: from project setup and architecture decisions to performance optimization and deployment strategies.
+
+---
+
+## Setting Up Your Project
+
+A good project structure is the foundation of every maintainable application. Before writing a single line of business logic, invest time in organizing your codebase.
+
+### Choosing the Right Tooling
+
+The front-end ecosystem evolves rapidly. As of 2026, **Vite** remains the go-to build tool for its near-instant HMR and fast cold starts. Pair it with TanStack Router for type-safe file-based routing.
+
+```bash
+npm create vite@latest my-app -- --template react-ts
+cd my-app
+npm install @tanstack/react-router @tanstack/react-start
+```
+
+### Folder Structure
+
+A feature-based structure scales better than a role-based one. Instead of grouping files by type (all components in `/components`, all hooks in `/hooks`), group them by feature:
+
+```
+src/
+├── components/     # Shared UI components
+├── pages/          # Page-level components
+│   ├── home/
+│   ├── projects/
+│   └── writing/
+├── routes/         # TanStack Router file routes
+├── lib/            # Utilities, helpers, API clients
+└── content/        # MDX content files
+```
+
+This approach makes it easy to find everything related to a feature in one place and simplifies deletion when a feature is removed.
+
+---
+
+## Component Architecture
+
+Good component design is the difference between a codebase that's a joy to work in and one that becomes a burden over time.
+
+### Single Responsibility Principle
+
+Each component should do one thing well. A `CardProject` component renders a project card — it doesn't fetch data, manage global state, or handle routing. This separation makes components easy to test, reuse, and reason about.
+
+### Composition Over Configuration
+
+Avoid deeply nested props ("prop drilling"). Instead, lean on React's composition model: pass components as children, use render props when needed, and reach for Context when state truly needs to be shared across a subtree.
+
+```tsx
+// Prefer this...
+<Card>
+  <Card.Header>
+    <Card.Title>My Project</Card.Title>
+  </Card.Header>
+  <Card.Body>...</Card.Body>
+</Card>
+
+// Over this
+<Card title="My Project" body="..." headerVariant="large" />
+```
+
+### Custom Hooks for Logic
+
+Extract stateful logic into custom hooks. A `useScrollSpy` hook that tracks which heading is currently in view is a perfect example — it's reusable, testable, and keeps your components clean.
+
+---
+
+## TypeScript Best Practices
+
+TypeScript is most valuable when you use it to model your domain accurately, not just to satisfy the compiler.
+
+### Define Your Data Shapes Early
+
+Start with your data interfaces before writing components. If you know you're dealing with `WritingFrontmatter`, define it once in a shared location and import it everywhere.
+
+```ts
+export interface WritingFrontmatter {
+  slug: string
+  title: string
+  description: string
+  image: string
+  date: string
+  category: string
+  readingTime: string
+  views?: number
+}
+```
+
+### Avoid `any`
+
+Using `any` defeats the purpose of TypeScript. When you're unsure of a type, use `unknown` and narrow it down explicitly. Type assertions (`as SomeType`) should be a last resort.
+
+### Use Discriminated Unions for State
+
+Model async state explicitly rather than using multiple boolean flags:
+
+```ts
+type AsyncState<T> =
+  | { status: 'idle' }
+  | { status: 'loading' }
+  | { status: 'success'; data: T }
+  | { status: 'error'; error: Error }
+```
+
+---
+
+## Performance Optimization
+
+A fast site is a good site. Users expect near-instant responses, and search engines reward performance.
+
+### Code Splitting
+
+Use dynamic imports and `React.lazy()` to split your bundle. Load heavy components — like MDX renderers or rich text editors — only when they're needed.
+
+```tsx
+const MDXComponent = lazy(() => import(`../../content/writings/${slug}.mdx`))
+```
+
+### Avoid Unnecessary Re-renders
+
+Profile before optimizing. Use React DevTools to identify components that re-render too often, then reach for `React.memo`, `useMemo`, and `useCallback` — but only where they make a measurable difference.
+
+### Image Optimization
+
+Always specify `width` and `height` on images to prevent layout shift. Use modern formats like WebP, and consider lazy loading off-screen images:
+
+```html
+<img src="/cover.webp" alt="Cover" loading="lazy" />
+```
+
+---
+
+## Deployment and CI/CD
+
+A good deployment pipeline lets you ship with confidence.
+
+### Environment Variables
+
+Never commit secrets. Use environment variables for API keys, database URLs, and any configuration that differs between environments. Tools like Vercel and Netlify make per-environment variable management easy.
+
+### Automated Testing
+
+At minimum, write integration tests for critical user flows. Tools like **Playwright** let you test your app in a real browser environment, catching issues that unit tests miss.
+
+### Preview Deployments
+
+Set up preview deployments for every pull request. This lets you — and stakeholders — see changes in a real environment before they reach production.
+
+---
+
+## Conclusion
+
+Building modern web applications is as much about process and discipline as it is about technology. Choose tools that have strong community support and align with your team's expertise. Invest in a solid foundation early, keep components small and focused, and always profile before optimizing.
+
+The web is an incredibly powerful platform. With the right approach, you can build applications that are fast, accessible, and a pleasure to maintain.
+
+Happy building!

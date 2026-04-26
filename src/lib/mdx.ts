@@ -11,10 +11,26 @@ export interface ProjectFrontmatter {
   views?: number
 }
 
+export interface WritingFrontmatter {
+  slug: string
+  title: string
+  description: string
+  image: string
+  date: string
+  category: string
+  readingTime: string
+  views?: number
+}
+
 const mdxModules = import.meta.glob<{
   default: any
   frontmatter: ProjectFrontmatter
 }>('/src/content/projects/*.mdx', { eager: false })
+
+const writingMdxModules = import.meta.glob<{
+  default: any
+  frontmatter: WritingFrontmatter
+}>('/src/content/writings/*.mdx', { eager: false })
 
 export const getMDXProject = async (slug: string) => {
   const modulePath = `/src/content/projects/${slug}.mdx`
@@ -59,6 +75,56 @@ export const getAllProjectFrontmatter = async (): Promise<
 
 export function getAllProjectSlugs(): string[] {
   return Object.keys(mdxModules)
+    .map((path) => {
+      const match = path.match(/\/([^/]+)\.mdx$/)
+      return match ? match[1] : ''
+    })
+    .filter(Boolean)
+}
+
+export const getMDXWriting = async (slug: string) => {
+  const modulePath = `/src/content/writings/${slug}.mdx`
+  const moduleLoader = writingMdxModules[modulePath]
+
+  if (!moduleLoader) {
+    return null
+  }
+
+  try {
+    const module = await moduleLoader()
+    return {
+      Content: module.default,
+      frontmatter: module.frontmatter,
+    }
+  } catch (error) {
+    return null
+  }
+}
+
+export const getAllWritingFrontmatter = async (): Promise<
+  WritingFrontmatter[]
+> => {
+  const allWritings = await Promise.all(
+    Object.entries(writingMdxModules).map(async ([path, loader]) => {
+      try {
+        const module = await loader()
+        return module.frontmatter
+      } catch (error) {
+        console.error(`[MDX] Error loading frontmatter from ${path}`, error)
+        return null
+      }
+    })
+  )
+
+  return allWritings
+    .filter(
+      (frontmatter): frontmatter is WritingFrontmatter => frontmatter !== null
+    )
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+}
+
+export function getAllWritingSlugs(): string[] {
+  return Object.keys(writingMdxModules)
     .map((path) => {
       const match = path.match(/\/([^/]+)\.mdx$/)
       return match ? match[1] : ''

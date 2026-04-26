@@ -19,6 +19,10 @@ const projectSlugs = [
   { title: 'Ask Me', views: 0 },
 ]
 
+const writingSlugs = [
+  { slug: 'building-modern-web-apps', views: 0 },
+]
+
 async function main() {
   for (const project of projectSlugs) {
     const slug = createSlug(project.title)
@@ -28,7 +32,7 @@ async function main() {
     })
 
     if (existing) {
-      console.log(`Skipped (already exists): ${slug}`)
+      console.log(`[project] Skipped (already exists): ${slug}`)
       continue
     }
 
@@ -39,7 +43,27 @@ async function main() {
       },
     })
 
-    console.log(`Created: ${slug} (${project.title})`)
+    console.log(`[project] Created: ${slug}`)
+  }
+
+  for (const writing of writingSlugs) {
+    const existing = await prisma.writingView.findUnique({
+      where: { slug: writing.slug },
+    })
+
+    if (existing) {
+      console.log(`[writing] Skipped (already exists): ${writing.slug}`)
+      continue
+    }
+
+    await prisma.writingView.create({
+      data: {
+        slug: writing.slug,
+        views: writing.views,
+      },
+    })
+
+    console.log(`[writing] Created: ${writing.slug}`)
   }
 
   console.log('Seed completed!')

@@ -1,8 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import WritingPage from '@/pages/writing'
+import { getAllWritings } from '@/pages/writing/server'
 import { seo } from '@/lib/seo'
 
 export const Route = createFileRoute('/writing/')({
+  loader: async () => await getAllWritings(),
   head: () => {
     const { meta, links } = seo({
       title: 'Writing - Muhamad Putra Satria',
@@ -18,5 +20,6 @@ export const Route = createFileRoute('/writing/')({
 })
 
 function RouteComponent() {
-  return <WritingPage />
+  const { writings } = Route.useLoaderData()
+  return <WritingPage writings={writings} />
 }

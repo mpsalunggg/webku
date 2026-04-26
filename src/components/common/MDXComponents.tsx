@@ -1,26 +1,68 @@
 import type { MDXComponents } from 'mdx/types'
+import { Link } from 'lucide-react'
+
+function slugifyHeading(text: React.ReactNode): string {
+  const str = typeof text === 'string'
+    ? text
+    : Array.isArray(text)
+      ? text.join('')
+      : String(text ?? '')
+  return str
+    .toLowerCase()
+    .replace(/[^a-z0-9\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+}
+
+function HeadingAnchor({ id }: { id: string }) {
+  return (
+    <a
+      href={`#${id}`}
+      className="ml-2 opacity-0 group-hover:opacity-100 transition-opacity text-muted-foreground hover:text-foreground"
+      aria-label="Link to section"
+    >
+      <Link className="inline h-4 w-4" />
+    </a>
+  )
+}
 
 export const mdxComponents: MDXComponents = {
-  h1: ({ children }) => (
-    <h1 className="text-foreground mb-6 mt-8 text-4xl font-bold first:mt-0">
-      {children}
-    </h1>
-  ),
-  h2: ({ children }) => (
-    <h2 className="text-foreground mb-4 mt-8 text-3xl font-semibold">
-      {children}
-    </h2>
-  ),
-  h3: ({ children }) => (
-    <h3 className="text-foreground mb-3 mt-6 text-2xl font-semibold">
-      {children}
-    </h3>
-  ),
-  h4: ({ children }) => (
-    <h4 className="text-foreground mb-2 mt-4 text-xl font-semibold">
-      {children}
-    </h4>
-  ),
+  h1: ({ children }) => {
+    const id = slugifyHeading(children)
+    return (
+      <h1 id={id} className="group text-foreground mb-6 mt-8 text-4xl font-bold first:mt-0 scroll-mt-24">
+        {children}
+        <HeadingAnchor id={id} />
+      </h1>
+    )
+  },
+  h2: ({ children }) => {
+    const id = slugifyHeading(children)
+    return (
+      <h2 id={id} className="group text-foreground mb-4 mt-8 text-3xl font-semibold scroll-mt-24">
+        {children}
+        <HeadingAnchor id={id} />
+      </h2>
+    )
+  },
+  h3: ({ children }) => {
+    const id = slugifyHeading(children)
+    return (
+      <h3 id={id} className="group text-foreground mb-3 mt-6 text-2xl font-semibold scroll-mt-24">
+        {children}
+        <HeadingAnchor id={id} />
+      </h3>
+    )
+  },
+  h4: ({ children }) => {
+    const id = slugifyHeading(children)
+    return (
+      <h4 id={id} className="group text-foreground mb-2 mt-4 text-xl font-semibold scroll-mt-24">
+        {children}
+        <HeadingAnchor id={id} />
+      </h4>
+    )
+  },
   p: ({ children }) => (
     <p className="text-muted-foreground mb-4 leading-7">{children}</p>
   ),
