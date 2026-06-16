@@ -7,6 +7,7 @@ import { nitroV2Plugin } from '@tanstack/nitro-v2-vite-plugin'
 import mdx from '@mdx-js/rollup'
 import remarkGfm from 'remark-gfm'
 import remarkFrontmatter from 'remark-frontmatter'
+import rehypeShiki from '@shikijs/rehype'
 
 const config = defineConfig({
   plugins: [
@@ -21,6 +22,17 @@ const config = defineConfig({
     mdx({
       remarkPlugins: [remarkGfm, remarkFrontmatter],
       providerImportSource: '@mdx-js/react',
+      rehypePlugins: [
+        [
+          rehypeShiki,
+          {
+            themes: {
+              light: 'github-light',
+              dark: 'github-dark-dimmed',
+            },
+          },
+        ],
+      ],
     }),
   ],
   optimizeDeps: {

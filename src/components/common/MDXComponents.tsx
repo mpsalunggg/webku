@@ -1,5 +1,8 @@
+'use client'
+
 import type { MDXComponents } from 'mdx/types'
-import { Link } from 'lucide-react'
+import { Link, Check, Copy } from 'lucide-react'
+import { isValidElement, useState, type ReactNode } from 'react'
 
 function slugifyHeading(text: React.ReactNode): string {
   const str = typeof text === 'string'
@@ -23,6 +26,57 @@ function HeadingAnchor({ id }: { id: string }) {
     >
       <Link className="inline h-4 w-4" />
     </a>
+  )
+}
+
+function extractText(node: ReactNode): string {
+  if (typeof node === 'string' || typeof node === 'number') return String(node)
+  if (Array.isArray(node)) return node.map(extractText).join('')
+  if (isValidElement(node)) {
+    const props = node.props as { children?: ReactNode }
+    return extractText(props.children)
+  }
+  return ''
+}
+
+function CodeBlock({
+  children,
+  className,
+  ...props
+}: React.ComponentPropsWithoutRef<'pre'>) {
+  const [copied, setCopied] = useState(false)
+
+  const handleCopy = async () => {
+    const text = extractText(children)
+    try {
+      await navigator.clipboard.writeText(text)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 1800)
+    } catch {}
+  }
+
+  return (
+    <div className="group relative mb-4">
+      <pre
+        {...props}
+        className={`${className ?? ''} text-foreground overflow-x-auto rounded-lg border border-border p-4 [&_code]:bg-transparent [&_code]:p-0`}
+      >
+        {children}
+      </pre>
+      <button
+        type="button"
+        onClick={handleCopy}
+        aria-label={copied ? 'Copied' : 'Copy code'}
+        className="
+          absolute right-3 top-3 inline-flex h-7 w-7 items-center justify-center
+          rounded-md border border-border bg-background/80 text-muted-foreground
+          opacity-0 backdrop-blur transition-opacity
+          hover:text-foreground group-hover:opacity-100
+        "
+      >
+        {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+      </button>
+    </div>
   )
 }
 
@@ -97,11 +151,7 @@ export const mdxComponents: MDXComponents = {
       {children}
     </code>
   ),
-  pre: ({ children }) => (
-    <pre className="bg-muted text-foreground mb-4 overflow-x-auto rounded-lg p-4">
-      {children}
-    </pre>
-  ),
+  pre: CodeBlock,
   img: ({ src, alt }) => (
     <img
       src={src}
