@@ -34,26 +34,45 @@ const Home = () => {
         <AnimatedLines variant="hero" className="opacity-60" />
 
         <div className="relative z-10 w-full">
-          <div className="animate-fade-in-up mx-auto max-w-6xl">
-            <p className="text-muted-foreground mb-6 font-mono text-sm">
-              Hello i&apos;m Putra👋
-            </p>
-            <h1 className="mb-8 text-4xl leading-tight font-light text-balance md:text-6xl lg:text-7xl">
-              I'm a{' '}
-              <Typewriter
-                words={['Software Engineer', 'Basketball Player']}
-                loop={0}
-                cursor
-                cursorStyle="|"
-                typeSpeed={60}
-                deleteSpeed={50}
-                delaySpeed={1500}
-              />
-              <br />
-            </h1>
-            <p className="text-muted-foreground text-sm font-light leading-relaxed">
-              Passionate about exploring new technologies and sharing knowledge.
-            </p>
+          <div className="mx-auto max-w-6xl">
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+              <span className="inline-flex items-center gap-2 font-amatic text-2xl md:text-3xl tracking-[0.15em] text-muted-foreground">
+                Hello, i&apos;m Putra
+                <span className="animate-bounce inline-block">👋</span>
+              </span>
+            </div>
+
+            <div className="animate-fade-in-up" style={{ animationDelay: '0.25s', animationFillMode: 'both' }}>
+              <h1 className="mb-4 mt-6 font-amatic text-7xl font-bold tracking-tight text-balance md:text-8xl lg:text-[6rem] lg:leading-[0.9] text-foreground">
+                I&apos;m a{' '}
+                <span className="relative inline-block">
+                  <span className="relative z-10 bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text text-transparent">
+                    <Typewriter
+                      words={['Software Engineer', 'Basketball Player']}
+                      loop={0}
+                      cursor
+                      cursorStyle="_"
+                      typeSpeed={80}
+                      deleteSpeed={60}
+                      delaySpeed={2000}
+                    />
+                  </span>
+                </span>
+                <br />
+              </h1>
+            </div>
+
+            <div className="animate-fade-in-up max-w-xl" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+              <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed">
+                Passionate about{' '}
+                <span className="relative inline-block px-1">
+                  <span className="relative z-10 font-medium text-foreground">exploring new technologies</span>
+                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-linear-to-r from-primary/50 via-primary to-primary/50" />
+                </span>
+                {' '}and sharing knowledge through creative solutions.
+              </p>
+            </div>
+
           </div>
         </div>
 
