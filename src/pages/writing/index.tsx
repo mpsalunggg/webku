@@ -16,7 +16,7 @@ const WritingPage = ({ writings }: WritingPageProps) => {
           </div>
 
           <div className="mx-auto max-w-6xl">
-            <div className="mb-16">
+            <div className="mb-6">
               <h1 className="mb-4 text-4xl font-light md:text-5xl">Writing</h1>
               <p className="text-muted-foreground text-lg">
                 Thoughts on web development, engineering, and technology
@@ -24,7 +24,7 @@ const WritingPage = ({ writings }: WritingPageProps) => {
             </div>
 
             {writings.length > 0 ? (
-              <div className="border-t border-border">
+              <div className="border-border">
                 {writings.map((writing, index) => (
                   <CardWriting
                     key={writing.slug}

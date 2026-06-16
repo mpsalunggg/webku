@@ -2,7 +2,6 @@ import { lazy, Suspense, useEffect, useState } from 'react'
 import { ArrowLeft, Calendar, Clock, Eye } from 'lucide-react'
 import { MDXProvider } from '@mdx-js/react'
 import { Link } from '@tanstack/react-router'
-import { Badge } from '@/components/ui/badge'
 import { mdxComponents } from '@/components/common/MDXComponents'
 import { AnimatedLines } from '@/components/common/Background'
 import TableOfContents, {
@@ -48,7 +47,7 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
     <main className="bg-background min-h-screen">
       <div className="pt-20">
         <div className="mx-auto max-w-6xl px-6 lg:px-0 py-12">
-          <div className="flex justify-between items-center mb-8">
+          <div className="mb-8">
             <Link
               to="/writing"
               className="text-muted-foreground hover:text-foreground inline-flex items-center gap-2 transition-colors"
@@ -56,29 +55,23 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
               <ArrowLeft className="h-4 w-4" />
               Back to Writing
             </Link>
-            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-              <Eye className="h-4 w-4" />
-              <span>{frontmatter.views ?? 0} views</span>
-            </div>
           </div>
 
           <div className="flex gap-12">
             <article className="min-w-0 flex-1">
               <header className="mb-12">
-                <img
-                  src={frontmatter.image}
-                  alt={frontmatter.title}
-                  className="mb-8 aspect-video w-full rounded-xl object-cover"
-                />
-
-                <div className="mb-4 flex flex-wrap items-center gap-3 text-sm">
-                  <Badge variant="secondary">{frontmatter.category}</Badge>
+                <div className="mb-5 flex flex-wrap items-center gap-3 text-sm">
+                  <span className="text-primary text-xs font-medium uppercase tracking-wide">
+                    {frontmatter.category}
+                  </span>
+                  <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
                   <div className="text-muted-foreground flex items-center gap-1.5">
-                    <Clock className="h-4 w-4" />
+                    <Clock className="h-3.5 w-3.5" />
                     <span>{frontmatter.readingTime}</span>
                   </div>
+                  <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
                   <div className="text-muted-foreground flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4" />
+                    <Calendar className="h-3.5 w-3.5" />
                     <time dateTime={frontmatter.date}>
                       {new Date(frontmatter.date).toLocaleDateString('en-US', {
                         year: 'numeric',
@@ -89,13 +82,20 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
                   </div>
                 </div>
 
-                <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+                <h1 className="font-amatic mb-5 max-w-[95%] origin-top-left rotate-[-1deg] text-6xl font-bold leading-[1.05] md:text-7xl">
                   {frontmatter.title}
                 </h1>
 
-                <p className="text-muted-foreground text-xl">
+                <p className="font-serif text-muted-foreground mb-7 max-w-xl text-lg leading-relaxed md:text-xl">
                   {frontmatter.description}
                 </p>
+
+                <div className="border-border mb-7 h-px w-full" />
+
+                <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
+                  <Eye className="h-3.5 w-3.5" />
+                  <span>{frontmatter.views ?? 0} views</span>
+                </div>
               </header>
 
               <AnimatedLines variant="section" className="-mt-8" />

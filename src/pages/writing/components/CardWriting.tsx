@@ -1,14 +1,17 @@
-import { ArrowUpRight, Calendar, Clock, Eye } from 'lucide-react'
-import { Link } from '@tanstack/react-router'
-import { Badge } from '@/components/ui/badge'
-import { WritingFrontmatter } from '@/lib/mdx'
+import { ArrowUpRight, Eye } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { WritingFrontmatter } from "@/lib/mdx";
 
 interface CardWritingProps {
-  writing: WritingFrontmatter
-  isLast?: boolean
+  writing: WritingFrontmatter;
+  isLast?: boolean;
 }
 
 const CardWriting = ({ writing, isLast }: CardWritingProps) => {
+  const date = new Date(writing.date);
+  const month = date.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
+  const day = date.toLocaleDateString("en-US", { day: "2-digit" });
+
   return (
     <Link
       to="/writing/$slug"
@@ -16,64 +19,54 @@ const CardWriting = ({ writing, isLast }: CardWritingProps) => {
       className="group block"
     >
       <article
-        className="border-border relative flex flex-col gap-6 border-b py-10 sm:flex-row sm:items-stretch sm:gap-10 sm:py-12"
+        className="border-border relative flex gap-6 border-b py-7"
         style={isLast ? { borderBottomWidth: 0 } : undefined}
       >
-        <div className="bg-muted relative aspect-[16/10] w-full shrink-0 overflow-hidden rounded-lg sm:aspect-auto sm:h-auto sm:w-44 md:w-52">
-          <img
-            src={writing.image}
-            alt=""
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-            loading="lazy"
-          />
+        <div className="flex w-14 shrink-0 flex-col items-center pt-0.5">
+          <span className="text-muted-foreground text-[11px] font-medium tracking-wide">
+            {month}
+          </span>
+          <span className="text-foreground text-[28px] font-medium leading-tight">
+            {day}
+          </span>
+          {!isLast && (
+            <div className="bg-border mt-2.5 min-h-6 w-px flex-1" />
+          )}
         </div>
 
-        <div className="min-w-0 flex-1">
-          <div className="mb-3 flex flex-wrap items-center gap-x-3 gap-y-1">
-            <Badge variant="secondary" className="font-normal">
+        <div className="flex min-w-0 flex-1 flex-col gap-2">
+          <div className="flex items-center gap-2.5">
+            <span className="text-primary text-xs font-medium uppercase tracking-wide">
               {writing.category}
-            </Badge>
-            <span className="text-muted-foreground flex items-center gap-1.5 text-xs">
-              <Clock className="h-3.5 w-3.5" aria-hidden />
+            </span>
+            <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
+            <span className="text-muted-foreground text-xs">
               {writing.readingTime}
             </span>
-            <span className="text-muted-foreground flex items-center gap-1.5 text-xs">
-              <Calendar className="h-3.5 w-3.5" aria-hidden />
-              <time dateTime={writing.date}>
-                {new Date(writing.date).toLocaleDateString('en-US', {
-                  year: 'numeric',
-                  month: 'short',
-                  day: 'numeric',
-                })}
-              </time>
-            </span>
-            {writing.views !== undefined && (
-              <span className="text-muted-foreground flex items-center gap-1.5 text-xs">
-                <Eye className="h-3.5 w-3.5" aria-hidden />
-                {writing.views} views
-              </span>
-            )}
           </div>
 
-          <div className="flex items-start justify-between gap-4">
-            <h2 className="text-foreground group-hover:text-primary text-xl font-medium leading-snug transition-colors sm:text-2xl">
-              {writing.title}
-            </h2>
-            <span
-              className="text-muted-foreground mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-transparent transition-all group-hover:border-border group-hover:bg-muted/60"
-              aria-hidden
-            >
-              <ArrowUpRight className="h-4 w-4" />
-            </span>
-          </div>
+          <h2 className="text-foreground text-[19px] font-medium leading-snug">
+            {writing.title}
+          </h2>
 
-          <p className="text-muted-foreground mt-3 line-clamp-2 max-w-2xl text-sm leading-relaxed sm:text-base">
+          <p className="text-muted-foreground line-clamp-2 max-w-xl text-sm leading-relaxed">
             {writing.description}
           </p>
+
+          {writing.views !== undefined && (
+            <div className="text-muted-foreground mt-1 flex items-center gap-1.5 text-xs">
+              <Eye className="h-3.5 w-3.5" aria-hidden />
+              <span>{writing.views.toLocaleString()} views</span>
+            </div>
+          )}
+        </div>
+
+        <div className="flex shrink-0 items-start pt-0.5">
+          <ArrowUpRight className="text-muted-foreground/60 group-hover:text-foreground h-[18px] w-[18px] transition-colors" />
         </div>
       </article>
     </Link>
-  )
-}
+  );
+};
 
-export default CardWriting
+export default CardWriting;
