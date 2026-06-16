@@ -21,6 +21,7 @@ const projectSlugs = [
 
 const writingSlugs = [
   { slug: 'building-modern-web-apps', views: 0 },
+  { slug: 'database-transaction', views: 0 }
 ]
 
 async function main() {
