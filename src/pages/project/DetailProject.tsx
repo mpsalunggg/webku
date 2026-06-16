@@ -61,7 +61,7 @@ const DetailProject = ({ frontmatter, slug }: DetailProjectProps) => {
               </div>
             </div>
 
-            <h1 className="mb-4 text-4xl font-bold md:text-5xl">
+            <h1 className="font-amatic mb-5 max-w-[95%] origin-top-left -rotate-1 text-6xl font-bold leading-[1.05] md:text-7xl">
               {frontmatter.title}
             </h1>
 

@@ -82,15 +82,13 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
                   </div>
                 </div>
 
-                <h1 className="font-amatic mb-5 max-w-[95%] origin-top-left rotate-[-1deg] text-6xl font-bold leading-[1.05] md:text-7xl">
+                <h1 className="font-amatic mb-5 max-w-[95%] origin-top-left -rotate-1 text-6xl font-bold leading-[1.05] md:text-7xl">
                   {frontmatter.title}
                 </h1>
 
                 <p className="font-serif text-muted-foreground mb-7 max-w-xl text-lg leading-relaxed md:text-xl">
                   {frontmatter.description}
                 </p>
-
-                <div className="border-border mb-7 h-px w-full" />
 
                 <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
                   <Eye className="h-3.5 w-3.5" />
