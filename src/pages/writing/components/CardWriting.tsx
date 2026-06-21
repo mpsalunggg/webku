@@ -9,8 +9,11 @@ interface CardWritingProps {
 
 const CardWriting = ({ writing, isLast }: CardWritingProps) => {
   const date = new Date(writing.date);
-  const month = date.toLocaleDateString("en-US", { month: "short" }).toUpperCase();
-  const day = date.toLocaleDateString("en-US", { day: "2-digit" });
+  const formatted = date.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    year: "numeric",
+  });
 
   return (
     <Link
@@ -19,50 +22,35 @@ const CardWriting = ({ writing, isLast }: CardWritingProps) => {
       className="group block"
     >
       <article
-        className="border-border relative flex gap-6 border-b py-7"
-        style={isLast ? { borderBottomWidth: 0 } : undefined}
+        className={`relative flex items-start justify-between gap-6 py-7 ${!isLast ? "border-b border-border/50" : ""}`}
       >
-        <div className="flex w-14 shrink-0 flex-col items-center pt-0.5">
-          <span className="text-muted-foreground text-[11px] font-medium tracking-wide">
-            {month}
-          </span>
-          <span className="text-foreground text-[28px] font-medium leading-tight">
-            {day}
-          </span>
-          {!isLast && (
-            <div className="bg-border mt-2.5 min-h-6 w-px flex-1" />
-          )}
-        </div>
-
         <div className="flex min-w-0 flex-1 flex-col gap-2">
-          <div className="flex items-center gap-2.5">
-            <span className="text-primary text-xs font-medium uppercase tracking-wide">
-              {writing.category}
-            </span>
-            <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
-            <span className="text-muted-foreground text-xs">
-              {writing.readingTime}
-            </span>
+          <div className="flex items-center gap-2 font-mono text-[10px] uppercase text-muted-foreground">
+            <span className="mb-2">{writing.category}</span>
+            <span className="mb-2">·</span>
+            <span className="mb-2">{writing.readingTime}</span>
+            <span className="mb-2">·</span>
+            <span className="mb-2">{formatted}</span>
           </div>
 
-          <h2 className="text-foreground text-[19px] font-medium leading-snug">
+          <h3 className="font-amatic text-4xl font-bold tracking-wide text-foreground transition-colors group-hover/title:text-primary">
             {writing.title}
-          </h2>
+          </h3>
 
-          <p className="text-muted-foreground line-clamp-2 max-w-xl text-sm leading-relaxed">
+          <p className="text-muted-foreground line-clamp-2 max-w-xl text-sm">
             {writing.description}
           </p>
 
           {writing.views !== undefined && (
-            <div className="text-muted-foreground mt-1 flex items-center gap-1.5 text-xs">
-              <Eye className="h-3.5 w-3.5" aria-hidden />
-              <span>{writing.views.toLocaleString()} views</span>
+            <div className="text-muted-foreground font-mono mt-1 flex items-center gap-1.5 text-[11px]">
+              <Eye className="h-3 w-3" aria-hidden />
+              <span>{writing.views.toLocaleString()} VIEWS</span>
             </div>
           )}
         </div>
 
-        <div className="flex shrink-0 items-start pt-0.5">
-          <ArrowUpRight className="text-muted-foreground/60 group-hover:text-foreground h-[18px] w-[18px] transition-colors" />
+        <div className="shrink-0 pt-1">
+          <ArrowUpRight className="text-muted-foreground/25 group-hover:text-foreground h-4 w-4 transition-colors duration-200" />
         </div>
       </article>
     </Link>

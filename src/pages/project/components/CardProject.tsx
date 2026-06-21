@@ -1,99 +1,129 @@
-import { Badge } from '@/components/ui/badge'
-import { ExternalLink, Github, Eye, ArrowRight } from 'lucide-react'
-import { Link } from '@tanstack/react-router'
-import { ProjectFrontmatter } from '@/lib/mdx'
+import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { ExternalLink, Github, Eye } from "lucide-react";
+import { Link } from "@tanstack/react-router";
+import { ProjectFrontmatter } from "@/lib/mdx";
 
 interface CardProjectProps {
-  project: ProjectFrontmatter
-  isEven: boolean
+  project: ProjectFrontmatter;
+  isEven: boolean;
 }
 
 const CardProject = ({ project, isEven }: CardProjectProps) => {
-  const views = project.views ?? 0
+  const views = project.views ?? 0;
 
   return (
-    <div
-      key={project.slug}
-      className={`group border-border flex flex-col gap-6 border-b pb-6 transition-all last:border-b-0 md:flex-row ${
-        isEven ? '' : 'md:flex-row-reverse'
-      }`}
-    >
-      <Link
-        to="/projects/$slug"
-        params={{ slug: project.slug }}
-        className="aspect-video h-full w-full object-cover transition-all duration-500 group-hover:scale-105 md:w-64"
-      >
-        {project.image && <img src={project.image} alt={project.title} />}
-      </Link>
-
-      <div className="flex flex-1 flex-col">
+    <TooltipProvider delayDuration={300}>
+      <div className="group relative overflow-hidden rounded-2xl transition-all">
         <Link
           to="/projects/$slug"
           params={{ slug: project.slug }}
-          className="group/title"
+          className={`block relative aspect-video w-full overflow-hidden ${
+            isEven ? "" : "md:block"
+          }`}
         >
-          <h3 className="group-hover/title:text-primary mb-2 text-2xl font-semibold transition-colors">
-            {project.title}
-          </h3>
+          {project.image && (
+            <img
+              src={project.image}
+              alt={project.title}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 absolute"
+            />
+          )}
         </Link>
 
-        <p className="text-muted-foreground mb-4 text-sm leading-relaxed">
-          {project.description}
-        </p>
+        <div className="p-6">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-primary mb-2">
+            {project.category}
+          </p>
 
-        <div className="mb-4 flex flex-wrap gap-2">
-          {project.tech.map((tech, index) => (
-            <Badge key={index} variant="secondary" className="text-xs">
-              {tech}
-            </Badge>
-          ))}
-        </div>
+          <Link
+            to="/projects/$slug"
+            params={{ slug: project.slug }}
+            className="group/title inline-block"
+          >
+            <h3 className="font-amatic text-4xl font-bold tracking-wide text-foreground transition-colors group-hover/title:text-primary">
+              {project.title}
+            </h3>
+          </Link>
 
-        <div className="mt-auto flex items-center justify-between">
-          <div className="flex gap-2">
-            <Link
-              to="/projects/$slug"
-              params={{ slug: project.slug }}
-              className="flex underline items-center gap-2 rounded-lg py-2 hover:text-blue-600 text-sm"
-            >
-              <span>Read More</span>
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:bg-muted hover:text-foreground border-border text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg border transition-colors"
-                aria-label="View code"
-                onClick={(e) => e.stopPropagation()}
+          <p className="text-muted-foreground mt-3 text-sm leading-relaxed line-clamp-3">
+            {project.description}
+          </p>
+
+          <div className="mt-4 flex flex-wrap gap-2">
+            {project.tech.slice(0, 3).map((tech, index) => (
+              <Badge
+                key={index}
+                variant="outline"
+                className="rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider"
               >
-                <Github className="h-4 w-4" />
-              </a>
-            )}
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:bg-muted hover:text-foreground border-border text-muted-foreground flex h-9 w-9 items-center justify-center rounded-lg border transition-colors"
-                aria-label="View demo"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <ExternalLink className="h-4 w-4" />
-              </a>
+                {tech}
+              </Badge>
+            ))}
+            {project.tech.length > 3 && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <span className="cursor-pointer rounded-full px-3 py-1 text-[10px] font-mono uppercase tracking-wider bg-muted text-muted-foreground transition-colors hover:bg-muted/80 hover:text-foreground">
+                    +{project.tech.length - 3}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="max-w-xs">
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.tech.slice(3).map((tech, index) => (
+                      <Badge
+                        key={index}
+                        className="rounded-full px-2 py-0.5 text-[10px] font-mono uppercase tracking-wider"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </TooltipContent>
+              </Tooltip>
             )}
           </div>
 
-          <div className="flex items-center gap-2">
-            <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
-              <Eye className="h-4 w-4" />
-              <span>{views.toLocaleString()}</span>
+          <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
+            <div className="flex items-center gap-2">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground flex h-6 w-6 items-center justify-center rounded-sm border border-border transition-colors"
+                  aria-label="View code"
+                >
+                  <Github className="h-4 w-4" />
+                </a>
+              )}
+
+              {project.demo && (
+                <a
+                  href={project.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-muted-foreground hover:text-foreground flex h-6 w-6 border rounded-sm items-center justify-center transition-colors"
+                  aria-label="View demo"
+                >
+                  <ExternalLink className="h-4 w-4" />
+                </a>
+              )}
+            </div>
+
+            <div className="text-muted-foreground font-mono flex items-center gap-1.5 text-[11px]">
+              <Eye className="h-3 w-3" aria-hidden />
+              <span>{views.toLocaleString()} VIEW</span>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  )
-}
-export default CardProject
+    </TooltipProvider>
+  );
+};
+
+export default CardProject;

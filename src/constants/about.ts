@@ -80,7 +80,7 @@ export const skills = [
     },
     {
         category: 'Backend & Database',
-        isLearning: true,
+        isLearning: false,
         items: [
             { name: 'Node.js', icon: 'siNodedotjs' },
             { name: 'Express', icon: 'siExpress' },
@@ -92,7 +92,7 @@ export const skills = [
     },
     {
         category: 'Tools & Others',
-        isLearning: true,
+        isLearning: false,
         items: [
             { name: 'Git', icon: 'siGit' },
             { name: 'Docker', icon: 'siDocker' },

@@ -1,31 +1,31 @@
-import { Fragment, useState } from 'react'
-import { Typewriter } from 'react-simple-typewriter'
-import { AnimatedLines } from '@/components/common/Background'
-import { GET_USER_STATS } from '@/constants/query'
-import { useQuery } from '@apollo/client/react'
-import { ArrowRight, Linkedin, LocateIcon, Mail } from 'lucide-react'
+import { Fragment, useState } from "react";
+import { Typewriter } from "react-simple-typewriter";
+import { AnimatedLines } from "@/components/common/Background";
+import { GET_USER_STATS } from "@/constants/query";
+import { useQuery } from "@apollo/client/react";
+import { ArrowRight, Linkedin, LocateIcon, Mail } from "lucide-react";
 
 interface GitHubStats {
   user: {
-    name: string
-    avatarUrl: string
-    totalRepositories: { totalCount: number }
-    totalFollowers: { totalCount: number }
-    totalCommit: { totalCommitContributions: number }
-    totalPullRequest: { totalPullRequestContributions: number }
-  }
+    name: string;
+    avatarUrl: string;
+    totalRepositories: { totalCount: number };
+    totalFollowers: { totalCount: number };
+    totalCommit: { totalCommitContributions: number };
+    totalPullRequest: { totalPullRequestContributions: number };
+  };
 }
 
 const Home = () => {
-  const [copied, setCopied] = useState(false)
+  const [copied, setCopied] = useState(false);
   const { data } = useQuery<GitHubStats>(GET_USER_STATS, {
-    variables: { username: 'mpsalunggg' },
-  })
+    variables: { username: "mpsalunggg" },
+  });
 
   function handleCopy() {
-    navigator.clipboard?.writeText('putrasatria893@gmail.com')
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    navigator.clipboard?.writeText("putrasatria893@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   return (
@@ -35,20 +35,26 @@ const Home = () => {
 
         <div className="relative z-10 w-full">
           <div className="mx-auto max-w-6xl">
-            <div className="animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "0.1s", animationFillMode: "both" }}
+            >
               <span className="inline-flex items-center gap-2 font-amatic text-2xl md:text-3xl tracking-[0.15em] text-muted-foreground">
                 Hello, i&apos;m Putra
                 <span className="animate-bounce inline-block">👋</span>
               </span>
             </div>
 
-            <div className="animate-fade-in-up" style={{ animationDelay: '0.25s', animationFillMode: 'both' }}>
+            <div
+              className="animate-fade-in-up"
+              style={{ animationDelay: "0.25s", animationFillMode: "both" }}
+            >
               <h1 className="mb-4 mt-6 font-amatic text-7xl font-bold tracking-tight text-balance md:text-8xl lg:text-[6rem] lg:leading-[0.9] text-foreground">
-                I&apos;m a{' '}
+                I&apos;m a{" "}
                 <span className="relative inline-block">
                   <span className="relative z-10 bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text text-transparent">
                     <Typewriter
-                      words={['Software Engineer', 'Basketball Player']}
+                      words={["Software Engineer", "Basketball Player"]}
                       loop={0}
                       cursor
                       cursorStyle="_"
@@ -62,17 +68,15 @@ const Home = () => {
               </h1>
             </div>
 
-            <div className="animate-fade-in-up max-w-xl" style={{ animationDelay: '0.4s', animationFillMode: 'both' }}>
+            <div
+              className="animate-fade-in-up max-w-xl"
+              style={{ animationDelay: "0.4s", animationFillMode: "both" }}
+            >
               <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed">
-                Passionate about{' '}
-                <span className="relative inline-block px-1">
-                  <span className="relative z-10 font-medium text-foreground">exploring new technologies</span>
-                  <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-linear-to-r from-primary/50 via-primary to-primary/50" />
-                </span>
-                {' '}and sharing knowledge through creative solutions.
+                Passionate about exploring new technologies and sharing
+                knowledge through creative solutions.
               </p>
             </div>
-
           </div>
         </div>
 
@@ -83,15 +87,15 @@ const Home = () => {
         className="flex flex-col justify-center mx-auto max-w-6xl gap-3"
       >
         <div className="flex flex-col gap-4">
-          <p className="text-xs font-medium uppercase tracking-[0.18em] font-mono text-muted-foreground">
+          <p className="font-amatic text-2xl tracking-[0.15em] text-muted-foreground">
             Get in touch
           </p>
 
-          <h2 className="text-4xl font-bold leading-[1.1] tracking-tight text-foreground md:text-5xl lg:text-6xl">
+          <h2 className="font-amatic text-5xl font-[1000] tracking-tight text-foreground md:text-6xl lg:text-7xl">
             Let's <span className="italic font-light">Connect</span>
           </h2>
 
-          <p className="max-w-sm text-sm font-light leading-relaxed text-muted-foreground">
+          <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed">
             Always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision.
           </p>
@@ -126,19 +130,19 @@ const Home = () => {
           <div className="grid grid-cols-4 border-t border-border">
             {[
               {
-                label: 'Repositories',
+                label: "Repositories",
                 value: data?.user.totalRepositories.totalCount,
               },
               {
-                label: 'Followers',
+                label: "Followers",
                 value: data?.user.totalFollowers.totalCount,
               },
               {
-                label: 'Commits',
+                label: "Commits",
                 value: data?.user.totalCommit.totalCommitContributions,
               },
               {
-                label: 'Pull Requests',
+                label: "Pull Requests",
                 value:
                   data?.user.totalPullRequest.totalPullRequestContributions,
               },
@@ -146,9 +150,9 @@ const Home = () => {
               <div
                 key={s.label}
                 className={[
-                  'px-4 py-4 text-center hover:bg-muted/50 transition-colors',
-                  i < 3 ? 'border-r border-border' : '',
-                ].join(' ')}
+                  "px-4 py-4 text-center hover:bg-muted/50 transition-colors",
+                  i < 3 ? "border-r border-border" : "",
+                ].join(" ")}
               >
                 <p className="text-xl font-semibold text-foreground leading-none mb-1">
                   {s.value}
@@ -177,9 +181,9 @@ const Home = () => {
                 putrasatria893@gmail.com
               </p>
               <p
-                className={`text-[10px] mt-1.5 font-medium ${copied ? 'text-emerald-500' : 'text-muted-foreground/50'}`}
+                className={`text-[10px] mt-1.5 font-medium ${copied ? "text-emerald-500" : "text-muted-foreground/50"}`}
               >
-                {copied ? '✓ Copied!' : 'Click to copy'}
+                {copied ? "✓ Copied!" : "Click to copy"}
               </p>
             </div>
           </button>
@@ -230,11 +234,13 @@ const Home = () => {
         </div>
         <div className="border-border mt-16 border-t py-16">
           <div className="text-center mx-auto max-w-6xl">
-            <p className="text-muted-foreground text-xs">© {new Date().getFullYear()} Mps</p>
+            <p className="text-muted-foreground text-xs">
+              © {new Date().getFullYear()} Mps
+            </p>
           </div>
         </div>
       </section>
     </Fragment>
-  )
-}
-export default Home
+  );
+};
+export default Home;

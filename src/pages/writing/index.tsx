@@ -16,9 +16,11 @@ const WritingPage = ({ writings }: WritingPageProps) => {
           </div>
 
           <div className="mx-auto max-w-6xl">
-            <div className="mb-6">
-              <h1 className="mb-4 text-4xl font-light md:text-5xl">Writing</h1>
-              <p className="text-muted-foreground text-lg">
+            <div className="mb-10">
+              <h1 className="font-amatic mb-3 text-6xl font-bold tracking-wide md:text-7xl">
+                Writing
+              </h1>
+              <p className="text-muted-foreground text-base font-light tracking-wide">
                 Thoughts on web development, engineering, and technology
               </p>
             </div>
@@ -34,7 +36,7 @@ const WritingPage = ({ writings }: WritingPageProps) => {
                 ))}
               </div>
             ) : (
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-sm tracking-wide">
                 No articles yet. Check back soon!
               </p>
             )}
