@@ -2,6 +2,7 @@ import { AnimatedLines } from "@/components/common/Background";
 import {
   Tooltip,
   TooltipContent,
+  TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Badge } from "@/components/ui/badge";
@@ -102,21 +103,23 @@ const AboutPage = () => {
                             {achievement.year}
                           </TimelineDate>
                           <TimelineTitle className="text-base font-medium">
-                            {achievement.tooltip ? (
-                              <Tooltip>
-                                <TooltipTrigger asChild>
-                                  <span>{achievement.title}</span>
-                                </TooltipTrigger>
-                                <TooltipContent
-                                  side="top"
-                                  className="max-w-[300px]"
-                                >
-                                  <p>{achievement.tooltip}</p>
-                                </TooltipContent>
-                              </Tooltip>
-                            ) : (
-                              achievement.title
-                            )}
+                            <TooltipProvider>
+                              {achievement.tooltip ? (
+                                <Tooltip>
+                                  <TooltipTrigger asChild>
+                                    <span>{achievement.title}</span>
+                                  </TooltipTrigger>
+                                  <TooltipContent
+                                    side="top"
+                                    className="max-w-[300px]"
+                                  >
+                                    <p>{achievement.tooltip}</p>
+                                  </TooltipContent>
+                                </Tooltip>
+                              ) : (
+                                achievement.title
+                              )}
+                            </TooltipProvider>
                           </TimelineTitle>
                         </TimelineHeader>
                         <TimelineContent className="text-sm">
