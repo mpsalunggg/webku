@@ -125,6 +125,9 @@ const AboutPage = () => {
                         <TimelineContent className="text-sm">
                           {achievement.organization}
                         </TimelineContent>
+                        <TimelineHeader>
+                          <img src={achievement.image} className="h-8" />
+                        </TimelineHeader>
                         <TimelineIndicator className="border-1 !border-gray-400" />
                         <TimelineSeparator className="border-1" />
                       </TimelineItem>
