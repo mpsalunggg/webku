@@ -26,7 +26,21 @@ Both actions **must succeed together**. If #1 succeeds but #2 fails (for example
 
 A transaction is the database’s way of saying: “treat these steps as one package. If everything goes well, save it permanently (**COMMIT**). If anything fails, cancel everything as if it never happened (**ROLLBACK**).”
 
-![Example: transaction](/writings/database-transaction-1.png)
+```mermaid
+flowchart LR
+    A[BEGIN TRANSACTION] --> B[INSERT score_history\nSimpan skor 50 baru]
+    B --> C[UPDATE total_coin\nTambah bonus koin]
+    C --> D{Semua operasi sukses?\nTanpa error, lock, atau timeout}
+    D -- Tidak --> E[ROLLBACK\nBatalkan semua perubahan]
+    D -- Ya --> F[COMMIT\nSkor dan koin tersimpan]
+
+    style A fill:#f0f0f0,stroke:#999
+    style B fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
+    style C fill:#dbeafe,stroke:#3b82f6,color:#1e3a8a
+    style D fill:#fef3c7,stroke:#d97706,color:#92400e
+    style E fill:#fee2e2,stroke:#ef4444,color:#991b1b
+    style F fill:#d1fae5,stroke:#10b981,color:#065f46
+```
 
 ## ACID Concepts
 

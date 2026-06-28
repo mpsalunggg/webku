@@ -1,20 +1,29 @@
-'use client'
+"use client";
 
-import type { MDXComponents } from 'mdx/types'
-import { Link, Check, Copy } from 'lucide-react'
-import { isValidElement, useState, type ReactNode } from 'react'
+import type { MDXComponents } from "mdx/types";
+import { Link, Check, Copy } from "lucide-react";
+import { isValidElement, useState, type ReactNode } from "react";
+import { MermaidBlock } from "react-markdown-mermaid";
+
+const mermaidConfig = {
+  theme: "default",
+  flowchart: { useMaxWidth: true, htmlLabels: true },
+  sequence: { useMaxWidth: true },
+  gantt: { useMaxWidth: true },
+};
 
 function slugifyHeading(text: React.ReactNode): string {
-  const str = typeof text === 'string'
-    ? text
-    : Array.isArray(text)
-      ? text.join('')
-      : String(text ?? '')
+  const str =
+    typeof text === "string"
+      ? text
+      : Array.isArray(text)
+        ? text.join("")
+        : String(text ?? "");
   return str
     .toLowerCase()
-    .replace(/[^a-z0-9\s-]/g, '')
+    .replace(/[^a-z0-9\s-]/g, "")
     .trim()
-    .replace(/\s+/g, '-')
+    .replace(/\s+/g, "-");
 }
 
 function HeadingAnchor({ id }: { id: string }) {
@@ -26,47 +35,47 @@ function HeadingAnchor({ id }: { id: string }) {
     >
       <Link className="inline h-4 w-4" />
     </a>
-  )
+  );
 }
 
 function extractText(node: ReactNode): string {
-  if (typeof node === 'string' || typeof node === 'number') return String(node)
-  if (Array.isArray(node)) return node.map(extractText).join('')
+  if (typeof node === "string" || typeof node === "number") return String(node);
+  if (Array.isArray(node)) return node.map(extractText).join("");
   if (isValidElement(node)) {
-    const props = node.props as { children?: ReactNode }
-    return extractText(props.children)
+    const props = node.props as { children?: ReactNode };
+    return extractText(props.children);
   }
-  return ''
+  return "";
 }
 
 function CodeBlock({
   children,
   className,
   ...props
-}: React.ComponentPropsWithoutRef<'pre'>) {
-  const [copied, setCopied] = useState(false)
+}: React.ComponentPropsWithoutRef<"pre">) {
+  const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
-    const text = extractText(children)
+    const text = extractText(children);
     try {
-      await navigator.clipboard.writeText(text)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 1800)
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
     } catch {}
-  }
+  };
 
   return (
     <div className="group relative mb-4">
       <pre
         {...props}
-        className={`${className ?? ''} text-foreground overflow-x-auto rounded-lg border border-border p-4 [&_code]:bg-transparent [&_code]:p-0`}
+        className={`${className ?? ""} text-foreground overflow-x-auto rounded-lg border border-border p-4 [&_code]:bg-transparent [&_code]:p-0`}
       >
         {children}
       </pre>
       <button
         type="button"
         onClick={handleCopy}
-        aria-label={copied ? 'Copied' : 'Copy code'}
+        aria-label={copied ? "Copied" : "Copy code"}
         className="
           absolute right-3 top-3 inline-flex h-7 w-7 items-center justify-center
           rounded-md border border-border bg-background/80 text-muted-foreground
@@ -74,48 +83,64 @@ function CodeBlock({
           hover:text-foreground group-hover:opacity-100
         "
       >
-        {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
+        {copied ? (
+          <Check className="h-3.5 w-3.5" />
+        ) : (
+          <Copy className="h-3.5 w-3.5" />
+        )}
       </button>
     </div>
-  )
+  );
 }
 
 export const mdxComponents: MDXComponents = {
   h1: ({ children }) => {
-    const id = slugifyHeading(children)
+    const id = slugifyHeading(children);
     return (
-      <h1 id={id} className="group text-foreground mb-6 mt-8 text-4xl font-bold first:mt-0 scroll-mt-24">
+      <h1
+        id={id}
+        className="group text-foreground mb-6 mt-8 text-4xl font-bold first:mt-0 scroll-mt-24"
+      >
         {children}
         <HeadingAnchor id={id} />
       </h1>
-    )
+    );
   },
   h2: ({ children }) => {
-    const id = slugifyHeading(children)
+    const id = slugifyHeading(children);
     return (
-      <h2 id={id} className="group text-foreground mb-4 mt-8 text-3xl font-semibold scroll-mt-24">
+      <h2
+        id={id}
+        className="group text-foreground mb-4 mt-8 text-3xl font-semibold scroll-mt-24"
+      >
         {children}
         <HeadingAnchor id={id} />
       </h2>
-    )
+    );
   },
   h3: ({ children }) => {
-    const id = slugifyHeading(children)
+    const id = slugifyHeading(children);
     return (
-      <h3 id={id} className="group text-foreground mb-3 mt-6 text-2xl font-semibold scroll-mt-24">
+      <h3
+        id={id}
+        className="group text-foreground mb-3 mt-6 text-2xl font-semibold scroll-mt-24"
+      >
         {children}
         <HeadingAnchor id={id} />
       </h3>
-    )
+    );
   },
   h4: ({ children }) => {
-    const id = slugifyHeading(children)
+    const id = slugifyHeading(children);
     return (
-      <h4 id={id} className="group text-foreground mb-2 mt-4 text-xl font-semibold scroll-mt-24">
+      <h4
+        id={id}
+        className="group text-foreground mb-2 mt-4 text-xl font-semibold scroll-mt-24"
+      >
         {children}
         <HeadingAnchor id={id} />
       </h4>
-    )
+    );
   },
   p: ({ children }) => (
     <p className="text-muted-foreground mb-4 leading-7">{children}</p>
@@ -151,7 +176,25 @@ export const mdxComponents: MDXComponents = {
       {children}
     </code>
   ),
-  pre: CodeBlock,
+  pre: (props: React.ComponentPropsWithoutRef<"pre">) => {
+    const { "data-mermaid-code": mermaidCode } = props as {
+      "data-mermaid-code"?: string;
+    };
+
+    if (mermaidCode) {
+      return (
+        <div className="my-6 flex justify-center overflow-x-auto rounded-lg border border-border p-4 w-full">
+          <MermaidBlock
+            className="w-full"
+            code={mermaidCode}
+            mermaidConfig={mermaidConfig}
+          />
+        </div>
+      );
+    }
+
+    return <CodeBlock {...props} />;
+  },
   img: ({ src, alt }) => (
     <img
       src={src}
@@ -180,4 +223,4 @@ export const mdxComponents: MDXComponents = {
     <strong className="text-foreground font-semibold">{children}</strong>
   ),
   em: ({ children }) => <em className="italic">{children}</em>,
-}
+};
