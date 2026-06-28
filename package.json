@@ -18,6 +18,7 @@
   },
   "dependencies": {
     "@apollo/client": "^4.0.9",
+    "@giscus/react": "^3.1.0",
     "@mdx-js/react": "^3.1.1",
     "@mdx-js/rollup": "^3.1.1",
     "@prisma/adapter-pg": "^7.4.2",

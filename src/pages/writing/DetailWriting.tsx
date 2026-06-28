@@ -1,47 +1,48 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
-import { ArrowLeft, Calendar, Clock, Eye } from 'lucide-react'
-import { MDXProvider } from '@mdx-js/react'
-import { Link } from '@tanstack/react-router'
-import { mdxComponents } from '@/components/common/MDXComponents'
-import { AnimatedLines } from '@/components/common/Background'
+import { lazy, Suspense, useEffect, useState } from "react";
+import { ArrowLeft, Calendar, Clock, Eye } from "lucide-react";
+import { MDXProvider } from "@mdx-js/react";
+import { Link } from "@tanstack/react-router";
+import { mdxComponents } from "@/components/common/MDXComponents";
+import { AnimatedLines } from "@/components/common/Background";
 import TableOfContents, {
   type Heading,
-} from '@/components/common/TableOfContents'
-import { WritingFrontmatter } from '@/lib/mdx'
+} from "@/components/common/TableOfContents";
+import { WritingFrontmatter } from "@/lib/mdx";
+import Comments from "@/components/common/Comments";
 
 interface DetailWritingProps {
-  frontmatter: WritingFrontmatter
-  slug: string
+  frontmatter: WritingFrontmatter;
+  slug: string;
 }
 
 const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
-  const [headings, setHeadings] = useState<Heading[]>([])
+  const [headings, setHeadings] = useState<Heading[]>([]);
 
   const MDXComponent = lazy(() =>
     import(`../../content/writings/${slug}.mdx`).then((module) => ({
       default: module.default,
     })),
-  )
+  );
 
   useEffect(() => {
     const extractHeadings = () => {
-      const article = document.querySelector('article')
-      if (!article) return
+      const article = document.querySelector("article");
+      if (!article) return;
 
-      const elements = article.querySelectorAll('h1, h2')
+      const elements = article.querySelectorAll("h1, h2");
       const extracted: Heading[] = Array.from(elements)
         .filter((el) => el.id)
         .map((el) => ({
           id: el.id,
-          text: el.textContent?.replace(/\s*#\s*$/, '').trim() ?? '',
-          level: parseInt(el.tagName.replace('H', ''), 10),
-        }))
-      setHeadings(extracted)
-    }
+          text: el.textContent?.replace(/\s*#\s*$/, "").trim() ?? "",
+          level: parseInt(el.tagName.replace("H", ""), 10),
+        }));
+      setHeadings(extracted);
+    };
 
-    const timeout = setTimeout(extractHeadings, 300)
-    return () => clearTimeout(timeout)
-  }, [slug])
+    const timeout = setTimeout(extractHeadings, 300);
+    return () => clearTimeout(timeout);
+  }, [slug]);
 
   return (
     <main className="bg-background min-h-screen">
@@ -73,10 +74,10 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
                   <div className="text-muted-foreground flex items-center gap-1.5">
                     <Calendar className="h-3.5 w-3.5" />
                     <time dateTime={frontmatter.date}>
-                      {new Date(frontmatter.date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
+                      {new Date(frontmatter.date).toLocaleDateString("en-US", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
                       })}
                     </time>
                   </div>
@@ -110,6 +111,10 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
                     <MDXComponent />
                   </Suspense>
                 </MDXProvider>
+                <div className="mt-16 border-t border-border pt-10">
+                  <h2 className="text-xl font-semibold mb-6">Comments</h2>
+                  <Comments />
+                </div>
               </div>
             </article>
 
@@ -120,7 +125,7 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
         </div>
       </div>
     </main>
-  )
-}
+  );
+};
 
-export default DetailWriting
+export default DetailWriting;
