@@ -8,7 +8,7 @@ import mdx from "@mdx-js/rollup";
 import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import rehypeShiki from "@shikijs/rehype";
-import { mermaidTransformer } from "@/lib/mermaid-transformer";
+import { mermaidTransformer } from "./src/lib/mermaid-transformer";
 
 const config = defineConfig({
   plugins: [
