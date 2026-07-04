@@ -3,6 +3,7 @@ import appCss from '../styles.css?url'
 import { ThemeProvider } from '@/components/layout/ThemeProvider'
 import Navbar from '@/components/common/Navbar'
 import { PageLoader } from '@/components/common/PageLoader'
+import { GuestbookFab } from '@/components/common/GuestbookFab'
 import { ApolloProvider } from '@apollo/client/react'
 import { apolloClient } from '@/lib/apollo-client'
 import { TanStackRouterDevtools } from 'node_modules/@tanstack/react-router-devtools/dist/esm/TanStackRouterDevtools'
@@ -65,6 +66,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
             <PageLoader />
             <Navbar />
             {children}
+            <GuestbookFab />
             {import.meta.env.DEV && <TanStackRouterDevtools />}
           </ApolloProvider>
         </ThemeProvider>

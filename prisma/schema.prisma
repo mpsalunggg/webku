@@ -36,3 +36,17 @@ model WritingView {
 
   @@map("writing_views")
 }
+
+model GuestbookMessage {
+  id        String   @id @default(cuid())
+  name      String
+  message   String
+  lat       Float?
+  lng       Float?
+  city      String?
+  country   String?
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+  @@map("guestbook_messages")
+}

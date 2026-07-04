@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as WritingIndexRouteImport } from './routes/writing/index'
 import { Route as WorkIndexRouteImport } from './routes/work/index'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
+import { Route as GuestbookIndexRouteImport } from './routes/guestbook/index'
 import { Route as BlogIndexRouteImport } from './routes/blog/index'
 import { Route as AboutIndexRouteImport } from './routes/about/index'
 import { Route as WritingSlugRouteImport } from './routes/writing/$slug'
@@ -43,6 +44,11 @@ const WorkIndexRoute = WorkIndexRouteImport.update({
 const ProjectsIndexRoute = ProjectsIndexRouteImport.update({
   id: '/projects/',
   path: '/projects/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuestbookIndexRoute = GuestbookIndexRouteImport.update({
+  id: '/guestbook/',
+  path: '/guestbook/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BlogIndexRoute = BlogIndexRouteImport.update({
@@ -107,6 +113,7 @@ export interface FileRoutesByFullPath {
   '/writing/$slug': typeof WritingSlugRoute
   '/about/': typeof AboutIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/guestbook/': typeof GuestbookIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/work/': typeof WorkIndexRoute
   '/writing/': typeof WritingIndexRoute
@@ -124,6 +131,7 @@ export interface FileRoutesByTo {
   '/writing/$slug': typeof WritingSlugRoute
   '/about': typeof AboutIndexRoute
   '/blog': typeof BlogIndexRoute
+  '/guestbook': typeof GuestbookIndexRoute
   '/projects': typeof ProjectsIndexRoute
   '/work': typeof WorkIndexRoute
   '/writing': typeof WritingIndexRoute
@@ -142,6 +150,7 @@ export interface FileRoutesById {
   '/writing/$slug': typeof WritingSlugRoute
   '/about/': typeof AboutIndexRoute
   '/blog/': typeof BlogIndexRoute
+  '/guestbook/': typeof GuestbookIndexRoute
   '/projects/': typeof ProjectsIndexRoute
   '/work/': typeof WorkIndexRoute
   '/writing/': typeof WritingIndexRoute
@@ -161,6 +170,7 @@ export interface FileRouteTypes {
     | '/writing/$slug'
     | '/about/'
     | '/blog/'
+    | '/guestbook/'
     | '/projects/'
     | '/work/'
     | '/writing/'
@@ -178,6 +188,7 @@ export interface FileRouteTypes {
     | '/writing/$slug'
     | '/about'
     | '/blog'
+    | '/guestbook'
     | '/projects'
     | '/work'
     | '/writing'
@@ -195,6 +206,7 @@ export interface FileRouteTypes {
     | '/writing/$slug'
     | '/about/'
     | '/blog/'
+    | '/guestbook/'
     | '/projects/'
     | '/work/'
     | '/writing/'
@@ -213,6 +225,7 @@ export interface RootRouteChildren {
   WritingSlugRoute: typeof WritingSlugRoute
   AboutIndexRoute: typeof AboutIndexRoute
   BlogIndexRoute: typeof BlogIndexRoute
+  GuestbookIndexRoute: typeof GuestbookIndexRoute
   ProjectsIndexRoute: typeof ProjectsIndexRoute
   WorkIndexRoute: typeof WorkIndexRoute
   WritingIndexRoute: typeof WritingIndexRoute
@@ -253,6 +266,13 @@ declare module '@tanstack/react-router' {
       path: '/projects'
       fullPath: '/projects/'
       preLoaderRoute: typeof ProjectsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guestbook/': {
+      id: '/guestbook/'
+      path: '/guestbook'
+      fullPath: '/guestbook/'
+      preLoaderRoute: typeof GuestbookIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/blog/': {
@@ -341,6 +361,7 @@ const rootRouteChildren: RootRouteChildren = {
   WritingSlugRoute: WritingSlugRoute,
   AboutIndexRoute: AboutIndexRoute,
   BlogIndexRoute: BlogIndexRoute,
+  GuestbookIndexRoute: GuestbookIndexRoute,
   ProjectsIndexRoute: ProjectsIndexRoute,
   WorkIndexRoute: WorkIndexRoute,
   WritingIndexRoute: WritingIndexRoute,

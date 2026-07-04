@@ -149,6 +149,65 @@ code {
   animation: loading-bar 1s ease-out forwards;
 }
 
+@keyframes highlight-sweep {
+  0% {
+    transform: scaleX(0);
+  }
+  100% {
+    transform: scaleX(1);
+  }
+}
+
+.animate-highlight-sweep {
+  transform: scaleX(0);
+  animation: highlight-sweep 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: 0.65s;
+}
+
+/* Guestbook map markers */
+.gb-marker {
+  position: relative;
+  width: 18px;
+  height: 18px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.gb-marker-dot {
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  background: var(--primary);
+  border: 2px solid var(--background);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
+}
+
+.gb-marker-pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--primary);
+  opacity: 0.45;
+  animation: gb-marker-pulse 2s ease-out infinite;
+}
+
+@keyframes gb-marker-pulse {
+  0% {
+    transform: scale(0.6);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
+}
+
+.gb-marker:hover .gb-marker-dot {
+  background: var(--foreground);
+}
+
 
 html.dark .shiki,
 html.dark .shiki span {

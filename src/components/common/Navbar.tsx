@@ -15,6 +15,7 @@ const navItems = [
     { to: '/projects', label: 'Projects' },
     { to: '/work', label: 'Work' },
     { to: '/writing', label: 'Writing' },
+    { to: '/guestbook', label: 'Guestbook' },
 ]
 
 const Navbar = () => {

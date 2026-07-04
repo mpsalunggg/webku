@@ -1,5 +1,4 @@
 import { Fragment, useState } from "react";
-import { Typewriter } from "react-simple-typewriter";
 import { AnimatedLines } from "@/components/common/Background";
 import { GET_USER_STATS } from "@/constants/query";
 import { useQuery } from "@apollo/client/react";
@@ -39,7 +38,7 @@ const Home = () => {
               className="animate-fade-in-up"
               style={{ animationDelay: "0.1s", animationFillMode: "both" }}
             >
-              <span className="inline-flex items-center gap-2 font-amatic text-2xl md:text-3xl tracking-[0.15em] text-muted-foreground">
+              <span className="inline-flex items-center gap-2 font-amatic text-2xl md:text-3xl tracking-[0.2em] text-muted-foreground">
                 Hello, i&apos;m Putra
                 <span className="animate-bounce inline-block">👋</span>
               </span>
@@ -49,20 +48,13 @@ const Home = () => {
               className="animate-fade-in-up"
               style={{ animationDelay: "0.25s", animationFillMode: "both" }}
             >
-              <h1 className="mb-4 mt-6 font-amatic text-7xl font-bold tracking-tight text-balance md:text-8xl lg:text-[6rem] lg:leading-[0.9] text-foreground">
+              <h1 className="mb-4 mt-5 font-amatic text-7xl font-bold tracking-wide text-balance md:text-8xl lg:text-[6rem] lg:leading-[0.9] text-foreground">
                 I&apos;m a{" "}
                 <span className="relative inline-block">
-                  <span className="relative z-10 bg-linear-to-r from-primary via-primary/80 to-foreground bg-clip-text text-transparent">
-                    <Typewriter
-                      words={["Software Engineer", "Basketball Player"]}
-                      loop={0}
-                      cursor
-                      cursorStyle="_"
-                      typeSpeed={80}
-                      deleteSpeed={60}
-                      delaySpeed={2000}
-                    />
+                  <span className="relative z-10 bg-linear-to-r from-primary via-primary/70 to-foreground bg-clip-text text-transparent">
+                    Software Engineer
                   </span>
+                  <span className="animate-highlight-sweep absolute -bottom-1 left-0 h-1 w-full origin-left rounded-full bg-linear-to-r from-primary via-primary/70 to-foreground md:h-1.5" />
                 </span>
                 <br />
               </h1>
@@ -72,7 +64,7 @@ const Home = () => {
               className="animate-fade-in-up max-w-xl"
               style={{ animationDelay: "0.4s", animationFillMode: "both" }}
             >
-              <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed">
+              <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed tracking-tight">
                 Passionate about exploring new technologies and sharing
                 knowledge through creative solutions.
               </p>
@@ -86,16 +78,16 @@ const Home = () => {
         id="contact"
         className="flex flex-col justify-center mx-auto max-w-6xl gap-3"
       >
-        <div className="flex flex-col gap-4">
-          <p className="font-amatic text-2xl tracking-[0.15em] text-muted-foreground">
+        <div className="flex flex-col gap-3">
+          <p className="font-amatic text-2xl tracking-[0.2em] text-muted-foreground">
             Get in touch
           </p>
 
-          <h2 className="font-amatic text-5xl font-[1000] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-            Let's <span className="italic font-light">Connect</span>
+          <h2 className="font-amatic text-5xl font-[1000] tracking-wide text-foreground md:text-6xl lg:text-7xl">
+            Let&apos;s <span className="italic font-light">Connect</span>
           </h2>
 
-          <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed">
+          <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed tracking-tight">
             Always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision.
           </p>
