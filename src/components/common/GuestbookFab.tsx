@@ -11,6 +11,25 @@ import BottomDrawer from './BottomDrawer'
 const MAX_MESSAGE = 280
 
 /**
+ * Ask the browser for a precise location. Resolves to coordinates if the
+ * visitor allows it, or null on denial / unavailability / timeout — in which
+ * case the server falls back to approximate IP-based geolocation.
+ */
+function getBrowserLocation(): Promise<{ lat: number; lng: number } | null> {
+  return new Promise((resolve) => {
+    if (typeof navigator === 'undefined' || !navigator.geolocation) {
+      resolve(null)
+      return
+    }
+    navigator.geolocation.getCurrentPosition(
+      (pos) => resolve({ lat: pos.coords.latitude, lng: pos.coords.longitude }),
+      () => resolve(null),
+      { enableHighAccuracy: true, timeout: 8000, maximumAge: 60000 },
+    )
+  })
+}
+
+/**
  * Floating "write a postcard" button, mounted globally in the root layout so
  * it is available on every page. Submitting opens the sent postcard as a
  * drawer and invalidates router loaders so the guestbook map refreshes.
@@ -38,8 +57,15 @@ export function GuestbookFab() {
 
     setSubmitting(true)
     try {
+      // Prefer precise browser location; server falls back to IP if null.
+      const coords = await getBrowserLocation()
       const res = await addGuestbookMessage({
-        data: { name: trimmedName, message: trimmedMessage },
+        data: {
+          name: trimmedName,
+          message: trimmedMessage,
+          lat: coords?.lat ?? null,
+          lng: coords?.lng ?? null,
+        },
       })
       setFormOpen(false)
       setSent(res.message)
@@ -106,6 +132,11 @@ export function GuestbookFab() {
               {message.length}/{MAX_MESSAGE}
             </span>
           </div>
+
+          <p className="text-muted-foreground/70 mt-2 text-[11px]">
+            📍 Izinkan lokasi agar kartu posmu muncul akurat di peta — kalau
+            ditolak, kami perkirakan dari IP.
+          </p>
 
           <div className="mt-3 flex items-center justify-between gap-3">
             <p className="text-destructive text-xs">{error}</p>

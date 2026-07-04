@@ -1,7 +1,7 @@
 import { createServerFn } from '@tanstack/react-start'
 import { getRequestIP, getRequestHeaders } from '@tanstack/react-start/server'
 import { prisma } from '@/lib/prisma'
-import { geolocateIP } from '@/lib/geo'
+import { geolocateIP, reverseGeocode } from '@/lib/geo'
 
 export interface GuestbookMessage {
   id: string
@@ -75,34 +75,72 @@ function resolveClientIP(): string | null {
 }
 
 export const addGuestbookMessage = createServerFn({ method: 'POST' })
-  .inputValidator((data: { name: string; message: string }) => {
-    const name = data.name?.trim() ?? ''
-    const message = data.message?.trim() ?? ''
+  .inputValidator(
+    (data: {
+      name: string
+      message: string
+      lat?: number | null
+      lng?: number | null
+    }) => {
+      const name = data.name?.trim() ?? ''
+      const message = data.message?.trim() ?? ''
 
-    if (!name) throw new Error('Name is required')
-    if (!message) throw new Error('Message is required')
-    if (name.length > MAX_NAME)
-      throw new Error(`Name must be at most ${MAX_NAME} characters`)
-    if (message.length > MAX_MESSAGE)
-      throw new Error(`Message must be at most ${MAX_MESSAGE} characters`)
+      if (!name) throw new Error('Name is required')
+      if (!message) throw new Error('Message is required')
+      if (name.length > MAX_NAME)
+        throw new Error(`Name must be at most ${MAX_NAME} characters`)
+      if (message.length > MAX_MESSAGE)
+        throw new Error(`Message must be at most ${MAX_MESSAGE} characters`)
 
-    return {
-      name: name.slice(0, MAX_NAME),
-      message: message.slice(0, MAX_MESSAGE),
-    }
-  })
+      // Optional precise coordinates from the browser Geolocation API.
+      let lat: number | null = null
+      let lng: number | null = null
+      if (
+        typeof data.lat === 'number' &&
+        typeof data.lng === 'number' &&
+        Number.isFinite(data.lat) &&
+        Number.isFinite(data.lng) &&
+        Math.abs(data.lat) <= 90 &&
+        Math.abs(data.lng) <= 180
+      ) {
+        lat = data.lat
+        lng = data.lng
+      }
+
+      return {
+        name: name.slice(0, MAX_NAME),
+        message: message.slice(0, MAX_MESSAGE),
+        lat,
+        lng,
+      }
+    },
+  )
   .handler(async ({ data }) => {
-    const geo = await geolocateIP(resolveClientIP())
+    let lat: number | null = null
+    let lng: number | null = null
+    let city: string | null = null
+    let country: string | null = null
+
+    if (data.lat != null && data.lng != null) {
+      // Precise location granted by the visitor's browser.
+      lat = data.lat
+      lng = data.lng
+      const rev = await reverseGeocode(lat, lng)
+      city = rev?.city ?? null
+      country = rev?.country ?? null
+    } else {
+      // No permission → fall back to approximate IP-based geolocation.
+      const geo = await geolocateIP(resolveClientIP())
+      if (geo) {
+        lat = geo.lat
+        lng = geo.lng
+        city = geo.city
+        country = geo.country
+      }
+    }
 
     const created = await prisma.guestbookMessage.create({
-      data: {
-        name: data.name,
-        message: data.message,
-        lat: geo?.lat ?? null,
-        lng: geo?.lng ?? null,
-        city: geo?.city ?? null,
-        country: geo?.country ?? null,
-      },
+      data: { name: data.name, message: data.message, lat, lng, city, country },
     })
 
     return { message: serialize(created) }
