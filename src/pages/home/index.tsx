@@ -38,7 +38,7 @@ const Home = () => {
               className="animate-fade-in-up"
               style={{ animationDelay: "0.1s", animationFillMode: "both" }}
             >
-              <span className="inline-flex items-center gap-2 font-amatic text-2xl md:text-3xl tracking-[0.2em] text-muted-foreground">
+              <span className="inline-flex items-center gap-2 text-xs font-medium tracking-[0.3em] text-muted-foreground uppercase md:text-sm">
                 Hello, i&apos;m Putra
                 <span className="animate-bounce inline-block">👋</span>
               </span>
@@ -48,15 +48,11 @@ const Home = () => {
               className="animate-fade-in-up"
               style={{ animationDelay: "0.25s", animationFillMode: "both" }}
             >
-              <h1 className="mb-4 mt-5 font-amatic text-7xl font-bold tracking-wide text-balance md:text-8xl lg:text-[6rem] lg:leading-[0.9] text-foreground">
+              <h1 className="mt-6 mb-5 font-amatic text-7xl font-bold leading-[0.95] tracking-wide text-balance text-foreground md:text-8xl lg:text-[6rem]">
                 I&apos;m a{" "}
-                <span className="relative inline-block">
-                  <span className="relative z-10 bg-linear-to-r from-primary via-primary/70 to-foreground bg-clip-text text-transparent">
-                    Software Engineer
-                  </span>
-                  <span className="animate-highlight-sweep absolute -bottom-1 left-0 h-1 w-full origin-left rounded-full bg-linear-to-r from-primary via-primary/70 to-foreground md:h-1.5" />
+                <span className="bg-linear-to-r from-primary via-primary/70 to-foreground bg-clip-text text-transparent">
+                  Software Engineer
                 </span>
-                <br />
               </h1>
             </div>
 
@@ -64,7 +60,7 @@ const Home = () => {
               className="animate-fade-in-up max-w-xl"
               style={{ animationDelay: "0.4s", animationFillMode: "both" }}
             >
-              <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed tracking-tight">
+              <p className="text-muted-foreground text-base leading-relaxed font-light text-pretty md:text-lg">
                 Passionate about exploring new technologies and sharing
                 knowledge through creative solutions.
               </p>
@@ -76,18 +72,18 @@ const Home = () => {
       </section>
       <section
         id="contact"
-        className="flex flex-col justify-center mx-auto max-w-6xl gap-3"
+        className="mx-auto flex max-w-6xl flex-col gap-6 px-6"
       >
         <div className="flex flex-col gap-3">
-          <p className="font-amatic text-2xl tracking-[0.2em] text-muted-foreground">
+          <p className="text-xs font-medium tracking-[0.3em] text-muted-foreground uppercase md:text-sm">
             Get in touch
           </p>
 
-          <h2 className="font-amatic text-5xl font-[1000] tracking-wide text-foreground md:text-6xl lg:text-7xl">
-            Let&apos;s <span className="italic font-light">Connect</span>
+          <h2 className="font-amatic text-5xl font-bold tracking-wide text-foreground md:text-6xl lg:text-7xl">
+            Let&apos;s <span className="font-normal italic">Connect</span>
           </h2>
 
-          <p className="text-muted-foreground text-base md:text-lg font-light leading-relaxed tracking-tight">
+          <p className="text-muted-foreground max-w-xl text-base leading-relaxed font-light text-pretty md:text-lg">
             Always open to discussing new projects, creative ideas, or
             opportunities to be part of your vision.
           </p>
@@ -146,8 +142,8 @@ const Home = () => {
                   i < 3 ? "border-r border-border" : "",
                 ].join(" ")}
               >
-                <p className="text-xl font-semibold text-foreground leading-none mb-1">
-                  {s.value}
+                <p className="mb-1 text-xl leading-none font-semibold text-foreground tabular-nums">
+                  {s.value ?? "—"}
                 </p>
                 <p className="text-[10px] uppercase tracking-wider text-muted-foreground leading-tight">
                   {s.label}

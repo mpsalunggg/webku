@@ -149,21 +149,6 @@ code {
   animation: loading-bar 1s ease-out forwards;
 }
 
-@keyframes highlight-sweep {
-  0% {
-    transform: scaleX(0);
-  }
-  100% {
-    transform: scaleX(1);
-  }
-}
-
-.animate-highlight-sweep {
-  transform: scaleX(0);
-  animation: highlight-sweep 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: 0.65s;
-}
-
 /* Guestbook map markers */
 .gb-marker {
   position: relative;
