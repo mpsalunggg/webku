@@ -109,7 +109,7 @@ export const achievements = [
     year: "2024",
     title: "Best Student in Faculty of Engineering",
     organization: "Tadulako University - 123rd Graduation",
-    image: "/public/images/untad.webp",
+    image: "/images/untad.webp",
   },
   {
     year: "2023",
@@ -117,12 +117,12 @@ export const achievements = [
     organization: "Educourse.id",
     tooltip:
       "Golden ticket is allows direct employment at the company upon program completion without additional testing",
-    image: "/public/images/educourseid.webp",
+    image: "/images/educourseid.webp",
   },
   {
     year: "2023",
     title: "Selected Participant Internship (1 of 350)",
     organization: "Generasi Gigih 3.0 - GoTo Impact Foundation",
-    image: "/public/images/gotoimpactfoundation.webp",
+    image: "/images/gotoimpactfoundation.webp",
   },
 ];
