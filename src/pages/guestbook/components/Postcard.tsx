@@ -1,15 +1,16 @@
 import { MapPin } from 'lucide-react'
 import type { GuestbookMessage } from '../server'
 
-export type PostcardTheme = 'vintage' | 'minimal' | 'polaroid'
+export type PostcardTheme = 'gradient' | 'wave' | 'dot'
 
-const THEMES: PostcardTheme[] = ['vintage', 'minimal', 'polaroid']
+export const POSTCARD_THEMES: { key: PostcardTheme; label: string }[] = [
+  { key: 'gradient', label: 'Gradient' },
+  { key: 'wave', label: 'Wave' },
+  { key: 'dot', label: 'Dot' },
+]
 
-/** Deterministically pick a theme from the message id so a card always looks the same. */
-export function themeForId(id: string): PostcardTheme {
-  let sum = 0
-  for (let i = 0; i < id.length; i++) sum = (sum + id.charCodeAt(i)) % 997
-  return THEMES[sum % THEMES.length]
+export function normalizeTheme(theme: string | null | undefined): PostcardTheme {
+  return theme === 'wave' || theme === 'dot' ? theme : 'gradient'
 }
 
 function formatDate(iso: string) {
@@ -27,96 +28,130 @@ function locationLabel(m: GuestbookMessage) {
   return 'Somewhere on Earth'
 }
 
+/** Small preview tile used by the theme picker in the form. */
+export function PostcardThemeSwatch({ theme }: { theme: PostcardTheme }) {
+  if (theme === 'gradient') {
+    return (
+      <div className="h-full w-full bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500" />
+    )
+  }
+  if (theme === 'wave') {
+    return (
+      <div className="relative h-full w-full bg-sky-50">
+        <svg
+          className="absolute inset-x-0 bottom-0"
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,20 Q25,5 50,20 T100,20 V40 H0 Z" className="fill-sky-400" />
+          <path
+            d="M0,28 Q25,14 50,28 T100,28 V40 H0 Z"
+            className="fill-cyan-500/70"
+          />
+        </svg>
+      </div>
+    )
+  }
+  return (
+    <div
+      className="h-full w-full bg-white"
+      style={{
+        backgroundImage:
+          'radial-gradient(currentColor 1.2px, transparent 1.2px)',
+        backgroundSize: '7px 7px',
+        color: 'rgb(99 102 241 / 0.5)',
+      }}
+    />
+  )
+}
+
 interface PostcardProps {
   message: GuestbookMessage
   theme?: PostcardTheme
+  /** Fixed height + clamped message, for uniform cards in a list/grid. */
+  compact?: boolean
 }
 
-const Postcard = ({ message, theme }: PostcardProps) => {
-  const resolved = theme ?? themeForId(message.id)
-  const initial = message.name.charAt(0).toUpperCase()
+const Postcard = ({ message, theme, compact = false }: PostcardProps) => {
+  const resolved = theme ?? normalizeTheme(message.theme)
 
-  if (resolved === 'vintage') {
-    return (
-      <div className="relative w-full overflow-hidden rounded-md border border-amber-900/20 bg-[#f4ecd8] p-5 text-amber-950 shadow-lg">
-        {/* postage stamp */}
-        <div className="absolute top-3 right-3 flex h-14 w-12 flex-col items-center justify-center rounded-[2px] border-2 border-dashed border-amber-800/40 bg-amber-100/60 text-center">
-          <span className="text-lg leading-none">✈️</span>
-          <span className="mt-0.5 text-[7px] font-bold tracking-widest text-amber-800/70 uppercase">
-            Air Mail
-          </span>
-        </div>
-        {/* round postmark */}
-        <div className="absolute top-4 right-16 flex h-11 w-11 rotate-[-12deg] items-center justify-center rounded-full border-2 border-rose-800/40 text-center text-[7px] font-semibold tracking-wider text-rose-800/50 uppercase">
-          Posted
-        </div>
-
-        <p className="font-amatic text-3xl tracking-wide text-amber-900">
-          Dear Putra,
-        </p>
-        <p className="mt-2 max-w-[75%] text-sm leading-relaxed break-words whitespace-pre-wrap">
-          {message.message}
-        </p>
-        <div className="mt-4 flex items-center justify-between border-t border-amber-900/20 pt-3">
-          <div>
-            <p className="text-sm font-semibold">— {message.name}</p>
-            <p className="flex items-center gap-1 text-[11px] text-amber-800/70">
-              <MapPin className="h-3 w-3" /> {locationLabel(message)}
-            </p>
-          </div>
-          <p className="text-[11px] text-amber-800/60">
-            {formatDate(message.createdAt)}
-          </p>
-        </div>
-      </div>
-    )
-  }
-
-  if (resolved === 'polaroid') {
-    return (
-      <div className="w-full rounded-sm bg-white p-3 pb-5 shadow-xl">
-        {/* "photo" area */}
-        <div className="flex h-28 items-center justify-center rounded-sm bg-linear-to-br from-primary/80 via-primary/50 to-foreground/70">
-          <span className="text-4xl font-bold text-white/90">{initial}</span>
-        </div>
-        <p className="font-amatic mt-3 text-center text-2xl leading-tight tracking-wide text-neutral-800">
-          {message.message}
-        </p>
-        <div className="mt-2 flex items-center justify-between px-1 text-neutral-500">
-          <span className="text-xs font-medium text-neutral-700">
-            {message.name}
-          </span>
-          <span className="flex items-center gap-1 text-[10px]">
-            <MapPin className="h-3 w-3" /> {locationLabel(message)}
-          </span>
-        </div>
-      </div>
-    )
-  }
-
-  // minimal (modern)
-  return (
-    <div className="w-full overflow-hidden rounded-2xl border border-border bg-card p-5 shadow-lg">
-      <div className="mb-3 h-1 w-10 rounded-full bg-linear-to-r from-primary to-foreground" />
-      <p className="text-sm leading-relaxed text-foreground break-words whitespace-pre-wrap">
+  const body = (
+    <div className="flex h-full flex-col">
+      <p
+        className={`text-[15px] leading-relaxed break-words whitespace-pre-wrap ${
+          compact ? 'line-clamp-4 flex-1' : ''
+        }`}
+      >
         {message.message}
       </p>
-      <div className="mt-4 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted text-sm font-semibold text-foreground">
-            {initial}
-          </div>
-          <div>
-            <p className="text-sm font-medium text-foreground">{message.name}</p>
-            <p className="flex items-center gap-1 text-[11px] text-muted-foreground">
-              <MapPin className="h-3 w-3" /> {locationLabel(message)}
-            </p>
-          </div>
+      <div className="mt-5 flex items-end justify-between gap-3">
+        <div className="min-w-0">
+          <p className="truncate text-sm leading-tight font-semibold">
+            {message.name}
+          </p>
+          <p className="flex items-center gap-1 text-[11px] opacity-70">
+            <MapPin className="h-3 w-3 shrink-0" /> {locationLabel(message)}
+          </p>
         </div>
-        <p className="text-[11px] text-muted-foreground">
+        <p className="shrink-0 text-[11px] opacity-60">
           {formatDate(message.createdAt)}
         </p>
       </div>
+    </div>
+  )
+
+  const sizing = compact ? 'h-60' : ''
+
+  if (resolved === 'gradient') {
+    return (
+      <div
+        className={`relative flex w-full flex-col overflow-hidden rounded-2xl bg-linear-to-br from-indigo-500 via-purple-500 to-pink-500 p-6 text-white shadow-xl ${sizing}`}
+      >
+        <div className="pointer-events-none absolute -top-10 -right-8 h-36 w-36 rounded-full bg-white/20 blur-2xl" />
+        <div className="pointer-events-none absolute -bottom-12 -left-6 h-32 w-32 rounded-full bg-white/10 blur-2xl" />
+        <div className="relative flex flex-1 flex-col">{body}</div>
+      </div>
+    )
+  }
+
+  if (resolved === 'wave') {
+    return (
+      <div
+        className={`relative flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card pt-6 pr-6 pb-16 pl-6 text-foreground shadow-xl ${sizing}`}
+      >
+        <div className="relative flex flex-1 flex-col">{body}</div>
+        <svg
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-16 w-full"
+          viewBox="0 0 400 80"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,40 Q100,10 200,40 T400,40 V80 H0 Z"
+            className="fill-sky-400/40"
+          />
+          <path
+            d="M0,55 Q100,25 200,55 T400,55 V80 H0 Z"
+            className="fill-cyan-500/50"
+          />
+        </svg>
+      </div>
+    )
+  }
+
+  // dot
+  return (
+    <div
+      className={`relative flex w-full flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 text-foreground shadow-xl ${sizing}`}
+    >
+      <div
+        className="pointer-events-none absolute inset-0 text-indigo-500/25 dark:text-indigo-400/20"
+        style={{
+          backgroundImage:
+            'radial-gradient(currentColor 1.4px, transparent 1.4px)',
+          backgroundSize: '14px 14px',
+        }}
+      />
+      <div className="relative flex flex-1 flex-col">{body}</div>
     </div>
   )
 }

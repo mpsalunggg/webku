@@ -1,12 +1,12 @@
 import { createServerFn } from '@tanstack/react-start'
-import { getRequestIP, getRequestHeaders } from '@tanstack/react-start/server'
 import { prisma } from '@/lib/prisma'
-import { geolocateIP, reverseGeocode } from '@/lib/geo'
+import { reverseGeocode } from '@/lib/geo'
 
 export interface GuestbookMessage {
   id: string
   name: string
   message: string
+  theme: string
   lat: number | null
   lng: number | null
   city: string | null
@@ -16,11 +16,13 @@ export interface GuestbookMessage {
 
 const MAX_NAME = 40
 const MAX_MESSAGE = 280
+const THEMES = ['gradient', 'wave', 'dot']
 
 function serialize(m: {
   id: string
   name: string
   message: string
+  theme: string
   lat: number | null
   lng: number | null
   city: string | null
@@ -31,6 +33,7 @@ function serialize(m: {
     id: m.id,
     name: m.name,
     message: m.message,
+    theme: m.theme,
     lat: m.lat,
     lng: m.lng,
     city: m.city,
@@ -54,31 +57,12 @@ export const getGuestbookMessages = createServerFn({ method: 'GET' }).handler(
   },
 )
 
-/** Best-effort client IP from the request, honouring reverse-proxy headers. */
-function resolveClientIP(): string | null {
-  try {
-    const ip = getRequestIP({ xForwardedFor: true })
-    if (ip) return ip
-  } catch {
-    // fall through to header parsing
-  }
-  try {
-    const headers = getRequestHeaders()
-    const fwd = headers['x-forwarded-for']
-    if (typeof fwd === 'string' && fwd.length > 0) {
-      return fwd.split(',')[0].trim()
-    }
-  } catch {
-    // ignore
-  }
-  return null
-}
-
 export const addGuestbookMessage = createServerFn({ method: 'POST' })
   .inputValidator(
     (data: {
       name: string
       message: string
+      theme?: string
       lat?: number | null
       lng?: number | null
     }) => {
@@ -91,6 +75,10 @@ export const addGuestbookMessage = createServerFn({ method: 'POST' })
         throw new Error(`Name must be at most ${MAX_NAME} characters`)
       if (message.length > MAX_MESSAGE)
         throw new Error(`Message must be at most ${MAX_MESSAGE} characters`)
+
+      const theme = THEMES.includes(data.theme ?? '')
+        ? (data.theme as string)
+        : 'gradient'
 
       // Optional precise coordinates from the browser Geolocation API.
       let lat: number | null = null
@@ -110,6 +98,7 @@ export const addGuestbookMessage = createServerFn({ method: 'POST' })
       return {
         name: name.slice(0, MAX_NAME),
         message: message.slice(0, MAX_MESSAGE),
+        theme,
         lat,
         lng,
       }
@@ -128,19 +117,19 @@ export const addGuestbookMessage = createServerFn({ method: 'POST' })
       const rev = await reverseGeocode(lat, lng)
       city = rev?.city ?? null
       country = rev?.country ?? null
-    } else {
-      // No permission → fall back to approximate IP-based geolocation.
-      const geo = await geolocateIP(resolveClientIP())
-      if (geo) {
-        lat = geo.lat
-        lng = geo.lng
-        city = geo.city
-        country = geo.country
-      }
     }
+    // No browser permission → stored without a location (no IP fallback).
 
     const created = await prisma.guestbookMessage.create({
-      data: { name: data.name, message: data.message, lat, lng, city, country },
+      data: {
+        name: data.name,
+        message: data.message,
+        theme: data.theme,
+        lat,
+        lng,
+        city,
+        country,
+      },
     })
 
     return { message: serialize(created) }

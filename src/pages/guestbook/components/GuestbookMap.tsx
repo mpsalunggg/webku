@@ -38,7 +38,8 @@ const GuestbookMap = ({ messages, onSelect }: GuestbookMapProps) => {
         // Default view focused on Indonesia (archipelago spans ~95°–141°E).
         center: [118, -2.5],
         zoom: 4,
-        attributionControl: { compact: true },
+        // Attribution hidden per request (note: OSM/ODbL normally requires it).
+        attributionControl: false,
       })
       map.addControl(
         new maplibregl.NavigationControl({ showCompass: false }),

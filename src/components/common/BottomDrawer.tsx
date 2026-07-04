@@ -6,6 +6,8 @@ interface BottomDrawerProps {
   onClose: () => void
   title?: ReactNode
   children: ReactNode
+  /** Tailwind max-width class for the sheet; default 'max-w-md'. */
+  maxWidthClass?: string
 }
 
 /** A bottom sheet that slides up from the edge of the viewport. */
@@ -14,6 +16,7 @@ export function BottomDrawer({
   onClose,
   title,
   children,
+  maxWidthClass = 'max-w-md',
 }: BottomDrawerProps) {
   return (
     <div
@@ -33,8 +36,8 @@ export function BottomDrawer({
           open ? 'translate-y-0' : 'translate-y-full'
         }`}
       >
-        <div className="mx-auto w-full max-w-md px-4">
-          <div className="rounded-t-3xl border border-border bg-card p-4 pt-3 shadow-2xl">
+        <div className={`mx-auto w-full px-4 ${maxWidthClass}`}>
+          <div className="max-h-[85vh] overflow-y-auto rounded-t-3xl border border-border bg-card p-4 pt-3 shadow-2xl">
             <div className="mx-auto mb-3 h-1.5 w-12 rounded-full bg-border" />
             <div className="flex items-center justify-between px-1 pb-3">
               <div>{title}</div>

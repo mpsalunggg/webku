@@ -41,6 +41,7 @@ model GuestbookMessage {
   id        String   @id @default(cuid())
   name      String
   message   String
+  theme     String   @default("gradient")
   lat       Float?
   lng       Float?
   city      String?

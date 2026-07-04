@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { LayoutGrid } from 'lucide-react'
 import { AnimatedLines } from '@/components/common/Background'
 import BottomDrawer from '@/components/common/BottomDrawer'
 import { type GuestbookMessage } from './server'
@@ -12,6 +13,7 @@ interface GuestbookPageProps {
 const GuestbookPage = ({ initialMessages }: GuestbookPageProps) => {
   const [active, setActive] = useState<GuestbookMessage | null>(null)
   const [open, setOpen] = useState(false)
+  const [listOpen, setListOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
 
   // maplibre-gl is client-only (WebGL) — never render it during SSR.
@@ -49,12 +51,36 @@ const GuestbookPage = ({ initialMessages }: GuestbookPageProps) => {
               </p>
             </div>
 
-            {/* Map */}
-            {mounted ? (
-              <GuestbookMap messages={initialMessages} onSelect={openPostcard} />
-            ) : (
-              <div className="bg-muted/30 h-[420px] w-full animate-pulse rounded-2xl border border-border" />
+            {initialMessages.length === 0 && (
+              <p className="text-muted-foreground mb-6 text-sm">
+                Belum ada kartu pos. Tekan tombol pensil untuk mengirim yang
+                pertama! ✨
+              </p>
             )}
+
+            {/* Map with an overlaid "see all" button (bottom-right, over the
+                MapLibre attribution) */}
+            <div className="relative">
+              {mounted ? (
+                <GuestbookMap
+                  messages={initialMessages}
+                  onSelect={openPostcard}
+                />
+              ) : (
+                <div className="bg-muted/30 h-[420px] w-full animate-pulse rounded-2xl border border-border" />
+              )}
+
+              {initialMessages.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => setListOpen(true)}
+                  className="absolute right-3 bottom-3 z-10 inline-flex items-center gap-2 rounded-xl border border-border bg-card/95 px-4 py-2.5 text-sm font-medium text-foreground shadow-md backdrop-blur transition-colors hover:border-primary/40 hover:bg-accent/60"
+                >
+                  <LayoutGrid className="h-4 w-4" />
+                  Lihat semua kartu · {initialMessages.length}
+                </button>
+              )}
+            </div>
           </div>
         </section>
       </div>
@@ -70,6 +96,34 @@ const GuestbookPage = ({ initialMessages }: GuestbookPageProps) => {
         }
       >
         {active && <Postcard message={active} />}
+      </BottomDrawer>
+
+      {/* All postcards grid */}
+      <BottomDrawer
+        open={listOpen}
+        onClose={() => setListOpen(false)}
+        maxWidthClass="max-w-2xl"
+        title={
+          <span className="font-amatic text-3xl tracking-wide text-foreground">
+            Semua kartu pos
+          </span>
+        }
+      >
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {initialMessages.map((m) => (
+            <button
+              key={m.id}
+              type="button"
+              onClick={() => {
+                setListOpen(false)
+                openPostcard(m)
+              }}
+              className="text-left transition-transform hover:-translate-y-1"
+            >
+              <Postcard message={m} compact />
+            </button>
+          ))}
+        </div>
       </BottomDrawer>
     </main>
   )

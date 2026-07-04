@@ -1,11 +1,15 @@
 import { useState } from 'react'
-import { Pencil, Send } from 'lucide-react'
+import { Check, Pencil, Send } from 'lucide-react'
 import { useRouter } from '@tanstack/react-router'
 import {
   addGuestbookMessage,
   type GuestbookMessage,
 } from '@/pages/guestbook/server'
-import Postcard from '@/pages/guestbook/components/Postcard'
+import Postcard, {
+  POSTCARD_THEMES,
+  PostcardThemeSwatch,
+  type PostcardTheme,
+} from '@/pages/guestbook/components/Postcard'
 import BottomDrawer from './BottomDrawer'
 
 const MAX_MESSAGE = 280
@@ -41,8 +45,22 @@ export function GuestbookFab() {
   const [submitting, setSubmitting] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [formOpen, setFormOpen] = useState(false)
+  const [theme, setTheme] = useState<PostcardTheme>('gradient')
   const [sent, setSent] = useState<GuestbookMessage | null>(null)
   const [sentOpen, setSentOpen] = useState(false)
+
+  // Live preview of the postcard as the visitor types and picks a theme.
+  const previewMessage: GuestbookMessage = {
+    id: 'preview',
+    name: name.trim() || 'Nama kamu',
+    message: message.trim() || 'Pesanmu akan tampil di sini…',
+    theme,
+    lat: null,
+    lng: null,
+    city: null,
+    country: null,
+    createdAt: new Date().toISOString(),
+  }
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -63,6 +81,7 @@ export function GuestbookFab() {
         data: {
           name: trimmedName,
           message: trimmedMessage,
+          theme,
           lat: coords?.lat ?? null,
           lng: coords?.lng ?? null,
         },
@@ -111,6 +130,11 @@ export function GuestbookFab() {
         }
       >
         <form onSubmit={handleSubmit}>
+          {/* Live preview — compact so the height stays stable while typing */}
+          <div className="mb-4">
+            <Postcard message={previewMessage} theme={theme} compact />
+          </div>
+
           <input
             type="text"
             value={name}
@@ -133,12 +157,44 @@ export function GuestbookFab() {
             </span>
           </div>
 
-          <p className="text-muted-foreground/70 mt-2 text-[11px]">
-            📍 Izinkan lokasi agar kartu posmu muncul akurat di peta — kalau
-            ditolak, kami perkirakan dari IP.
-          </p>
+          {/* Theme picker */}
+          <div className="mt-4">
+            <p className="text-muted-foreground mb-2 text-xs font-medium tracking-wider uppercase">
+              Pilih tema kartu
+            </p>
+            <div className="grid grid-cols-3 gap-2">
+              {POSTCARD_THEMES.map((t) => {
+                const selected = theme === t.key
+                return (
+                  <button
+                    key={t.key}
+                    type="button"
+                    onClick={() => setTheme(t.key)}
+                    aria-pressed={selected}
+                    className={`overflow-hidden rounded-xl border text-left transition-all ${
+                      selected
+                        ? 'border-primary ring-2 ring-primary/40'
+                        : 'border-border hover:border-primary/40'
+                    }`}
+                  >
+                    <div className="h-12 w-full">
+                      <PostcardThemeSwatch theme={t.key} />
+                    </div>
+                    <span
+                      className={`flex items-center justify-between px-2.5 py-1.5 text-xs font-medium ${
+                        selected ? 'text-foreground' : 'text-muted-foreground'
+                      }`}
+                    >
+                      {t.label}
+                      {selected && <Check className="h-3.5 w-3.5 text-primary" />}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
 
-          <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="mt-4 flex items-center justify-between gap-3">
             <p className="text-destructive text-xs">{error}</p>
             <button
               type="submit"
