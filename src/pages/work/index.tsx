@@ -6,12 +6,12 @@ const WorkPage = () => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <section className="relative px-6 py-12">
+        <section className="relative py-12">
           <div className="absolute -top-12 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
             <AnimatedLines className="opacity-30" />
           </div>
 
-          <div className="mx-auto max-w-6xl">
+          <div className="page-container">
             <div className="mb-16">
               <h1 className="font-amatic mb-3 text-6xl font-bold tracking-wide md:text-7xl">
                 Work & Activity

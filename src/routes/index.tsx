@@ -1,6 +1,8 @@
 import Home from '@/pages/home'
 import { createFileRoute } from '@tanstack/react-router'
 import { seo } from '@/lib/seo'
+import { getAllProjects } from '@/pages/project/server'
+import { getAllWritings } from '@/pages/writing/server'
 
 export const Route = createFileRoute('/')({
   head: () => {
@@ -15,9 +17,19 @@ export const Route = createFileRoute('/')({
     })
     return { meta, links }
   },
+  loader: async () => {
+    const [projects, writings] = await Promise.all([
+      getAllProjects(),
+      getAllWritings(),
+    ])
+    return { ...projects, ...writings }
+  },
+  staleTime: 0,
+  gcTime: 0,
   component: App,
 })
 
 function App() {
-  return <Home />
+  const { projects, writings } = Route.useLoaderData()
+  return <Home projects={projects} writings={writings} />
 }

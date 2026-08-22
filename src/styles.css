@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -21,6 +21,8 @@ code {
 
 @theme inline {
   --font-amatic: "Amatic SC", cursive;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
+    monospace;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
@@ -208,4 +210,40 @@ html.dark .shiki span {
    di <code> bawaan Shiki. */
 html.dark pre.shiki {
   background-color: var(--shiki-dark-bg) !important;
+}
+/* ---------------------------------------------------------------
+   Shared page column. Single source of truth for content width —
+   tune max-w here, not across every page.
+   --------------------------------------------------------------- */
+@utility page-container {
+  @apply mx-auto w-full max-w-4xl px-4 sm:px-6;
+}
+
+/* Staggered entrance. Used with an inline animationDelay by the
+   home hero; the class was referenced but never defined before. */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-in-up {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  .gb-marker-pulse {
+    animation: none;
+  }
 }

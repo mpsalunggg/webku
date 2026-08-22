@@ -31,12 +31,12 @@ const GuestbookPage = ({ initialMessages }: GuestbookPageProps) => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <section className="relative px-6 py-12">
+        <section className="relative py-12">
           <div className="absolute -top-12 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
             <AnimatedLines className="opacity-30" />
           </div>
 
-          <div className="mx-auto max-w-6xl">
+          <div className="page-container">
             <div className="mb-8">
               <p className="font-amatic text-2xl tracking-[0.2em] text-muted-foreground">
                 Guestbook

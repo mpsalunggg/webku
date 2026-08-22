@@ -13,11 +13,7 @@ import { activities } from '@/constants/work'
 
 export const Activities = () => {
     return (
-        <div className="relative">
-            <div
-                className="gradient-line absolute -top-6 left-0 h-px w-24"
-                style={{ animationDelay: '0.75s' }}
-            ></div>
+        <div>
             <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
                 Activities
             </h3>

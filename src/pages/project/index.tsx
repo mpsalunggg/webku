@@ -9,12 +9,12 @@ const ProjectsPage = () => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <section className="relative px-6 py-12">
+        <section className="relative py-12">
           <div className="absolute -top-12 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
             <AnimatedLines className="opacity-30" />
           </div>
 
-          <div className="mx-auto max-w-6xl">
+          <div className="page-container">
             <div className="mb-16">
               <h1 className="font-amatic mb-3 text-6xl font-bold tracking-wide md:text-7xl">
                 Projects
@@ -26,7 +26,7 @@ const ProjectsPage = () => {
 
             <div className="flex flex-col gap-8 lg:flex-row">
               <div className="flex-1">
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
                   {filteredProjects.length ? (
                     filteredProjects.map((project, index) => {
                       const isEven = index % 2 === 0;
@@ -39,7 +39,7 @@ const ProjectsPage = () => {
                       );
                     })
                   ) : (
-                    <p className="text-muted-foreground col-span-2 text-center py-12">
+                    <p className="text-muted-foreground col-span-full text-center py-12">
                       No projects found matching your criteria.
                     </p>
                   )}

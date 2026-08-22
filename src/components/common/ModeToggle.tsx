@@ -1,38 +1,36 @@
+import { useEffect, useState } from 'react'
 import { Moon, Sun } from 'lucide-react'
-import * as SwitchPrimitive from '@radix-ui/react-switch'
-import { cn } from '@/lib/utils'
+import { Button } from '@/components/ui/button'
 import { useTheme } from '../layout/ThemeProvider'
 
 export function ModeToggle() {
     const { theme, setTheme } = useTheme()
+    const [systemDark, setSystemDark] = useState(false)
 
-    const isDark = theme === 'dark'
+    // Only the OS preference needs an effect. Reading the `dark` class off
+    // <html> instead would be stale on click: child effects run before parent
+    // ones, so this would fire before ThemeProvider rewrote the class.
+    useEffect(() => {
+        const query = window.matchMedia('(prefers-color-scheme: dark)')
+        setSystemDark(query.matches)
 
-    const toggleTheme = (checked: boolean) => {
-        setTheme(checked ? 'dark' : 'light')
-    }
+        const onChange = (event: MediaQueryListEvent) =>
+            setSystemDark(event.matches)
+        query.addEventListener('change', onChange)
+        return () => query.removeEventListener('change', onChange)
+    }, [])
+
+    // Derived synchronously from `theme`, so a click is reflected immediately.
+    const isDark = theme === 'dark' || (theme === 'system' && systemDark)
 
     return (
-        <SwitchPrimitive.Root
-            checked={isDark}
-            onCheckedChange={toggleTheme}
-            className={cn(
-                'peer relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent transition-colors',
-                'focus-visible:ring-ring focus-visible:ring-offset-background focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none',
-                'disabled:cursor-not-allowed disabled:opacity-50',
-                'data-[state=checked]:bg-gray-700 data-[state=unchecked]:bg-input'
-            )}
-            aria-label="Toggle theme"
+        <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+            aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
         >
-            <SwitchPrimitive.Thumb
-                className={cn(
-                    'bg-background pointer-events-none flex h-5 w-5 items-center justify-center rounded-full shadow-lg ring-0 transition-transform',
-                    'data-[state=checked]:translate-x-5 data-[state=unchecked]:translate-x-0'
-                )}
-            >
-                <Sun className="h-3 w-3 scale-100 transition-all dark:scale-0" />
-                <Moon className="absolute h-3 w-3 scale-0 transition-all dark:scale-100" />
-            </SwitchPrimitive.Thumb>
-        </SwitchPrimitive.Root>
+            {isDark ? <Sun /> : <Moon />}
+        </Button>
     )
 }

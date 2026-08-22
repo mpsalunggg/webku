@@ -47,7 +47,7 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <div className="mx-auto max-w-6xl px-6 lg:px-0 py-12">
+        <div className="page-container py-12">
           <div className="mb-8">
             <Link
               to="/writing"

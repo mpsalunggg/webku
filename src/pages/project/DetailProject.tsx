@@ -22,7 +22,7 @@ const DetailProject = ({ frontmatter, slug }: DetailProjectProps) => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <article className="mx-auto max-w-4xl px-6 py-12">
+        <article className="page-container py-12">
           <div className="flex justify-between items-center">
             <Link
               to="/projects"

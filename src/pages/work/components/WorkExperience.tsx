@@ -12,24 +12,31 @@ import { Badge } from '@/components/ui/badge'
 import { workExperiences } from '@/constants/work'
 import { cn } from '@/lib/utils'
 
-export const WorkExperience = () => {
-    const activeIndex = workExperiences.findIndex((exp) =>
+interface WorkExperienceProps {
+    /** Show only the N most recent roles. Omit for the full history. */
+    limit?: number
+    showHeading?: boolean
+}
+
+export const WorkExperience = ({
+    limit,
+    showHeading = true,
+}: WorkExperienceProps) => {
+    const experiences = limit ? workExperiences.slice(0, limit) : workExperiences
+    const activeIndex = experiences.findIndex((exp) =>
         exp.period.toLowerCase().includes('present')
     )
-    const defaultValue =
-        activeIndex !== -1 ? activeIndex + 1 : workExperiences.length
+    const defaultValue = activeIndex !== -1 ? activeIndex + 1 : experiences.length
 
     return (
-        <div className="relative">
-            <div
-                className="gradient-line absolute -top-6 left-0 h-px w-24"
-                style={{ animationDelay: '0.5s' }}
-            ></div>
-            <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
-                Work Experience
-            </h3>
+        <div>
+            {showHeading && (
+                <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
+                    Work Experience
+                </h3>
+            )}
             <Timeline defaultValue={defaultValue}>
-                {workExperiences.map((experience, index) => {
+                {experiences.map((experience, index) => {
                     const isPresent = experience.period.toLowerCase().includes('present')
                     return (
                         <TimelineItem

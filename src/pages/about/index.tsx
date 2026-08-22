@@ -22,12 +22,12 @@ const AboutPage = () => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
-        <section className="relative px-6 py-12">
+        <section className="relative py-12">
           <div className="absolute -top-12 left-1/2 w-full max-w-4xl -translate-x-1/2 transform">
             <AnimatedLines className="opacity-30" />
           </div>
 
-          <div className="mx-auto max-w-6xl">
+          <div className="page-container">
             <div className="mb-16">
               <h1 className="font-amatic mb-3 text-6xl font-bold tracking-wide md:text-7xl">
                 About
@@ -63,8 +63,7 @@ const AboutPage = () => {
               </div>
 
               <div className="space-y-12 lg:col-span-2">
-                <div className="relative">
-                  <div className="gradient-line absolute -top-6 left-0 h-px w-24"></div>
+                <div>
                   <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
                     Summary
                   </h3>
@@ -87,11 +86,7 @@ const AboutPage = () => {
                   </div>
                 </div>
 
-                <div className="relative">
-                  <div
-                    className="gradient-line absolute -top-6 left-0 h-px w-24"
-                    style={{ animationDelay: "0.5s" }}
-                  ></div>
+                <div>
                   <h3 className="text-muted-foreground mb-6 font-mono text-sm tracking-wider uppercase">
                     Recognition
                   </h3>

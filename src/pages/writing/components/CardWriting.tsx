@@ -22,18 +22,18 @@ const CardWriting = ({ writing, isLast }: CardWritingProps) => {
       className="group block"
     >
       <article
-        className={`relative flex items-start justify-between gap-6 py-7 ${!isLast ? "border-b border-border/50" : ""}`}
+        className={`relative flex items-start justify-between gap-6 py-6 ${!isLast ? "border-b border-border/50" : ""}`}
       >
         <div className="flex min-w-0 flex-1 flex-col gap-2">
           <div className="flex items-center gap-2 font-mono text-[10px] uppercase text-muted-foreground">
-            <span className="mb-2">{writing.category}</span>
-            <span className="mb-2">·</span>
-            <span className="mb-2">{writing.readingTime}</span>
-            <span className="mb-2">·</span>
-            <span className="mb-2">{formatted}</span>
+            <span>{writing.category}</span>
+            <span>·</span>
+            <span>{writing.readingTime}</span>
+            <span>·</span>
+            <span>{formatted}</span>
           </div>
 
-          <h3 className="font-amatic text-4xl font-bold tracking-wide text-foreground transition-colors group-hover/title:text-primary">
+          <h3 className="font-amatic text-4xl font-bold tracking-wide text-foreground transition-colors group-hover:text-primary">
             {writing.title}
           </h3>
 
@@ -42,7 +42,7 @@ const CardWriting = ({ writing, isLast }: CardWritingProps) => {
           </p>
 
           {writing.views !== undefined && (
-            <div className="text-muted-foreground font-mono mt-1 flex items-center gap-1.5 text-[11px]">
+            <div className="text-muted-foreground font-mono flex items-center gap-1.5 text-[11px]">
               <Eye className="h-3 w-3" aria-hidden />
               <span>{writing.views.toLocaleString()} VIEWS</span>
             </div>
