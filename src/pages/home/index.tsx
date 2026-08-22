@@ -41,10 +41,7 @@ const Home = ({ projects, writings }: HomeProps) => {
             style={{ animationDelay: "0.25s", animationFillMode: "both" }}
           >
             <h1 className="font-amatic text-foreground mt-6 mb-5 text-7xl leading-[0.95] font-bold tracking-wide text-balance md:text-8xl">
-              I&apos;m a{" "}
-              <span className="from-primary via-primary/70 to-foreground bg-linear-to-r bg-clip-text text-transparent">
-                Software Engineer
-              </span>
+              I&apos;m a Software Engineer
             </h1>
           </div>
 
@@ -68,8 +65,8 @@ const Home = ({ projects, writings }: HomeProps) => {
             <span className="text-muted-foreground/40">/</span>
             <span className="inline-flex items-center gap-1.5">
               <span className="relative flex h-1.5 w-1.5">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-chart-2 opacity-60" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-chart-2" />
               </span>
               Open to work
             </span>

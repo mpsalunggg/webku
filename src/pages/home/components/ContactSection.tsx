@@ -123,7 +123,7 @@ const ContactSection = () => {
               {EMAIL}
             </p>
             <p
-              className={`mt-1.5 text-[10px] font-medium ${copied ? 'text-emerald-500' : 'text-muted-foreground/50'}`}
+              className={`mt-1.5 text-[10px] font-medium ${copied ? 'text-chart-2' : 'text-muted-foreground/50'}`}
             >
               {copied ? '✓ Copied' : 'Click to copy'}
             </p>

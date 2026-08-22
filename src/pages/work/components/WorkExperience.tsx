@@ -56,7 +56,7 @@ export const WorkExperience = ({
                                     <a
                                         href={experience.link_company}
                                         target="_blank"
-                                        className="text-foreground font-medium underline hover:text-blue-600"
+                                        className="text-foreground font-medium underline hover:text-primary"
                                     >
                                         {experience.company}
                                     </a>
@@ -93,10 +93,10 @@ export const WorkExperience = ({
                                 className={cn(
                                     isPresent
                                         ? 'bg-primary'
-                                        : 'border border-gray-200')
+                                        : 'border border-border')
                                 }
                             />
-                            <TimelineSeparator className="border dark:border-gray-200 border-gray-200" />
+                            <TimelineSeparator className="border-border" />
                         </TimelineItem>
                     )
                 })}

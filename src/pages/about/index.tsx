@@ -123,7 +123,7 @@ const AboutPage = () => {
                         <TimelineHeader>
                           <img src={achievement.image} className="h-8" />
                         </TimelineHeader>
-                        <TimelineIndicator className="border-1 !border-gray-400" />
+                        <TimelineIndicator className="border border-border" />
                         <TimelineSeparator className="border-1" />
                       </TimelineItem>
                     ))}

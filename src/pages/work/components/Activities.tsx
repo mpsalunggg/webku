@@ -36,7 +36,7 @@ export const Activities = () => {
                                 <a
                                     href={activity.link_company}
                                     target="_blank"
-                                    className="text-foreground font-medium underline hover:text-blue-600"
+                                    className="text-foreground font-medium underline hover:text-primary"
                                 >
                                     {activity.organization}
                                 </a>
@@ -66,8 +66,8 @@ export const Activities = () => {
                                 </div>
                             )}
                         </TimelineContent>
-                        <TimelineIndicator className="border !dark:border-gray-200 !border-gray-200" />
-                        <TimelineSeparator className="border !dark:border-gray-200 !border-gray-200" />
+                        <TimelineIndicator className="border-border" />
+                        <TimelineSeparator className="border-border" />
                     </TimelineItem>
                 ))}
             </Timeline>
