@@ -24,29 +24,21 @@ const ProjectsPage = () => {
               </p>
             </div>
 
-            <div className="flex flex-col gap-8 lg:flex-row">
-              <div className="flex-1">
-                <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-1">
-                  {filteredProjects.length ? (
-                    filteredProjects.map((project, index) => {
-                      const isEven = index % 2 === 0;
-                      return (
-                        <CardProject
-                          key={index}
-                          project={project}
-                          isEven={isEven}
-                        />
-                      );
-                    })
-                  ) : (
-                    <p className="text-muted-foreground col-span-full text-center py-12">
-                      No projects found matching your criteria.
-                    </p>
-                  )}
-                </div>
-              </div>
+            <FilterProject />
 
-              <FilterProject />
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+              {filteredProjects.length ? (
+                filteredProjects.map((project, index) => {
+                  const isEven = index % 2 === 0;
+                  return (
+                    <CardProject key={index} project={project} isEven={isEven} />
+                  );
+                })
+              ) : (
+                <p className="text-muted-foreground col-span-full text-center py-12">
+                  No projects found matching your criteria.
+                </p>
+              )}
             </div>
           </div>
         </section>

@@ -13,8 +13,6 @@ type ProjectsContextType = {
     filteredProjects: ProjectFrontmatter[]
     handleSearch: (query: string) => void
     handleCategoryChange: (category: string) => void
-    clearFilters: () => void
-    clearCategory: () => void
 }
 
 const ProjectsContext = createContext<ProjectsContextType | undefined>(
@@ -66,26 +64,12 @@ export const ProjectsProvider = ({
         setState((prev) => ({ ...prev, selectedCategory: category }))
     }
 
-    const clearFilters = () => {
-        setState({
-            searchQuery: '',
-            selectedCategory: 'All Projects',
-            filteredProjects: initialProjects,
-        })
-    }
-
-    const clearCategory = () => {
-        setState((prev) => ({ ...prev, selectedCategory: 'All Projects' }))
-    }
-
     const value = {
         searchQuery: state.searchQuery,
         selectedCategory: state.selectedCategory,
         filteredProjects: state.filteredProjects,
         handleSearch,
         handleCategoryChange,
-        clearFilters,
-        clearCategory,
     }
 
     return (
