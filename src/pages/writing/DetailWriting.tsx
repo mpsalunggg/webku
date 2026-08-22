@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from "react";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
 import { ArrowLeft, Calendar, Clock, Eye } from "lucide-react";
 import { MDXProvider } from "@mdx-js/react";
 import { Link } from "@tanstack/react-router";
@@ -18,16 +18,22 @@ interface DetailWritingProps {
 const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
   const [headings, setHeadings] = useState<Heading[]>([]);
 
-  const MDXComponent = lazy(() =>
-    import(`../../content/writings/${slug}.mdx`).then((module) => ({
-      default: module.default,
-    })),
+  const MDXComponent = useMemo(
+    () =>
+      lazy(() =>
+        import(`../../content/writings/${slug}.mdx`).then((module) => ({
+          default: module.default,
+        })),
+      ),
+    [slug],
   );
 
   useEffect(() => {
+    setHeadings([]);
+
     const extractHeadings = () => {
       const article = document.querySelector("article");
-      if (!article) return;
+      if (!article) return false;
 
       const elements = article.querySelectorAll("h1, h2");
       const extracted: Heading[] = Array.from(elements)
@@ -37,11 +43,21 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
           text: el.textContent?.replace(/\s*#\s*$/, "").trim() ?? "",
           level: parseInt(el.tagName.replace("H", ""), 10),
         }));
+
+      if (extracted.length === 0) return false;
       setHeadings(extracted);
+      return true;
     };
 
-    const timeout = setTimeout(extractHeadings, 300);
-    return () => clearTimeout(timeout);
+    if (extractHeadings()) return;
+
+    const target = document.querySelector("article") ?? document.body;
+    const observer = new MutationObserver(() => {
+      if (extractHeadings()) observer.disconnect();
+    });
+    observer.observe(target, { childList: true, subtree: true });
+
+    return () => observer.disconnect();
   }, [slug]);
 
   return (
@@ -58,70 +74,66 @@ const DetailWriting = ({ frontmatter, slug }: DetailWritingProps) => {
             </Link>
           </div>
 
-          <div className="flex gap-12">
-            <article className="min-w-0 flex-1">
-              <header className="mb-12">
-                <div className="mb-5 flex flex-wrap items-center gap-3 text-sm">
-                  <span className="text-primary text-xs font-medium uppercase tracking-wide">
-                    {frontmatter.category}
-                  </span>
-                  <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
-                  <div className="text-muted-foreground flex items-center gap-1.5">
-                    <Clock className="h-3.5 w-3.5" />
-                    <span>{frontmatter.readingTime}</span>
-                  </div>
-                  <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
-                  <div className="text-muted-foreground flex items-center gap-1.5">
-                    <Calendar className="h-3.5 w-3.5" />
-                    <time dateTime={frontmatter.date}>
-                      {new Date(frontmatter.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </time>
-                  </div>
+          <article>
+            <header className="mb-12">
+              <div className="mb-5 flex flex-wrap items-center gap-3 text-sm">
+                <span className="text-primary text-xs font-medium uppercase tracking-wide">
+                  {frontmatter.category}
+                </span>
+                <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
+                <div className="text-muted-foreground flex items-center gap-1.5">
+                  <Clock className="h-3.5 w-3.5" />
+                  <span>{frontmatter.readingTime}</span>
                 </div>
-
-                <h1 className="font-amatic mb-5 max-w-[95%] origin-top-left -rotate-1 text-6xl font-bold leading-[1.05] md:text-7xl">
-                  {frontmatter.title}
-                </h1>
-
-                <p className="font-serif text-muted-foreground mb-7 max-w-xl text-lg leading-relaxed md:text-xl">
-                  {frontmatter.description}
-                </p>
-
-                <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
-                  <Eye className="h-3.5 w-3.5" />
-                  <span>{frontmatter.views ?? 0} views</span>
-                </div>
-              </header>
-
-              <AnimatedLines variant="section" className="-mt-8" />
-
-              <div className="prose prose-slate dark:prose-invert max-w-none mb-96">
-                <MDXProvider components={mdxComponents}>
-                  <Suspense
-                    fallback={
-                      <div className="flex items-center justify-center py-12">
-                        <div className="text-muted-foreground">Loading...</div>
-                      </div>
-                    }
-                  >
-                    <MDXComponent />
-                  </Suspense>
-                </MDXProvider>
-                <div className="mt-16 border-t border-border pt-10">
-                  <h2 className="text-xl font-semibold mb-6">Comments</h2>
-                  <Comments />
+                <span className="bg-muted-foreground h-[3px] w-[3px] shrink-0 rounded-full" />
+                <div className="text-muted-foreground flex items-center gap-1.5">
+                  <Calendar className="h-3.5 w-3.5" />
+                  <time dateTime={frontmatter.date}>
+                    {new Date(frontmatter.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "long",
+                      day: "numeric",
+                    })}
+                  </time>
                 </div>
               </div>
-            </article>
 
-            <aside className="hidden w-64 shrink-0 xl:block">
-              <TableOfContents headings={headings} />
-            </aside>
-          </div>
+              <h1 className="font-amatic mb-5 max-w-[95%] origin-top-left -rotate-1 text-6xl font-bold leading-[1.05] md:text-7xl">
+                {frontmatter.title}
+              </h1>
+
+              <p className="font-serif text-muted-foreground mb-7 max-w-xl text-lg leading-relaxed md:text-xl">
+                {frontmatter.description}
+              </p>
+
+              <div className="text-muted-foreground flex items-center gap-1.5 text-sm">
+                <Eye className="h-3.5 w-3.5" />
+                <span>{frontmatter.views ?? 0} views</span>
+              </div>
+            </header>
+
+            <AnimatedLines variant="section" className="-mt-8" />
+
+            <div className="prose prose-slate dark:prose-invert max-w-none mb-96">
+              <MDXProvider components={mdxComponents}>
+                <Suspense
+                  fallback={
+                    <div className="flex items-center justify-center py-12">
+                      <div className="text-muted-foreground">Loading...</div>
+                    </div>
+                  }
+                >
+                  <MDXComponent />
+                </Suspense>
+              </MDXProvider>
+              <div className="mt-16 border-t border-border pt-10">
+                <h2 className="text-xl font-semibold mb-6">Comments</h2>
+                <Comments />
+              </div>
+            </div>
+          </article>
+
+          <TableOfContents headings={headings} />
         </div>
       </div>
     </main>
