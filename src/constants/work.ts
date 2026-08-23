@@ -7,8 +7,11 @@ export const workExperiences = [
     location: 'South Tangerang, Indonesia',
     type: 'Contract',
     responsibilities: [
+      'Developed an LLM-powered GIS analytics SaaS with interactive mapping and geospatial visualization.',
+      'Built an OAuth 2.0 Identity Provider with RS256 JWTs and JWKS for secure local token verification.',
       'Designed and adjusted backend API responses to align with frontend requirements using Golang.',
-      'Built unit and end-to-end (E2E) tests for frontend applications to improve stability and user experience.',
+      'Built unit and end-to-end (E2E) tests for client and server applications to improve stability and user experience.',
+      'Led UI/UX direction, code reviews, and technical meetings to keep delivery aligned across the team.',
     ],
     stack: ['TypeScript', 'Next.js', 'Golang', 'Docker'],
   },
@@ -96,9 +99,9 @@ export const workExperiences = [
 export const activities = [
   {
     period: '07/2023 - 12/2023',
-    organization: 'GoTo Impact Foundation - Generasi Gigih 3.0',
+    company: 'GoTo Impact Foundation - Generasi Gigih 3.0',
     link_company: 'https://goto-impact.org/generasi-gigih',
-    role: 'Fullstack Engineer Learning Path',
+    position: 'Fullstack Engineer Learning Path',
     location: 'Jakarta, Indonesia',
     responsibilities: [
       'Learned the MERN stack (MongoDB, Express.js, React, Node.js) for fullstack app development.',
@@ -109,9 +112,9 @@ export const activities = [
   },
   {
     period: '08/2022 - 12/2022',
-    organization: 'RuangGuru',
+    company: 'RuangGuru',
     link_company: 'https://www.ruangguru.com/program/kampus-merdeka',
-    role: 'Frontend Engineering Learning Path',
+    position: 'Frontend Engineering Learning Path',
     location: 'Jakarta, Indonesia',
     responsibilities: [
       'Learned the fundamentals of Tailwind CSS, JavaScript, Git, ReactJS, and Chakra UI.',
@@ -121,9 +124,9 @@ export const activities = [
   },
   {
     period: '09/2022 - 06/2024',
-    organization: 'Hammercode Community',
+    company: 'Hammercode Community',
     link_company: 'https://www.hammercode.org/',
-    role: 'Frontend Engineer Mentor & Lead Community',
+    position: 'Frontend Engineer Mentor & Lead Community',
     location: 'Palu, Indonesia',
     responsibilities: [
       "Contributed to the development of Palu's tech ecosystem through mentorship and events.",

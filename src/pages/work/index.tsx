@@ -1,6 +1,6 @@
 import { AnimatedLines } from "@/components/common/Background";
-import { WorkExperience } from "./components/WorkExperience";
-import { Activities } from "./components/Activities";
+import { ExperienceTimeline } from "./components/ExperienceTimeline";
+import { workExperiences, activities } from "@/constants/work";
 
 const WorkPage = () => {
   return (
@@ -22,8 +22,8 @@ const WorkPage = () => {
             </div>
 
             <div className="space-y-16">
-              <WorkExperience />
-              <Activities />
+              <ExperienceTimeline items={workExperiences} heading="Work Experience" />
+              <ExperienceTimeline items={activities} heading="Activities" />
             </div>
           </div>
         </section>

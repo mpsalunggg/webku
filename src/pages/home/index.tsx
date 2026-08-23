@@ -3,7 +3,7 @@ import SectionHeader from "./components/SectionHeader";
 import ContactSection from "./components/ContactSection";
 import CardProject from "@/pages/project/components/CardProject";
 import CardWriting from "@/pages/writing/components/CardWriting";
-import { WorkExperience } from "@/pages/work/components/WorkExperience";
+import { ExperienceTimeline } from "@/pages/work/components/ExperienceTimeline";
 import { iconMap, skills } from "@/constants/about";
 import { workExperiences } from "@/constants/work";
 import type { ProjectFrontmatter, WritingFrontmatter } from "@/lib/mdx";
@@ -169,7 +169,7 @@ const Home = ({ projects, writings }: HomeProps) => {
             linkLabel="Full history"
           />
 
-          <WorkExperience limit={2} showHeading={false} />
+          <ExperienceTimeline items={workExperiences} limit={2} />
         </section>
 
         <section>
