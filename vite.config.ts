@@ -9,9 +9,11 @@ import remarkGfm from "remark-gfm";
 import remarkFrontmatter from "remark-frontmatter";
 import rehypeShiki from "@shikijs/rehype";
 import { mermaidTransformer } from "./src/lib/mermaid-transformer";
+import { devtools } from '@tanstack/devtools-vite'
 
 const config = defineConfig({
   plugins: [
+    devtools(),
     nitroV2Plugin(),
     // this is the plugin that enables path aliases
     viteTsConfigPaths({

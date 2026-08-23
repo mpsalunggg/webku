@@ -1,45 +1,31 @@
-import { useState } from 'react'
-import { useQuery } from '@apollo/client/react'
-import { ArrowUpRight, Linkedin, Mail, MapPin } from 'lucide-react'
-import { GET_USER_STATS } from '@/constants/query'
-import SectionHeader from './SectionHeader'
+import { useState } from "react";
+import { ArrowUpRight, Linkedin, Mail, MapPin } from "lucide-react";
+import type { GithubStats } from "@/pages/home/server";
+import SectionHeader from "./SectionHeader";
 
-const EMAIL = 'putrasatria893@gmail.com'
-const GITHUB_USERNAME = 'mpsalunggg'
-const LINKEDIN_URL = 'https://linkedin.com/in/muhamadputrasatria'
+const EMAIL = "putrasatria893@gmail.com";
+const GITHUB_USERNAME = "mpsalunggg";
+const LINKEDIN_URL = "https://linkedin.com/in/muhamadputrasatria";
 
-interface GitHubStats {
-  user: {
-    name: string
-    avatarUrl: string
-    totalRepositories: { totalCount: number }
-    totalFollowers: { totalCount: number }
-    totalCommit: { totalCommitContributions: number }
-    totalPullRequest: { totalPullRequestContributions: number }
-  }
+interface ContactSectionProps {
+  githubStats: GithubStats | null;
 }
 
-const ContactSection = () => {
-  const [copied, setCopied] = useState(false)
-  const { data } = useQuery<GitHubStats>(GET_USER_STATS, {
-    variables: { username: GITHUB_USERNAME },
-  })
+const ContactSection = ({ githubStats }: ContactSectionProps) => {
+  const [copied, setCopied] = useState(false);
 
   function handleCopy() {
-    navigator.clipboard?.writeText(EMAIL)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
+    navigator.clipboard?.writeText(EMAIL);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }
 
   const stats = [
-    { label: 'Repositories', value: data?.user.totalRepositories.totalCount },
-    { label: 'Followers', value: data?.user.totalFollowers.totalCount },
-    { label: 'Commits', value: data?.user.totalCommit.totalCommitContributions },
-    {
-      label: 'Pull Requests',
-      value: data?.user.totalPullRequest.totalPullRequestContributions,
-    },
-  ]
+    { label: "Repositories", value: githubStats?.repositories },
+    { label: "Followers", value: githubStats?.followers },
+    { label: "Commits", value: githubStats?.commits },
+    { label: "Pull Requests", value: githubStats?.pullRequests },
+  ];
 
   return (
     <section id="contact" className="flex flex-col gap-6">
@@ -57,16 +43,16 @@ const ContactSection = () => {
       <div className="border-border bg-card hover:border-primary/40 overflow-hidden rounded-2xl border transition-colors hover:shadow-sm">
         <div className="flex items-center justify-between px-5 pt-5 pb-4">
           <div className="flex items-center gap-3">
-            {data?.user.avatarUrl && (
+            {githubStats?.avatarUrl && (
               <img
-                src={data.user.avatarUrl}
-                alt={data.user.name}
+                src={githubStats.avatarUrl}
+                alt={githubStats.name}
                 className="h-9 w-9 rounded-xl"
               />
             )}
             <div>
               <p className="text-foreground text-sm font-medium">
-                {data?.user.name ?? 'GitHub'}
+                {githubStats?.name ?? "GitHub"}
               </p>
               <p className="text-muted-foreground text-xs">
                 @{GITHUB_USERNAME} · GitHub
@@ -89,15 +75,15 @@ const ContactSection = () => {
             <div
               key={stat.label}
               className={[
-                'hover:bg-muted/50 px-4 py-4 text-center transition-colors',
-                'border-border',
-                index < 3 ? 'sm:border-r' : '',
-                index % 2 === 0 ? 'border-r sm:border-r' : '',
-                index < 2 ? 'border-b sm:border-b-0' : '',
-              ].join(' ')}
+                "hover:bg-muted/50 px-4 py-4 text-center transition-colors",
+                "border-border",
+                index < 3 ? "sm:border-r" : "",
+                index % 2 === 0 ? "border-r sm:border-r" : "",
+                index < 2 ? "border-b sm:border-b-0" : "",
+              ].join(" ")}
             >
               <p className="text-foreground mb-1 text-xl leading-none font-semibold tabular-nums">
-                {stat.value ?? '—'}
+                {stat.value ?? "—"}
               </p>
               <p className="text-muted-foreground text-[10px] leading-tight tracking-wider uppercase">
                 {stat.label}
@@ -123,9 +109,9 @@ const ContactSection = () => {
               {EMAIL}
             </p>
             <p
-              className={`mt-1.5 text-[10px] font-medium ${copied ? 'text-chart-2' : 'text-muted-foreground/50'}`}
+              className={`mt-1.5 text-[10px] font-medium ${copied ? "text-chart-2" : "text-muted-foreground/50"}`}
             >
-              {copied ? '✓ Copied' : 'Click to copy'}
+              {copied ? "✓ Copied" : "Click to copy"}
             </p>
           </div>
         </button>
@@ -173,7 +159,7 @@ const ContactSection = () => {
         </div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default ContactSection
+export default ContactSection;

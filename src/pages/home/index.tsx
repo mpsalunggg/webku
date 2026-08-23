@@ -7,16 +7,18 @@ import { ExperienceTimeline } from "@/pages/work/components/ExperienceTimeline";
 import { iconMap, skills } from "@/constants/about";
 import { workExperiences } from "@/constants/work";
 import type { ProjectFrontmatter, WritingFrontmatter } from "@/lib/mdx";
+import type { GithubStats } from "@/pages/home/server";
 
 interface HomeProps {
   projects: ProjectFrontmatter[];
   writings: WritingFrontmatter[];
+  githubStats: GithubStats | null;
 }
 
 // Three per group keeps all four skill groups represented in one row.
 const stack = skills.flatMap((group) => group.items.slice(0, 3));
 
-const Home = ({ projects, writings }: HomeProps) => {
+const Home = ({ projects, writings, githubStats }: HomeProps) => {
   const featuredProjects = projects.slice(0, 2);
   const latestWritings = writings.slice(0, 3);
   const current = workExperiences[0];
@@ -197,7 +199,7 @@ const Home = ({ projects, writings }: HomeProps) => {
           )}
         </section>
 
-        <ContactSection />
+        <ContactSection githubStats={githubStats} />
 
         <div className="border-border border-t pt-8 text-center">
           <p className="text-muted-foreground text-xs">

@@ -1,35 +1,39 @@
-import Home from '@/pages/home'
-import { createFileRoute } from '@tanstack/react-router'
-import { seo } from '@/lib/seo'
-import { getAllProjects } from '@/pages/project/server'
-import { getAllWritings } from '@/pages/writing/server'
+import Home from "@/pages/home";
+import { createFileRoute } from "@tanstack/react-router";
+import { seo } from "@/lib/seo";
+import { getAllProjects } from "@/pages/project/server";
+import { getAllWritings } from "@/pages/writing/server";
+import { getGithubStats } from "@/pages/home/server";
 
-export const Route = createFileRoute('/')({
+export const Route = createFileRoute("/")({
   head: () => {
     const { meta, links } = seo({
-      title: 'Muhamad Putra Satria - Software Engineer',
+      title: "Muhamad Putra Satria - Software Engineer",
       description:
-        'Frontend Developer passionate about exploring new technologies and sharing knowledge. Explore my portfolio featuring web development projects, work experience, and technical expertise.',
+        "Frontend Developer passionate about exploring new technologies and sharing knowledge. Explore my portfolio featuring web development projects, work experience, and technical expertise.",
       keywords:
-        'Muhamad Putra Satria, Software Engineer, Frontend Developer, React Developer, Web Development, Portfolio, JavaScript, TypeScript, React, TanStack',
-      type: 'website',
-      path: '/',
-    })
-    return { meta, links }
+        "Muhamad Putra Satria, Software Engineer, Frontend Developer, React Developer, Web Development, Portfolio, JavaScript, TypeScript, React, TanStack",
+      type: "website",
+      path: "/",
+    });
+    return { meta, links };
   },
   loader: async () => {
-    const [projects, writings] = await Promise.all([
+    const [projects, writings, githubStats] = await Promise.all([
       getAllProjects(),
       getAllWritings(),
-    ])
-    return { ...projects, ...writings }
+      getGithubStats(),
+    ]);
+    return { ...projects, ...writings, ...githubStats };
   },
   staleTime: 0,
   gcTime: 0,
   component: App,
-})
+});
 
 function App() {
-  const { projects, writings } = Route.useLoaderData()
-  return <Home projects={projects} writings={writings} />
+  const { projects, writings, githubStats } = Route.useLoaderData();
+  return (
+    <Home projects={projects} writings={writings} githubStats={githubStats} />
+  );
 }
