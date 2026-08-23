@@ -17,8 +17,14 @@ import {
   TimelineTitle,
 } from "@/components/ui/timeline";
 import { iconMap, skills, achievements } from "@/constants/about";
+import ContributionGraph from "@/components/common/ContributionGraph";
+import type { Contributions } from "@/pages/home/server";
 
-const AboutPage = () => {
+interface AboutPageProps {
+  contributions: Contributions | null;
+}
+
+const AboutPage = ({ contributions }: AboutPageProps) => {
   return (
     <main className="bg-background min-h-screen">
       <div className="pt-20">
@@ -192,6 +198,14 @@ const AboutPage = () => {
                   </div>
                 ))}
               </div>
+            </div>
+
+            <div className="border-border relative mt-24 border-t pt-12">
+              <h3 className="text-muted-foreground mb-12 text-center font-mono text-sm uppercase">
+                Contribution Activity
+              </h3>
+
+              <ContributionGraph contributions={contributions} />
             </div>
           </div>
         </section>

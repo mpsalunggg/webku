@@ -32,8 +32,14 @@ export const Route = createFileRoute("/")({
 });
 
 function App() {
-  const { projects, writings, githubStats } = Route.useLoaderData();
+  const { projects, writings, githubStats, contributions } =
+    Route.useLoaderData();
   return (
-    <Home projects={projects} writings={writings} githubStats={githubStats} />
+    <Home
+      projects={projects}
+      writings={writings}
+      githubStats={githubStats}
+      contributions={contributions}
+    />
   );
 }

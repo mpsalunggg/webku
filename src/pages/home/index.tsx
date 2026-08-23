@@ -7,18 +7,25 @@ import { ExperienceTimeline } from "@/pages/work/components/ExperienceTimeline";
 import { iconMap, skills } from "@/constants/about";
 import { workExperiences } from "@/constants/work";
 import type { ProjectFrontmatter, WritingFrontmatter } from "@/lib/mdx";
-import type { GithubStats } from "@/pages/home/server";
+import type { Contributions, GithubStats } from "@/pages/home/server";
+import ContributionGraph from "@/components/common/ContributionGraph";
 
 interface HomeProps {
   projects: ProjectFrontmatter[];
   writings: WritingFrontmatter[];
   githubStats: GithubStats | null;
+  contributions: Contributions | null;
 }
 
 // Three per group keeps all four skill groups represented in one row.
 const stack = skills.flatMap((group) => group.items.slice(0, 3));
 
-const Home = ({ projects, writings, githubStats }: HomeProps) => {
+const Home = ({
+  projects,
+  writings,
+  githubStats,
+  contributions,
+}: HomeProps) => {
   const featuredProjects = projects.slice(0, 2);
   const latestWritings = writings.slice(0, 3);
   const current = workExperiences[0];
@@ -197,6 +204,11 @@ const Home = ({ projects, writings, githubStats }: HomeProps) => {
               No articles yet. Check back soon.
             </p>
           )}
+        </section>
+
+        <section>
+          <SectionHeader eyebrow="How I show up" title="Activity" />
+          <ContributionGraph contributions={contributions} />
         </section>
 
         <ContactSection githubStats={githubStats} />
